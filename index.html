@@ -60,9 +60,6 @@ main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
 .answer-reveal { display: none; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.3); border-radius: 8px; padding: 1rem; margin-top: 0.75rem; }
 .answer-reveal.visible { display: block; }
 .answer-reveal h4 { color: var(--success); margin-bottom: 0.5rem; }
-.user-answer-section { margin-top: 0.75rem; }
-.user-answer-section textarea { width: 100%; background: var(--bg); border: 1px solid var(--surface2); color: var(--text); border-radius: 8px; padding: 0.75rem; font-size: 0.85rem; resize: vertical; min-height: 60px; font-family: inherit; }
-.user-answer-section textarea:focus { outline: none; border-color: var(--accent); }
 .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); z-index: 200; transition: width 0.3s; }
 .stats { display: flex; gap: 1rem; padding: 0.75rem 2rem; background: var(--bg); border-bottom: 1px solid var(--surface2); font-size: 0.75rem; color: var(--text2); }
 .stats span { display: flex; align-items: center; gap: 0.25rem; }
@@ -89,7 +86,6 @@ main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
   .tips-box { padding: 0.6rem 0.75rem; font-size: 0.75rem; }
   .btn { padding: 0.65rem 1rem; font-size: 0.8rem; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
   .answer-section { display: flex; flex-direction: column; gap: 0.5rem; }
-  .user-answer-section textarea { font-size: 0.8rem; padding: 0.6rem; }
   .answer-reveal { padding: 0.75rem; }
   .answer-reveal pre { font-size: 0.8rem; }
 }
@@ -870,13 +866,7 @@ function renderExercise(ex, idx) {
         </div>`).join('')}
       </div>
       <div class="answer-section">
-        <button class="btn btn-primary" onclick="toggleAnswer('${ex.id.replace('.','_')}', this)">🔍 Verificar mi respuesta</button>
-        <div class="user-answer-section" id="ua-${ex.id.replace('.','_')}" style="display:none">
-          <textarea placeholder="Escribe tu respuesta aqui antes de ver la solucion..."></textarea>
-          <div style="margin-top:0.5rem; display:flex; gap:0.5rem;">
-            <button class="btn btn-success" onclick="revealAnswer('${ex.id.replace('.','_')}', this)">Mostrar respuesta correcta</button>
-          </div>
-        </div>
+        <button class="btn btn-primary" onclick="revealAnswer('${ex.id.replace('.','_')}', this)">🔍 Mostrar respuesta</button>
         <div class="answer-reveal" id="ans-${ex.id.replace('.','_')}">
           <h4>Respuesta correcta:</h4>
           <pre style="white-space:pre-wrap; color: var(--text); font-size:0.85rem;">${ex.answer}</pre>
@@ -900,18 +890,11 @@ function renderAll() {
 }
 
 // ====== INTERACTIONS ======
-window.toggleAnswer = function(id, btn) {
-  const ua = document.getElementById('ua-' + id);
-  if (ua.style.display === 'none') {
-    ua.style.display = 'block';
-    btn.textContent = '✏️ Escribi tu respuesta...';
-  }
-};
-
 window.revealAnswer = function(id, btn) {
   const ans = document.getElementById('ans-' + id);
   ans.classList.add('visible');
-  btn.closest('.answer-section').querySelector('.btn-primary').style.display = 'none';
+  // Hide the button after clicking
+  btn.style.display = 'none';
 };
 
 window.markSolvedAndClose = function(id, btn) {
