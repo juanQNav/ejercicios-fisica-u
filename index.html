@@ -47,6 +47,8 @@ main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
 .formula-block { background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.15); border-radius: 8px; padding: 0.75rem 1rem; margin: 0.5rem 0; text-align: center; font-family: 'Cambria Math', Georgia, serif; color: var(--warning); font-size: 0.95rem; }
 .tips-box { background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 8px; padding: 0.75rem 1rem; margin: 1rem 0; font-size: 0.8rem; }
 .tips-box strong { color: var(--success); }
+.figure-note { background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.25); border-left: 3px solid var(--warning); border-radius: 0 8px 8px 0; padding: 0.75rem 1rem; margin: 1rem 0; font-size: 0.8rem; }
+.figure-note strong { color: var(--warning); }
 .answer-section { margin-top: 1rem; }
 .btn { padding: 0.6rem 1.25rem; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
 .btn-primary { background: var(--accent); color: var(--bg); }
@@ -121,6 +123,7 @@ const exercises = {
   id: "1.32",
   title: "Ejercicio 1.32 — Suma y resta de vectores",
   problem: "Con los vectores A y B de la figura 1.34, use un dibujo a escala para obtener la magnitud y la dirección de: a) la resultante A + B; b) la diferencia A - B. Con base en sus respuestas, determine la magnitud y la dirección de: c) -A - B; d) B - A. Datos: Vector A = 8.00 m dirigido hacia abajo (-y). Vector B = 15.0 m a 30.0° a la derecha del eje +y.",
+  figureRef: "1.34",
   tips: "¡Ojo! El vector A apunta hacia ABAJO (-y), no hacia +x. El vector B está a 30° desde el +y, lo que equivale a 60° desde el +x. Las componentes son: Bx = B·sin(30°), By = B·cos(30°).",
   steps: [
     {title: "Identificar datos y ángulos correctos", body: "Vector A: 8.00 m hacia -y (ángulo 270° desde +x).\nVector B: 15.0 m, 30° a la derecha del +y → ángulo = 90° - 30° = 60° desde +x."},
@@ -140,6 +143,7 @@ const exercises = {
   id: "1.47",
   title: "Ejercicio 1.47 — Vectores en notacion unitaria",
   problem: "Escriba cada uno de los vectores de la figura 1.34 en términos de los vectores unitarios i y j. Datos: A = 8.00 m hacia abajo (-y); B = 15.0 m a 30° a la derecha del +y; C = 12.0 m a 25° debajo del -x (3er cuadrante); D = 10.0 m a 53° a la izquierda del +y (2do cuadrante).",
+  figureRef: "1.34",
   tips: "¡Cuidado con los ángulos! A va hacia -y (270°). B está a 60° desde +x. C está a 180°+25°=205° desde +x. D está a 90°+53°=143° desde +x. El coseno da la componente x, el seno la y.",
   steps: [
     {title: "Vector A (8.00 m, 270°)", body: "Ax = 8.00 · cos(270°) = 0.00 m\nAy = 8.00 · sin(270°) = -8.00 m", formula: "A = -(8.00 m)j"},
@@ -182,6 +186,7 @@ const exercises = {
   id: "2.10",
   title: "Ejercicio 2.10 — Interpretar grafica x-t",
   problem: "Una profesora de fisica sale de su casa y camina por la acera hacia el campus. A los 5 min, comienza a llover y ella regresa a casa. Su distancia con respecto a su casa en funcion del tiempo se muestra en la figura 2.32. ¿En cual punto rotulado su velocidad es: a) cero, b) constante y positiva, c) constante y negativa, d) de magnitud creciente, e) de magnitud decreciente?",
+  figureRef: "2.32",
   tips: "En una grafica posicion vs tiempo (x-t), la velocidad instantanea es la PENDIENTE de la recta tangente en cada punto. Pendiente horizontal = velocidad cero. Pendiente constante = velocidad constante. Curva que se inclina mas = aceleracion.",
   steps: [
     {title: "a) Velocidad cero", body: "Ocurre donde la pendiente es horizontal (tangente plana). En la grafica, esto es el punto mas alto de la curva, donde la profesora se detiene antes de regresar.", formula: "Punto IV"},
@@ -197,6 +202,7 @@ const exercises = {
   id: "2.11",
   title: "Ejercicio 2.11 — Rapidez y velocidad desde grafica v-t",
   problem: "Una pelota se mueve en linea recta (eje x). En la figura 2.33 la grafica muestra la velocidad de esta pelota en funcion del tiempo. a) ¿Cuales son la rapidez media y la velocidad media durante los primeros 3.0 s? b) Si el segmento despues de 2.0 s fuera -3.0 m/s en vez de +3.0 m/s, calcule la rapidez media y la velocidad media.",
+  figureRef: "2.33",
   tips: "En grafica v-t: el desplazamiento es el AREA bajo la curva (con signo). La distancia total es la suma de las areas en valor absoluto. De 0 a 2 s: v = +2.0 m/s. De 2 a 3 s: v = +3.0 m/s.",
   steps: [
     {title: "a) Caso original (v siempre positiva)", body: "Tramo 1 (0-2 s): Δx1 = 2.0 × 2.0 = 4.0 m\nTramo 2 (2-3 s): Δx2 = 3.0 × 1.0 = 3.0 m\nDesplazamiento total = 4.0 + 3.0 = 7.0 m\nDistancia total = 7.0 m"},
@@ -291,6 +297,7 @@ const exercises = {
   id: "2.32",
   title: "Ejercicio 2.32 — Grafica de aceleracion a velocidad y posicion",
   problem: "La figura 2.38 es una grafica de la aceleracion de una locomotora de juguete en funcion del tiempo. Dibuje las graficas de velocidad y coordenada x en funcion del tiempo, si x=0 y vx=0 cuando t=0. Datos de ax: +2.0 m/s² de 0 a 5 s; 0 de 5 a 15 s; -2.0 m/s² de 15 a 25 s; 0 de 25 a 35 s; +2.0 m/s² de 35 a 40 s.",
+  figureRef: "2.38",
   tips: "Integra tramo a tramo: la velocidad es el area bajo la curva a-t, y la posicion se obtiene integrando la velocidad. Cada tramo usa como condiciones iniciales los valores finales del tramo anterior.",
   steps: [
     {title: "Tramo 0-5 s (ax = +2.0)", body: "v(5) = 0 + 2.0×5 = 10.0 m/s\nx(5) = 0 + 0 + ½(2.0)(25) = 25.0 m"},
@@ -430,6 +437,7 @@ const exercises = {
   id: "3.34",
   title: "Ejercicio 3.34 — Rueda de la Fortuna (MCU no uniforme)",
   problem: "La rueda de la figura 3.42 gira en sentido antihorario. En un instante, un pasajero en el punto mas bajo tiene rapidez de 3.00 m/s, la cual aumenta a 0.500 m/s². a) Calcule la magnitud y direccion de la aceleracion total. b) Dibuje los vectores de velocidad y aceleracion.",
+  figureRef: "3.42",
   tips: "En MCU no uniforme hay DOS componentes de aceleracion: radial (v²/R hacia el centro) y tangencial (la que cambia la rapidez). La aceleracion total es la suma vectorial de ambas.",
   steps: [
     {title: "Aceleracion radial", body: "a_rad = v²/R = (3.00)²/14.0 = 9.00/14.0 = 0.643 m/s²\nDireccion: hacia el centro (arriba, en el punto mas bajo)"},
@@ -840,6 +848,7 @@ function updateProgress() {
 function renderExercise(ex, idx) {
   const isSolved = solved.includes(ex.id);
   const diagFn = diagramMap[ex.diagram] || defaultDiagram;
+  const figureNote = ex.figureRef ? `<div class="figure-note"><strong>⚠ Nota:</strong> Este ejercicio hace referencia a la <strong>Figura ${ex.figureRef}</strong> del libro. Se recomienda verificar la figura original en el texto para mayor contexto.</div>` : '';
   return `<div class="exercise-card ${isSolved ? 'solved' : ''}" id="ex-${ex.id.replace('.','_')}">
     <div class="exercise-header" onclick="this.parentElement.classList.toggle('open')">
       <h3>${ex.id} — ${ex.title.replace(/^Ejercicio \d+\.\d+ — /, '')}</h3>
@@ -851,6 +860,7 @@ function renderExercise(ex, idx) {
         ${diagFn()}
         <div class="diagram-label">Figura de referencia — ${ex.id}</div>
       </div>
+      ${figureNote}
       <div class="tips-box"><strong>💡 Consejo:</strong> ${ex.tips}</div>
       <div class="steps-container">
         <h4 style="margin-bottom:0.5rem; color: var(--accent2); font-size:0.9rem;">Resolucion paso a paso:</h4>
