@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Física Universitaria — Ejercicios Interactivos</title>
+<style>
+:root {
+  --bg: #0f172a; --surface: #1e293b; --surface2: #334155;
+  --text: #e2e8f0; --text2: #94a3b8; --accent: #38bdf8;
+  --accent2: #818cf8; --success: #34d399; --warning: #fbbf24;
+  --danger: #f87171; --radius: 12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-bottom: 1px solid var(--surface2); padding: 1.5rem 2rem; position: sticky; top: 0; z-index: 100; }
+header h1 { font-size: 1.5rem; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+header p { color: var(--text2); font-size: 0.85rem; }
+nav { display: flex; gap: 0.5rem; padding: 0.75rem 2rem; background: var(--surface); border-bottom: 1px solid var(--surface2); overflow-x: auto; flex-wrap: wrap; }
+nav button { padding: 0.5rem 1rem; border: 1px solid var(--surface2); background: transparent; color: var(--text2); border-radius: 8px; cursor: pointer; font-size: 0.8rem; white-space: nowrap; transition: all 0.2s; }
+nav button:hover { border-color: var(--accent); color: var(--accent); }
+nav button.active { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+.chapter-section { display: none; }
+.chapter-section.active { display: block; }
+.exercise-card { background: var(--surface); border: 1px solid var(--surface2); border-radius: var(--radius); margin-bottom: 1.5rem; overflow: hidden; }
+.exercise-header { padding: 1rem 1.25rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; transition: background 0.2s; }
+.exercise-header:hover { background: var(--surface2); }
+.exercise-header h3 { font-size: 1rem; color: var(--accent); }
+.exercise-header .toggle { font-size: 1.2rem; color: var(--text2); transition: transform 0.3s; }
+.exercise-card.open .toggle { transform: rotate(180deg); }
+.exercise-body { display: none; padding: 0 1.25rem 1.25rem; }
+.exercise-card.open .exercise-body { display: block; }
+.problem-statement { background: var(--surface2); border-left: 3px solid var(--accent2); padding: 1rem; border-radius: 0 8px 8px 0; margin-bottom: 1rem; font-size: 0.9rem; }
+.diagram-container { background: #0f172a; border: 1px solid var(--surface2); border-radius: 8px; padding: 1rem; margin-bottom: 1rem; text-align: center; overflow-x: auto; }
+.diagram-container svg { max-width: 100%; height: auto; }
+.diagram-label { color: var(--text2); font-size: 0.75rem; margin-top: 0.5rem; }
+.steps-container { margin: 1rem 0; }
+.step { background: var(--bg); border: 1px solid var(--surface2); border-radius: 8px; margin-bottom: 0.5rem; overflow: hidden; }
+.step-header { padding: 0.75rem 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text2); }
+.step-header:hover { color: var(--text); }
+.step-header .step-num { background: var(--accent2); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; margin-right: 0.5rem; flex-shrink: 0; }
+.step-header .left { display: flex; align-items: center; }
+.step-body { display: none; padding: 0.75rem 1rem; font-size: 0.85rem; border-top: 1px solid var(--surface2); }
+.step.open .step-body { display: block; }
+.math { font-family: 'Cambria Math', 'Latin Modern Math', Georgia, serif; color: var(--warning); background: rgba(251,191,36,0.08); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
+.formula-block { background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.15); border-radius: 8px; padding: 0.75rem 1rem; margin: 0.5rem 0; text-align: center; font-family: 'Cambria Math', Georgia, serif; color: var(--warning); font-size: 0.95rem; }
+.tips-box { background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 8px; padding: 0.75rem 1rem; margin: 1rem 0; font-size: 0.8rem; }
+.tips-box strong { color: var(--success); }
+.answer-section { margin-top: 1rem; }
+.btn { padding: 0.6rem 1.25rem; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { background: #7dd3fc; }
+.btn-success { background: var(--success); color: var(--bg); }
+.btn-success:hover { background: #6ee7b7; }
+.btn-outline { background: transparent; border: 1px solid var(--surface2); color: var(--text2); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.answer-reveal { display: none; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.3); border-radius: 8px; padding: 1rem; margin-top: 0.75rem; }
+.answer-reveal.visible { display: block; }
+.answer-reveal h4 { color: var(--success); margin-bottom: 0.5rem; }
+.user-answer-section { margin-top: 0.75rem; }
+.user-answer-section textarea { width: 100%; background: var(--bg); border: 1px solid var(--surface2); color: var(--text); border-radius: 8px; padding: 0.75rem; font-size: 0.85rem; resize: vertical; min-height: 60px; font-family: inherit; }
+.user-answer-section textarea:focus { outline: none; border-color: var(--accent); }
+.progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); z-index: 200; transition: width 0.3s; }
+.stats { display: flex; gap: 1rem; padding: 0.75rem 2rem; background: var(--bg); border-bottom: 1px solid var(--surface2); font-size: 0.75rem; color: var(--text2); }
+.stats span { display: flex; align-items: center; gap: 0.25rem; }
+.stats .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.stats .dot.solved { background: var(--success); }
+.stats .dot.pending { background: var(--warning); }
+@media (max-width: 640px) {
+  main { padding: 1rem; }
+  nav { padding: 0.5rem 1rem; }
+  header { padding: 1rem; }
+  header h1 { font-size: 1.2rem; }
+}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar" style="width:0%"></div>
+<header>
+  <h1>Fisica Universitaria — Ejercicios Interactivos</h1>
+  <p>Sears & Zemansky, 12a ed. — Resuelve paso a paso y practica</p>
+</header>
+<nav id="chapterNav"></nav>
+<div class="stats" id="statsBar"></div>
+<main id="mainContent"></main>
+
+<script>
+// ====== EXERCISE DATA ======
+const exercises = {
+"Capitulo 1": [
+{
+  id: "1.32",
+  title: "Ejercicio 1.32 — Suma y resta de vectores",
+  problem: "Con los vectores A y B de la figura 1.34, use un dibujo a escala para obtener la magnitud y la dirección de: a) la resultante A + B; b) la diferencia A - B. Con base en sus respuestas, determine la magnitud y la dirección de: c) -A - B; d) B - A. Datos: Vector A = 8.00 m dirigido a lo largo del eje +x (θ = 0°). Vector B = 15.0 m dirigido a 30.0° por encima del eje +x.",
+  tips: "Recuerda: para sumar vectores graficamente usa el metodo de punta a cola. Para restar, suma el vector negativo. Las componentes son tu mejor verificacion: Ax = A·cos(θ), Ay = A·sin(θ).",
+  steps: [
+    {title: "Identificar datos", body: "Vector A: magnitud 8.00 m, ángulo 0° (eje +x).\nVector B: magnitud 15.0 m, ángulo 30.0° sobre +x."},
+    {title: "Calcular componentes de A", body: "Ax = 8.00 · cos(0°) = 8.00 m\nAy = 8.00 · sin(0°) = 0.00 m", formula: "A = (8.00 m)i + (0.00 m)j"},
+    {title: "Calcular componentes de B", body: "Bx = 15.0 · cos(30°) = 15.0 × 0.8660 = 12.99 m\nBy = 15.0 · sin(30°) = 15.0 × 0.5000 = 7.50 m", formula: "B = (12.99 m)i + (7.50 m)j"},
+    {title: "a) Resultante A + B — componentes", body: "Rx = Ax + Bx = 8.00 + 12.99 = 20.99 m\nRy = Ay + By = 0.00 + 7.50 = 7.50 m"},
+    {title: "a) Magnitud y dirección de A + B", body: "R = √(20.99² + 7.50²) = √(440.58 + 56.25) = √496.83 ≈ 22.3 m\nθ = arctan(7.50 / 20.99) = arctan(0.3573) ≈ 19.7°", formula: "A + B = 22.3 m a 19.7° sobre el eje +x"},
+    {title: "b) Diferencia A - B — componentes", body: "Dx = Ax - Bx = 8.00 - 12.99 = -4.99 m\nDy = Ay - By = 0.00 - 7.50 = -7.50 m\nAmbas negativas → tercer cuadrante."},
+    {title: "b) Magnitud y dirección de A - B", body: "D = √((-4.99)² + (-7.50)²) = √(24.90 + 56.25) = √81.15 ≈ 9.01 m\nθ = 180° + arctan(7.50/4.99) = 180° + 56.4° = 236.4°", formula: "A - B = 9.01 m a 236.4° (56.4° al sur del oeste)"},
+    {title: "c) -A - B (opuesto de A + B)", body: "El vector -A - B es exactamente el negativo de (A + B).\nMagnitud: misma = 22.3 m\nDirección: 19.7° + 180° = 199.7°", formula: "-A - B = 22.3 m a 199.7°"},
+    {title: "d) B - A (opuesto de A - B)", body: "El vector B - A es el negativo de (A - B).\nMagnitud: misma = 9.01 m\nDirección: 236.4° - 180° = 56.4°", formula: "B - A = 9.01 m a 56.4° sobre el eje +x"}
+  ],
+  answer: "a) 22.3 m a 19.7° sobre +x\nb) 9.01 m a 236.4° (56.4° al sur del oeste)\nc) 22.3 m a 199.7° (19.7° al sur del oeste)\nd) 9.01 m a 56.4° sobre +x",
+  diagram: "vectors"
+},
+{
+  id: "1.47",
+  title: "Ejercicio 1.47 — Vectores en notacion unitaria",
+  problem: "Escriba cada uno de los vectores de la figura 1.34 en términos de los vectores unitarios i y j. Datos: A = 8.00 m a 0°; B = 15.0 m a 30°; C = 12.0 m a 25° debajo del eje +x (IV cuadrante); D = 10.0 m a 53° debajo del eje -x (III cuadrante).",
+  tips: "Para expresar un vector en notacion unitaria: calcula las componentes con coseno (eje x) y seno (eje y). Cuidado con los signos segun el cuadrante. Angulos bajo el eje son negativos.",
+  steps: [
+    {title: "Vector A (8.00 m, 0°)", body: "Ax = 8.00 · cos(0°) = 8.00 m\nAy = 8.00 · sin(0°) = 0.00 m", formula: "A = (8.00 m)i"},
+    {title: "Vector B (15.0 m, 30°)", body: "Bx = 15.0 · cos(30°) = 15.0 × 0.8660 = 12.99 m\nBy = 15.0 · sin(30°) = 15.0 × 0.5000 = 7.50 m", formula: "B = (13.0 m)i + (7.50 m)j"},
+    {title: "Vector C (12.0 m, -25°)", body: "Cx = 12.0 · cos(-25°) = 12.0 × 0.9063 = 10.88 m\nCy = 12.0 · sin(-25°) = 12.0 × (-0.4226) = -5.07 m", formula: "C = (10.9 m)i - (5.07 m)j"},
+    {title: "Vector D (10.0 m, 233°)", body: "Dx = 10.0 · cos(233°) = 10.0 × (-0.6018) = -6.02 m\nDy = 10.0 · sin(233°) = 10.0 × (-0.7986) = -7.99 m", formula: "D = (-6.02 m)i - (7.99 m)j"}
+  ],
+  answer: "A = (8.00 m)i\nB = (13.0 m)i + (7.50 m)j\nC = (10.9 m)i - (5.07 m)j\nD = (-6.02 m)i - (7.99 m)j",
+  diagram: "vectors4"
+}
+],
+"Capitulo 2": [
+{
+  id: "2.1",
+  title: "Ejercicio 2.1 — Velocidad media de un cohete",
+  problem: "Un cohete que lleva un satélite acelera verticalmente alejándose de la superficie terrestre. 1.15 s después del despegue, el cohete libra el tope de su plataforma de lanzamiento, a 63 m sobre el suelo; y después de otros 4.75 s, está a 1.00 km sobre el suelo. Calcule la magnitud de la velocidad media del cohete en: a) la parte de 4.75 s de su vuelo; b) los primeros 5.90 s de su vuelo.",
+  tips: "La velocidad media es SIEMPRE desplazamiento / intervalo de tiempo. No la confundas con la rapidez media (distancia total / tiempo). Aqui todo es en linea recta vertical, asi que desplazamiento = cambio en y.",
+  steps: [
+    {title: "Identificar datos", body: "t0 = 0 s → y0 = 0 m\nt1 = 1.15 s → y1 = 63 m\nt2 = 1.15 + 4.75 = 5.90 s → y2 = 1000 m"},
+    {title: "a) Velocidad media en el intervalo de 4.75 s", body: "Δy = y2 - y1 = 1000 - 63 = 937 m\nΔt = 4.75 s", formula: "v_med = Δy/Δt = 937/4.75 = 197 m/s"},
+    {title: "b) Velocidad media en los primeros 5.90 s", body: "Δy = y2 - y0 = 1000 - 0 = 1000 m\nΔt = 5.90 s", formula: "v_med = 1000/5.90 = 169 m/s"}
+  ],
+  answer: "a) 197 m/s\nb) 169 m/s",
+  diagram: "rocket"
+},
+{
+  id: "2.4",
+  title: "Ejercicio 2.4 — Rapidez media vs velocidad media",
+  problem: "De pilar a poste. Partiendo de un pilar, usted corre 200 m al este (direccion +x) con rapidez media de 5.0 m/s, luego 280 m al oeste con rapidez media de 4.0 m/s hasta un poste. Calcule: a) su rapidez media del pilar al poste; b) su velocidad media del pilar al poste.",
+  tips: "Rapidez media = distancia TOTAL / tiempo TOTAL (siempre positiva). Velocidad media = desplazamiento NETO / tiempo TOTAL (puede ser negativa). Esta diferencia es CLAVE en fisica.",
+  steps: [
+    {title: "Calcular tiempos de cada tramo", body: "Tramo 1 (este): t1 = 200 m / 5.0 m/s = 40.0 s\nTramo 2 (oeste): t2 = 280 m / 4.0 m/s = 70.0 s\nt_total = 40.0 + 70.0 = 110.0 s"},
+    {title: "a) Rapidez media", body: "Distancia total = 200 + 280 = 480 m", formula: "Rapidez media = 480/110.0 = 4.36 m/s"},
+    {title: "b) Velocidad media", body: "Desplazamiento neto = +200 - 280 = -80 m (80 m al oeste)", formula: "v_med = -80/110.0 = -0.727 m/s (0.727 m/s hacia el oeste)"}
+  ],
+  answer: "a) 4.36 m/s\nb) -0.727 m/s (0.727 m/s hacia el oeste)",
+  diagram: "runner"
+},
+{
+  id: "2.10",
+  title: "Ejercicio 2.10 — Interpretar grafica x-t",
+  problem: "Una profesora de fisica sale de su casa y camina por la acera hacia el campus. A los 5 min, comienza a llover y ella regresa a casa. Su distancia con respecto a su casa en funcion del tiempo se muestra en la figura 2.32. ¿En cual punto rotulado su velocidad es: a) cero, b) constante y positiva, c) constante y negativa, d) de magnitud creciente, e) de magnitud decreciente?",
+  tips: "En una grafica posicion vs tiempo (x-t), la velocidad instantanea es la PENDIENTE de la recta tangente en cada punto. Pendiente horizontal = velocidad cero. Pendiente constante = velocidad constante. Curva que se inclina mas = aceleracion.",
+  steps: [
+    {title: "a) Velocidad cero", body: "Ocurre donde la pendiente es horizontal (tangente plana). En la grafica, esto es el punto mas alto de la curva, donde la profesora se detiene antes de regresar.", formula: "Punto IV"},
+    {title: "b) Velocidad constante y positiva", body: "Seccion recta con pendiente positiva (linea subiendo uniformemente).", formula: "Punto I"},
+    {title: "c) Velocidad constante y negativa", body: "Seccion recta con pendiente negativa (linea bajando uniformemente, regresando a casa).", formula: "Punto V"},
+    {title: "d) Magnitud creciente", body: "La curva se inclina cada vez mas hacia arriba (concava hacia arriba): la velocidad aumenta.", formula: "Punto II"},
+    {title: "e) Magnitud decreciente", body: "La pendiente decrece hacia cero al aproximarse al punto mas alto: se va frenando.", formula: "Punto III"}
+  ],
+  answer: "a) Punto IV (velocidad cero)\nb) Punto I (constante positiva)\nc) Punto V (constante negativa)\nd) Punto II (magnitud creciente)\ne) Punto III (magnitud decreciente)",
+  diagram: "xt_graph"
+},
+{
+  id: "2.11",
+  title: "Ejercicio 2.11 — Rapidez y velocidad desde grafica v-t",
+  problem: "Una pelota se mueve en linea recta (eje x). En la figura 2.33 la grafica muestra la velocidad de esta pelota en funcion del tiempo. a) ¿Cuales son la rapidez media y la velocidad media durante los primeros 3.0 s? b) Si el segmento despues de 2.0 s fuera -3.0 m/s en vez de +3.0 m/s, calcule la rapidez media y la velocidad media.",
+  tips: "En grafica v-t: el desplazamiento es el AREA bajo la curva (con signo). La distancia total es la suma de las areas en valor absoluto. De 0 a 2 s: v = +2.0 m/s. De 2 a 3 s: v = +3.0 m/s.",
+  steps: [
+    {title: "a) Caso original (v siempre positiva)", body: "Tramo 1 (0-2 s): Δx1 = 2.0 × 2.0 = 4.0 m\nTramo 2 (2-3 s): Δx2 = 3.0 × 1.0 = 3.0 m\nDesplazamiento total = 4.0 + 3.0 = 7.0 m\nDistancia total = 7.0 m"},
+    {title: "a) Resultados", formula: "v_med = 7.0/3.0 = 2.33 m/s\nRapidez media = 7.0/3.0 = 2.33 m/s"},
+    {title: "b) Caso con v = -3.0 m/s en segundo tramo", body: "Tramo 1: Δx1 = 4.0 m\nTramo 2: Δx2 = (-3.0)(1.0) = -3.0 m\nDesplazamiento = 4.0 + (-3.0) = 1.0 m\nDistancia total = |4.0| + |-3.0| = 7.0 m"},
+    {title: "b) Resultados", formula: "v_med = 1.0/3.0 = 0.333 m/s\nRapidez media = 7.0/3.0 = 2.33 m/s"}
+  ],
+  answer: "a) v_med = 2.33 m/s, rapidez media = 2.33 m/s\nb) v_med = 0.333 m/s, rapidez media = 2.33 m/s",
+  diagram: "vt_graph"
+},
+{
+  id: "2.12",
+  title: "Ejercicio 2.12 — Aceleracion media e instantanea",
+  problem: "Un piloto de pruebas obtiene las siguientes lecturas de rapidez durante una prueba en linea recta:\nTiempo(s): 0, 2, 4, 6, 8, 10, 12, 14, 16\nRapidez(m/s): 0, 0, 2, 6, 10, 16, 19, 22, 22\na) Calcule la aceleracion media en cada intervalo de 2 s. ¿La aceleracion es constante? ¿En alguna parte de la prueba?\nb) Mida la pendiente de la curva v-t para obtener la aceleracion instantanea en t = 9 s, 13 s y 15 s.",
+  tips: "Aceleracion media = Δv/Δt. Para ver si es constante, compara los valores de cada intervalo. La aceleracion instantanea es la pendiente de la tangente a la curva v-t en un punto dado.",
+  steps: [
+    {title: "a) Aceleracion media por intervalo", body: "0-2 s: (0-0)/2 = 0.0 m/s²\n2-4 s: (2-0)/2 = 1.0 m/s²\n4-6 s: (6-2)/2 = 2.0 m/s²\n6-8 s: (10-6)/2 = 2.0 m/s²\n8-10 s: (16-10)/2 = 3.0 m/s²\n10-12 s: (19-16)/2 = 1.5 m/s²\n12-14 s: (22-19)/2 = 1.5 m/s²\n14-16 s: (22-22)/2 = 0.0 m/s²"},
+    {title: "Analisis de constancia", body: "No es constante durante toda la prueba.\nSi es constante en tramos: 0-2 s (0), 4-8 s (2.0), 10-14 s (1.5), 14-16 s (0)."},
+    {title: "b) Aceleracion instantanea", body: "Se mide la pendiente de la tangente a la curva suave v-t:\nt = 9 s → ≈ 2.8 m/s² (cerca de 3.0)\nt = 13 s → ≈ 1.5 m/s²\nt = 15 s → 0.0 m/s²"}
+  ],
+  answer: "a) 0, 1.0, 2.0, 2.0, 3.0, 1.5, 1.5, 0.0 m/s² (no es constante)\nb) t=9s: ≈2.8 m/s², t=13s: ≈1.5 m/s², t=15s: 0.0 m/s²",
+  diagram: "table_graph"
+},
+{
+  id: "2.13",
+  title: "Ejercicio 2.13 — Bugatti Veyron: aceleracion no constante",
+  problem: "Datos del Bugatti Veyron en linea recta:\nTiempo(s): 0, 2.1, 20.0, 53\nRapidez(mi/h): 0, 60, 200, 253\na) Elabore una grafica vx-t. ¿Su aceleracion es constante?\nb) Calcule la aceleracion media en m/s² entre: i) 0 y 2.1 s; ii) 2.1 s y 20.0 s; iii) 20.0 s y 53 s.",
+  tips: "Primero convierte mi/h a m/s: 1 mi/h = 0.4470 m/s. Si la aceleracion fuera constante, los puntos estarian en una linea recta. Si las pendientes cambian, la aceleracion NO es constante.",
+  steps: [
+    {title: "Conversion de unidades", body: "0 mi/h = 0 m/s\n60 mi/h = 60 × 0.4470 = 26.82 m/s\n200 mi/h = 200 × 0.4470 = 89.40 m/s\n253 mi/h = 253 × 0.4470 = 113.09 m/s"},
+    {title: "a) ¿Aceleracion constante?", body: "Las pendientes entre puntos consecutivos disminuyen: primero muy empinada, luego mas plana. Esto indica que la aceleracion disminuye con el tiempo.", formula: "No, la aceleracion NO es constante."},
+    {title: "b)i) Aceleracion de 0 a 2.1 s", formula: "a = (26.82 - 0)/(2.1 - 0) = 12.8 m/s²"},
+    {title: "b)ii) Aceleracion de 2.1 a 20.0 s", formula: "a = (89.40 - 26.82)/(20.0 - 2.1) = 62.58/17.9 = 3.50 m/s²"},
+    {title: "b)iii) Aceleracion de 20.0 a 53 s", formula: "a = (113.09 - 89.40)/(53 - 20.0) = 23.69/33.0 = 0.718 m/s²"}
+  ],
+  answer: "a) No, la aceleracion no es constante (disminuye)\nb) i) 12.8 m/s², ii) 3.50 m/s², iii) 0.718 m/s²",
+  diagram: "table_graph"
+},
+{
+  id: "2.23",
+  title: "Ejercicio 2.23 — Lanzamiento de beisbol",
+  problem: "El lanzamiento mas rapido medido de una pelota de beisbol sale de la mano del pitcher a 45.0 m/s. Si el pitcher estuvo en contacto con la pelota una distancia de 1.50 m y produjo aceleracion constante: a) ¿Que aceleracion le dio a la pelota? b) ¿Cuanto tiempo le tomo lanzarla?",
+  tips: "Cuando no te dan el tiempo pero si distancia y velocidades, usa: v² = v0² + 2a(x - x0). La pelota parte del reposo en la mano del pitcher, asi que v0 = 0.",
+  steps: [
+    {title: "Identificar datos", body: "v0 = 0 m/s (parte del reposo)\nv = 45.0 m/s\nx - x0 = 1.50 m"},
+    {title: "a) Aceleracion", body: "Usamos v² = v0² + 2a(x - x0)\n(45.0)² = 0 + 2a(1.50)\n2025 = 3.00a", formula: "a = 2025/3.00 = 675 m/s²"},
+    {title: "b) Tiempo", body: "Usamos x - x0 = ((v0 + v)/2) · t\n1.50 = ((0 + 45.0)/2) · t\n1.50 = 22.5 · t", formula: "t = 1.50/22.5 = 0.0667 s = 66.7 ms"}
+  ],
+  answer: "a) 675 m/s²\nb) 0.0667 s (66.7 ms)",
+  diagram: "baseball"
+},
+{
+  id: "2.25",
+  title: "Ejercicio 2.25 — Bolsas de aire del automovil",
+  problem: "El cuerpo humano puede sobrevivir a un incidente de trauma por aceleracion negativa si la magnitud de la aceleracion es menor que 250 m/s². Si usted sufre un accidente con rapidez inicial de 105 km/h (65 mi/h) y es detenido por una bolsa de aire, ¿En que distancia debe ser detenido para sobrevivir?",
+  tips: "Primero convierte km/h a m/s: divide entre 3.6. La desaceleracion maxima es -250 m/s². Usa v² = v0² + 2aΔx con v = 0 (detencion total).",
+  steps: [
+    {title: "Conversion y datos", body: "v0 = 105 km/h = 105/3.6 = 29.17 m/s\nv = 0 m/s (detencion)\na = -250 m/s²"},
+    {title: "Calcular distancia", body: "v² = v0² + 2aΔx\n0 = (29.17)² + 2(-250)Δx\n0 = 850.69 - 500Δx\n500Δx = 850.69", formula: "Δx = 850.69/500 = 1.70 m"}
+  ],
+  answer: "1.70 m",
+  diagram: "car_crash"
+},
+{
+  id: "2.26",
+  title: "Ejercicio 2.26 — Ingreso a la autopista",
+  problem: "Un automovil parte del reposo en una rampa, acelera con aceleracion constante y tiene rapidez de 20 m/s al llegar al final de la rampa de 120 m de largo. a) ¿Que aceleracion tiene? b) ¿Cuanto tarda? c) El trafico de la autopista va a 20 m/s constante. ¿Que distancia recorre el trafico mientras el auto esta en la rampa?",
+  tips: "Tres incognitas simples con ecuaciones de cinematica. Parte del reposo: v0 = 0. El trafico se mueve a velocidad constante, asi que su distancia es simplemente v × t.",
+  steps: [
+    {title: "a) Aceleracion", body: "v0 = 0, v = 20 m/s, Δx = 120 m\nv² = v0² + 2aΔx\n400 = 0 + 2a(120)", formula: "a = 400/240 = 1.67 m/s²"},
+    {title: "b) Tiempo", body: "Δx = ((v0 + v)/2) · t\n120 = ((0 + 20)/2) · t\n120 = 10t", formula: "t = 12 s"},
+    {title: "c) Distancia del trafico", body: "El trafico va a 20 m/s constante durante 12 s.", formula: "d = 20 × 12 = 240 m"}
+  ],
+  answer: "a) 1.67 m/s²\nb) 12 s\nc) 240 m",
+  diagram: "ramp"
+},
+{
+  id: "2.30",
+  title: "Ejercicio 2.30 — Automovil con tres tramos",
+  problem: "En t = 0, un automovil esta detenido ante un semaforo. Al encenderse la luz verde, acelera a razon constante hasta alcanzar 20 m/s 8 s despues. Continua a rapidez constante durante 60 m. Luego frena a razon constante y se detiene a 180 m de donde estaba en t = 0. a) Dibuje las graficas x-t, vx-t y ax-t. b) Muestre posicion, velocidad y aceleracion a los 4 s, durante velocidad constante, y al frenar.",
+  tips: "Divide el problema en tres tramos: 1) Aceleracion, 2) Velocidad constante, 3) Frenado. Para cada tramo calcula: aceleracion, tiempo, distancia final. Las graficas se construyen tramo a tramo.",
+  steps: [
+    {title: "Tramo 1: Aceleracion (0 a 8 s)", body: "v0 = 0, v = 20 m/s, t = 8 s\na1 = (20-0)/8 = 2.5 m/s²\nx1 = (0+20)/2 × 8 = 80 m"},
+    {title: "Tramo 2: Velocidad constante", body: "v = 20 m/s, Δx = 60 m\nt2 = 60/20 = 3 s (de t=8 a t=11 s)\nPosicion final: 80 + 60 = 140 m\na2 = 0"},
+    {title: "Tramo 3: Frenado", body: "De x=140 m a x=180 m → Δx = 40 m\nv0 = 20 m/s, v = 0\n40 = ((20+0)/2) × t3 → t3 = 4 s (de t=11 a t=15 s)\na3 = (0-20)/4 = -5.0 m/s²"},
+    {title: "b) Puntos del diagrama de movimiento", body: "t=4 s: x = ½(2.5)(4²) = 20 m, v = 2.5×4 = 10 m/s, a = 2.5 m/s²\nt=9.5 s (constante): x = 110 m, v = 20 m/s, a = 0\nt=13 s (frenando): v = 20 + (-5)(2) = 10 m/s, x = 140 + 20(2) + ½(-5)(4) = 170 m, a = -5.0 m/s²"}
+  ],
+  answer: "Tramo 1: a=2.5 m/s², x=80m, t=0-8s\nTramo 2: a=0, x=80→140m, t=8-11s\nTramo 3: a=-5.0 m/s², x=140→180m, t=11-15s",
+  diagram: "three_phase"
+},
+{
+  id: "2.32",
+  title: "Ejercicio 2.32 — Grafica de aceleracion a velocidad y posicion",
+  problem: "La figura 2.38 es una grafica de la aceleracion de una locomotora de juguete en funcion del tiempo. Dibuje las graficas de velocidad y coordenada x en funcion del tiempo, si x=0 y vx=0 cuando t=0. Datos de ax: +2.0 m/s² de 0 a 5 s; 0 de 5 a 15 s; -2.0 m/s² de 15 a 25 s; 0 de 25 a 35 s; +2.0 m/s² de 35 a 40 s.",
+  tips: "Integra tramo a tramo: la velocidad es el area bajo la curva a-t, y la posicion se obtiene integrando la velocidad. Cada tramo usa como condiciones iniciales los valores finales del tramo anterior.",
+  steps: [
+    {title: "Tramo 0-5 s (ax = +2.0)", body: "v(5) = 0 + 2.0×5 = 10.0 m/s\nx(5) = 0 + 0 + ½(2.0)(25) = 25.0 m"},
+    {title: "Tramo 5-15 s (ax = 0)", body: "v = 10.0 m/s (constante)\nx(15) = 25.0 + 10.0×10 = 125.0 m"},
+    {title: "Tramo 15-25 s (ax = -2.0)", body: "v(25) = 10.0 + (-2.0)(10) = -10.0 m/s\nx(25) = 125.0 + 10.0(10) + ½(-2.0)(100) = 125.0 m\nNota: en t=20s, v=0 y x=150.0 m (maxima posicion)"},
+    {title: "Tramo 25-35 s (ax = 0)", body: "v = -10.0 m/s (constante)\nx(35) = 125.0 + (-10.0)(10) = 25.0 m"},
+    {title: "Tramo 35-40 s (ax = +2.0)", body: "v(40) = -10.0 + 2.0×5 = 0 m/s\nx(40) = 25.0 + (-10.0)(5) + ½(2.0)(25) = 0 m"}
+  ],
+  answer: "v(t): 0→10→10→-10→-10→0 m/s\nx(t): 0→25→125→125→25→0 m",
+  diagram: "accel_graph"
+},
+{
+  id: "2.40",
+  title: "Ejercicio 2.40 — Alunizaje",
+  problem: "Un alunizador desciende hacia la Base Lunar I frenado por el retro-empuje. El motor se apaga cuando el alunizador esta a 5.0 m sobre la superficie y tiene velocidad hacia abajo de 0.8 m/s. Con el motor apagado, esta en caida libre. ¿Que rapidez tiene justo antes de tocar la superficie? La gravedad lunar es 1.6 m/s².",
+  tips: "Es caida libre pero con gravedad lunar (1.6 m/s², no 9.8). La velocidad inicial NO es cero: ya viene bajando a 0.8 m/s. Usa v² = v0² + 2aΔy.",
+  steps: [
+    {title: "Identificar datos", body: "y0 = 5.0 m, y = 0 m\nv0y = -0.8 m/s (hacia abajo)\nay = -1.6 m/s² (gravedad lunar)"},
+    {title: "Calcular velocidad final", body: "vy² = v0y² + 2ay(y - y0)\nvy² = (-0.8)² + 2(-1.6)(0 - 5.0)\nvy² = 0.64 + 16.0 = 16.64", formula: "|vy| = √16.64 ≈ 4.1 m/s"}
+  ],
+  answer: "4.1 m/s",
+  diagram: "moon_landing"
+},
+{
+  id: "2.44",
+  title: "Ejercicio 2.44 — Saco de arena desde globo",
+  problem: "Un globo sube verticalmente a 5.00 m/s constante. Se suelta un saco de arena cuando el globo esta a 40.0 m sobre el suelo. Despues de soltarse, el saco esta en caida libre. a) Posicion y velocidad a 0.250 s y 1.00 s. b) ¿Cuanto tarda en chocar con el suelo? c) ¿Con que rapidez choca? d) ¿Que altura maxima alcanza?",
+  tips: "Cuando se suelta el saco, hereda la velocidad del globo: v0 = +5.00 m/s hacia ARRIBA. Esto es clave: aunque se suelta, primero sigue subiendo un poco antes de caer. Usa y(t) = y0 + v0t - ½gt².",
+  steps: [
+    {title: "Ecuaciones del movimiento", body: "y0 = 40.0 m, v0y = +5.00 m/s, ay = -9.80 m/s²\ny(t) = 40.0 + 5.00t - 4.90t²\nvy(t) = 5.00 - 9.80t"},
+    {title: "a) A t = 0.250 s", body: "y = 40.0 + 5.00(0.250) - 4.90(0.0625) = 40.0 + 1.25 - 0.306 = 40.9 m\nvy = 5.00 - 9.80(0.250) = 5.00 - 2.45 = +2.55 m/s (aun sube)"},
+    {title: "a) A t = 1.00 s", body: "y = 40.0 + 5.00(1.00) - 4.90(1.00) = 40.1 m\nvy = 5.00 - 9.80(1.00) = -4.80 m/s (ya baja)"},
+    {title: "b) Tiempo hasta el suelo (y = 0)", body: "0 = 40.0 + 5.00t - 4.90t²\n4.90t² - 5.00t - 40.0 = 0\nt = (5.00 + √(25 + 784)) / 9.80 = (5.00 + 28.44) / 9.80", formula: "t ≈ 3.41 s"},
+    {title: "c) Rapidez al chocar", body: "vy(3.41) = 5.00 - 9.80(3.41) = 5.00 - 33.42 = -28.4 m/s", formula: "Rapidez = 28.4 m/s"},
+    {title: "d) Altura maxima", body: "vy = 0 → t = 5.00/9.80 = 0.510 s\ny_max = 40.0 + 5.00(0.510) - 4.90(0.510)² = 40.0 + 2.55 - 1.27", formula: "y_max = 41.3 m"}
+  ],
+  answer: "a) t=0.250s: y=40.9m, v=+2.55m/s; t=1.00s: y=40.1m, v=-4.80m/s\nb) 3.41 s\nc) 28.4 m/s\nd) 41.3 m",
+  diagram: "balloon"
+},
+{
+  id: "2.52",
+  title: "Ejercicio 2.52 — Salto de la pulga",
+  problem: "Una pulga de 210 mg salta casi verticalmente. La grafica v-t muestra que su rapidez aumenta linealmente de 0 a 130 cm/s en los primeros 1.25 ms, y luego permanece constante a 130 cm/s de 1.25 ms a 2.5 ms. a) ¿La aceleracion es cero en algun momento? b) Altura maxima en los primeros 2.5 ms. c) Aceleracion a 0.5 ms, 1.0 ms y 1.5 ms. d) Altura a 0.5 ms, 1.0 ms y 1.5 ms.",
+  tips: "En grafica v-t: la aceleracion es la PENDIENTE y la altura es el AREA bajo la curva. Durante la fase de empuje (0-1.25 ms) la aceleracion es enorme (≈100g). despues del despegue, la pulga vuela a velocidad constante (en esta grafica simplificada).",
+  steps: [
+    {title: "a) ¿Aceleracion cero?", body: "La aceleracion es cero donde la grafica es plana (pendiente = 0).\nDe 1.25 ms a 2.5 ms: v = 130 cm/s constante → a = 0."},
+    {title: "b) Altura maxima (area bajo curva)", body: "Area triangulo (0-1.25 ms): ½ × 1.25×10⁻³ × 130 = 0.08125 cm\nArea rectangulo (1.25-2.5 ms): 1.25×10⁻³ × 130 = 0.1625 cm", formula: "Altura total = 0.244 cm = 2.44 mm ≈ 2.5 mm"},
+    {title: "c) Aceleraciones", body: "t=0.5 ms y t=1.0 ms (fase de empuje):\na = (130 - 0)/(1.25×10⁻³) = 104,000 cm/s² = 1040 m/s²\nt=1.5 ms (fase plana): a = 0"},
+    {title: "d) Alturas parciales", body: "t=0.5 ms: area = ½ × 0.5×10⁻³ × 52 = 0.013 cm = 0.13 mm\nt=1.0 ms: area = ½ × 1.0×10⁻³ × 104 = 0.052 cm = 0.52 mm\nt=1.5 ms: area triangulo + rectangulo parcial = 0.08125 + 0.25×10⁻³×130 = 0.1138 cm = 1.14 mm"}
+  ],
+  answer: "a) Si, de 1.25 ms a 2.5 ms\nb) 2.44 mm\nc) 1040 m/s², 1040 m/s², 0 m/s²\nd) 0.13 mm, 0.52 mm, 1.14 mm",
+  diagram: "flea"
+},
+{
+  id: "2.57",
+  title: "Ejercicio 2.57 — Rapidez y velocidad media de Dan",
+  problem: "Dan viaja al oeste con velocidad media de 88 km/h. Despues de 76 km, llega a Aurora. Se da vuelta y conduce 34 km al este hasta York con rapidez media de 72 km/h. Para el viaje total de Seward a York, determine: a) su rapidez media; b) la magnitud de su velocidad media.",
+  tips: "Calcula el tiempo de cada tramo con t = d/v. Rapidez media = distancia TOTAL / tiempo TOTAL. Velocidad media = desplazamiento NETO / tiempo TOTAL. Oeste = negativo, Este = positivo.",
+  steps: [
+    {title: "Tiempos de cada tramo", body: "Tramo 1 (oeste): t1 = 76/88 = 0.8636 h\nTramo 2 (este): t2 = 34/72 = 0.4722 h\nt_total = 0.8636 + 0.4722 = 1.3358 h"},
+    {title: "a) Rapidez media", body: "Distancia total = 76 + 34 = 110 km", formula: "Rapidez media = 110/1.3358 = 82.3 km/h"},
+    {title: "b) Magnitud de velocidad media", body: "Desplazamiento neto = -76 + 34 = -42 km (42 km al oeste de Seward)", formula: "|v_med| = 42/1.3358 = 31.4 km/h"}
+  ],
+  answer: "a) 82.3 km/s\nb) 31.4 km/h",
+  diagram: "road_trip"
+},
+{
+  id: "2.88",
+  title: "Ejercicio 2.88 — Altura del acantilado con sonido",
+  problem: "Dejas caer un guijarro desde un acantilado y 10.0 s despues escuchas el sonido al golpear el suelo. a) ¿Que altura tiene el acantilado si la rapidez del sonido es 330 m/s? b) Si se despreciara el tiempo del sonido, ¿sobrestimarias o subestimarias la altura?",
+  tips: "El tiempo total tiene DOS partes: la caida del guijarro + la subida del sonido. La caida sigue h = ½gt² y el sonido sube a velocidad constante: t_sonido = h/330. Esto da una ecuacion cuadraticas en √h.",
+  steps: [
+    {title: "Plantear ecuacion", body: "T = t_caida + t_sonido = 10.0 s\nt_caida = √(2h/g) = √(2h/9.80)\nt_sonido = h/330\n√(2h/9.80) + h/330 = 10.0"},
+    {title: "Resolver con u = √h", body: "√(0.20408)·u + u²/330 = 10.0\n0.0030303u² + 0.45175u - 10.0 = 0\nu = (-0.45175 + √(0.20408 + 0.12121)) / 0.0060606\nu = (-0.45175 + 0.57034) / 0.0060606 = 19.567"},
+    {title: "Obtener h", body: "h = u² = (19.567)²", formula: "h = 383 m"},
+    {title: "b) Si se desprecia el tiempo del sonido", body: "Se asume que los 10.0 s son solo de caida:\nh_estimada = ½(9.80)(10.0)² = 490 m\n490 m > 383 m → Se SOBREESTIMA la altura.", formula: "Sobrestimacion: 490 m vs 383 m real"}
+  ],
+  answer: "a) 383 m\nb) Se sobrestimaria (490 m en vez de 383 m)",
+  diagram: "cliff"
+}
+],
+"Capitulo 3": [
+{
+  id: "3.12",
+  title: "Ejercicio 3.12 — Nadadora y saliente del risco",
+  problem: "Una nadadora de 510 N se lanza desde un risco con un impulso horizontal. ¿Que rapidez minima debe tener al saltar para no chocar con la saliente en la base, que tiene 1.75 m de anchura y esta 9.00 m abajo del borde superior?",
+  tips: "Es un problema de tiro parabolico con lanzamiento HORIZONTAL (v0y = 0). Primero calcula cuanto tarda en caer 9.00 m, luego usa ese tiempo para ver que velocidad horizontal necesita para recorrer 1.75 m.",
+  steps: [
+    {title: "Movimiento vertical (caida libre)", body: "v0y = 0, Δy = -9.00 m, ay = -9.80 m/s²\nΔy = v0y·t + ½·ay·t²\n-9.00 = 0 + ½(-9.80)t²\nt² = 9.00/4.90 = 1.8367", formula: "t = √1.8367 ≈ 1.355 s"},
+    {title: "Movimiento horizontal", body: "Para no chocar: debe recorrer al menos 1.75 m en 1.355 s.\nx = v0x · t\n1.75 = v0x · 1.355", formula: "v0x = 1.75/1.355 ≈ 1.29 m/s"}
+  ],
+  answer: "1.29 m/s",
+  diagram: "cliff_jump"
+},
+{
+  id: "3.14",
+  title: "Ejercicio 3.14 — Canica y cavidad",
+  problem: "Una canica rueda horizontalmente con rapidez v0 y cae desde una plataforma de 2.75 m de alto. A nivel del piso, a 2.00 m de la base, hay una cavidad. El frente de la cavidad esta a 1.50 m de la base y el borde posterior a 2.00 m. ¿En que intervalo de rapideces v0 la canica caera dentro de la cavidad?",
+  tips: "Primero calcula el tiempo de caida (siempre el mismo porque la altura es fija). Luego ese tiempo te da el rango de velocidades: la minima para llegar al frente y la maxima para no pasar el borde.",
+  steps: [
+    {title: "Tiempo de caida", body: "Δy = -2.75 m, v0y = 0, ay = -9.80 m/s²\n-2.75 = -½(9.80)t²\nt² = 2.75/4.90 = 0.5612", formula: "t = √0.5612 ≈ 0.749 s"},
+    {title: "Velocidad minima (llegar al frente, x = 1.50 m)", formula: "v_min = 1.50/0.749 ≈ 2.00 m/s"},
+    {title: "Velocidad maxima (no pasar el borde, x = 2.00 m)", formula: "v_max = 2.00/0.749 ≈ 2.67 m/s"}
+  ],
+  answer: "2.00 m/s ≤ v0 ≤ 2.67 m/s",
+  diagram: "marble_cavity"
+},
+{
+  id: "3.21",
+  title: "Ejercicio 3.21 — Lanzar moneda al platito",
+  problem: "En una feria, se lanza una moneda con velocidad de 6.4 m/s a 60° sobre la horizontal, y cae en un platito a 2.1 m de distancia horizontal. a) ¿A que altura esta la repisa sobre el punto de lanzamiento? b) ¿Que componente vertical tiene la velocidad justo antes de caer en el platito?",
+  tips: "Descompone la velocidad inicial en componentes. Usa el tiempo que tarda en recorrer la distancia horizontal para encontrar la altura. La componente vertical cambia con vy = v0y - gt.",
+  steps: [
+    {title: "Componentes de velocidad inicial", body: "v0x = 6.4 · cos(60°) = 6.4 × 0.5 = 3.20 m/s\nv0y = 6.4 · sin(60°) = 6.4 × 0.8660 = 5.543 m/s"},
+    {title: "a) Tiempo para llegar al platito", body: "x = 2.1 m, v0x = 3.20 m/s\nt = 2.1/3.20 = 0.65625 s"},
+    {title: "a) Altura de la repisa", body: "y = v0y·t - ½gt²\ny = 5.543(0.65625) - 4.90(0.65625)²\ny = 3.637 - 2.110", formula: "y = 1.53 m"},
+    {title: "b) Componente vertical de velocidad", body: "vy = v0y - gt\nvy = 5.543 - 9.80(0.65625)\nvy = 5.543 - 6.431", formula: "vy = -0.89 m/s (hacia abajo)"}
+  ],
+  answer: "a) 1.53 m\nb) -0.89 m/s",
+  diagram: "coin_toss"
+},
+{
+  id: "3.33",
+  title: "Ejercicio 3.33 — Rueda de la Fortuna (MCU)",
+  problem: "Una rueda de la Fortuna de 14.0 m de radio gira con rapidez lineal constante de 7.00 m/s en el borde. a) ¿Que magnitud y direccion tiene la aceleracion en el punto mas bajo? b) ¿Y en el punto mas alto? c) ¿Cuanto tarda una revolucion?",
+  tips: "En movimiento circular uniforme, la aceleracion es SOLO centripeta: a = v²/R, siempre apuntando al centro. El periodo es T = 2πR/v. La magnitud es la misma en todos los puntos, solo cambia la direccion.",
+  steps: [
+    {title: "Aceleracion centripeta", formula: "a_rad = v²/R = (7.00)²/14.0 = 49.0/14.0 = 3.50 m/s²"},
+    {title: "a) Punto mas bajo", body: "Magnitud: 3.50 m/s²\nDireccion: hacia el centro = HACIA ARRIBA"},
+    {title: "b) Punto mas alto", body: "Magnitud: 3.50 m/s²\nDireccion: hacia el centro = HACIA ABAJO"},
+    {title: "c) Periodo (una revolucion)", formula: "T = 2πR/v = 2π(14.0)/7.00 = 4π ≈ 12.6 s"}
+  ],
+  answer: "a) 3.50 m/s² hacia arriba\nb) 3.50 m/s² hacia abajo\nc) 12.6 s",
+  diagram: "ferris_wheel"
+},
+{
+  id: "3.34",
+  title: "Ejercicio 3.34 — Rueda de la Fortuna (MCU no uniforme)",
+  problem: "La rueda de la figura 3.42 gira en sentido antihorario. En un instante, un pasajero en el punto mas bajo tiene rapidez de 3.00 m/s, la cual aumenta a 0.500 m/s². a) Calcule la magnitud y direccion de la aceleracion total. b) Dibuje los vectores de velocidad y aceleracion.",
+  tips: "En MCU no uniforme hay DOS componentes de aceleracion: radial (v²/R hacia el centro) y tangencial (la que cambia la rapidez). La aceleracion total es la suma vectorial de ambas.",
+  steps: [
+    {title: "Aceleracion radial", body: "a_rad = v²/R = (3.00)²/14.0 = 9.00/14.0 = 0.643 m/s²\nDireccion: hacia el centro (arriba, en el punto mas bajo)"},
+    {title: "Aceleracion tangencial", body: "a_tan = 0.500 m/s²\nDireccion: tangente al circulo, en sentido del movimiento (antihorario, en el punto bajo = hacia la derecha)"},
+    {title: "Magnitud total", formula: "a = √(0.643² + 0.500²) = √(0.413 + 0.250) = √0.663 ≈ 0.814 m/s²"},
+    {title: "Direccion", body: "θ respecto a la horizontal:\ntan θ = a_rad / a_tan = 0.643/0.500 = 1.286", formula: "θ = arctan(1.286) ≈ 52.1° sobre la horizontal"}
+  ],
+  answer: "a) 0.814 m/s² a 52.1° sobre la horizontal hacia la derecha",
+  diagram: "ferris_wheel_accel"
+}
+]
+};
+
+// ====== DIAGRAM SVG GENERATORS ======
+function svgVectors() { return `<svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#38bdf8"/></marker></defs>
+  <line x1="40" y1="200" x2="360" y2="200" stroke="#475569" stroke-width="1"/>
+  <line x1="40" y1="200" x2="40" y2="30" stroke="#475569" stroke-width="1"/>
+  <text x="370" y="205" fill="#94a3b8" font-size="11">x</text>
+  <text x="30" y="25" fill="#94a3b8" font-size="11">y</text>
+  <line x1="40" y1="200" x2="200" y2="200" stroke="#38bdf8" stroke-width="3" marker-end="url(#ah)"/>
+  <text x="110" y="190" fill="#38bdf8" font-size="13" font-weight="bold">A = 8.00 m</text>
+  <line x1="200" y1="200" x2="340" y2="125" stroke="#818cf8" stroke-width="3" marker-end="url(#ah)"/>
+  <text x="280" y="155" fill="#818cf8" font-size="13" font-weight="bold">B = 15.0 m</text>
+  <path d="M 220 200 A 20 20 0 0 0 212 188" stroke="#fbbf24" fill="none" stroke-width="1"/>
+  <text x="222" y="195" fill="#fbbf24" font-size="10">30°</text>
+  <line x1="40" y1="200" x2="340" y2="125" stroke="#34d399" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#ah)"/>
+  <text x="170" y="150" fill="#34d399" font-size="11">A+B</text>
+</svg>`; }
+
+function svgVectors4() { return `<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ah2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#38bdf8"/></marker></defs>
+  <line x1="200" y1="260" x2="380" y2="260" stroke="#475569" stroke-width="1"/>
+  <line x1="200" y1="260" x2="200" y2="30" stroke="#475569" stroke-width="1"/>
+  <line x1="200" y1="260" x2="280" y2="260" stroke="#38bdf8" stroke-width="3" marker-end="url(#ah2)"/>
+  <text x="230" y="250" fill="#38bdf8" font-size="11" font-weight="bold">A</text>
+  <line x1="200" y1="260" x2="330" y2="185" stroke="#818cf8" stroke-width="3" marker-end="url(#ah2)"/>
+  <text x="275" y="210" fill="#818cf8" font-size="11" font-weight="bold">B</text>
+  <line x1="200" y1="260" x2="310" y2="285" stroke="#fbbf24" stroke-width="3" marker-end="url(#ah2)"/>
+  <text x="260" y="295" fill="#fbbf24" font-size="11" font-weight="bold">C</text>
+  <line x1="200" y1="260" x2="100" y2="310" stroke="#f87171" stroke-width="3" marker-end="url(#ah2)"/>
+  <text x="120" y="300" fill="#f87171" font-size="11" font-weight="bold">D</text>
+</svg>`; }
+
+function svgRocket() { return `<svg viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg">
+  <rect x="130" y="300" width="40" height="50" fill="#475569" rx="2"/>
+  <rect x="120" y="310" width="60" height="5" fill="#64748b"/>
+  <rect x="140" y="280" width="20" height="20" fill="#38bdf8" rx="3"/>
+  <line x1="150" y1="280" x2="150" y2="100" stroke="#818cf8" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="160" y="180" fill="#818cf8" font-size="10">y1=63m (t=1.15s)</text>
+  <line x1="150" y1="100" x2="150" y2="30" stroke="#34d399" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="160" y="60" fill="#34d399" font-size="10">y2=1000m (t=5.90s)</text>
+  <text x="10" y="340" fill="#94a3b8" font-size="10">Superficie terrestre</text>
+</svg>`; }
+
+function svgRunner() { return `<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="80" x2="470" y2="80" stroke="#475569" stroke-width="2"/>
+  <circle cx="50" cy="80" r="8" fill="#38bdf8"/><text x="35" y="105" fill="#38bdf8" font-size="11">Pilar</text>
+  <circle cx="250" cy="80" r="5" fill="#94a3b8"/>
+  <circle cx="450" cy="80" r="8" fill="#f87171"/><text x="430" y="105" fill="#f87171" font-size="11">Poste</text>
+  <line x1="58" y1="72" x2="242" y2="72" stroke="#38bdf8" stroke-width="3" marker-end="url(#ah)"/>
+  <text x="120" y="65" fill="#38bdf8" font-size="10">200 m Este (+x)</text>
+  <line x1="258" y1="90" x2="442" y2="90" stroke="#f87171" stroke-width="3" marker-end="url(#ah)"/>
+  <text x="310" y="105" fill="#f87171" font-size="10">280 m Oeste (-x)</text>
+  <line x1="50" y1="80" x2="450" y2="80" stroke="#34d399" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#ah)"/>
+  <text x="200" y="130" fill="#34d399" font-size="10">Desplazamiento neto: -80 m</text>
+</svg>`; }
+
+function svgXTGraph() { return `<svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+  <line x1="50" y1="220" x2="380" y2="220" stroke="#475569" stroke-width="1"/>
+  <line x1="50" y1="220" x2="50" y2="20" stroke="#475569" stroke-width="1"/>
+  <text x="390" y="225" fill="#94a3b8" font-size="10">t</text>
+  <text x="30" y="15" fill="#94a3b8" font-size="10">x</text>
+  <path d="M 50 200 Q 100 180, 130 100 Q 160 40, 200 30 Q 240 25, 270 40 Q 300 80, 330 140 Q 350 180, 370 210" stroke="#38bdf8" fill="none" stroke-width="2"/>
+  <circle cx="90" cy="170" r="5" fill="#34d399"/><text x="95" y="165" fill="#34d399" font-size="11" font-weight="bold">I</text>
+  <circle cx="130" cy="100" r="5" fill="#fbbf24"/><text x="135" y="95" fill="#fbbf24" font-size="11" font-weight="bold">II</text>
+  <circle cx="170" cy="55" r="5" fill="#f87171"/><text x="175" y="50" fill="#f87171" font-size="11" font-weight="bold">III</text>
+  <circle cx="200" cy="30" r="6" fill="#818cf8"/><text x="205" y="25" fill="#818cf8" font-size="11" font-weight="bold">IV</text>
+  <circle cx="330" cy="140" r="5" fill="#38bdf8"/><text x="335" y="135" fill="#38bdf8" font-size="11" font-weight="bold">V</text>
+</svg>`; }
+
+function svgVTGraph() { return `<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+  <line x1="50" y1="170" x2="380" y2="170" stroke="#475569" stroke-width="1"/>
+  <line x1="50" y1="170" x2="50" y2="20" stroke="#475569" stroke-width="1"/>
+  <text x="390" y="175" fill="#94a3b8" font-size="10">t(s)</text>
+  <text x="30" y="15" fill="#94a3b8" font-size="10">v(m/s)</text>
+  <line x1="50" y1="140" x2="220" y2="140" stroke="#38bdf8" stroke-width="3"/>
+  <line x1="220" y1="125" x2="370" y2="125" stroke="#818cf8" stroke-width="3"/>
+  <text x="110" y="130" fill="#38bdf8" font-size="10">v=+2.0 m/s</text>
+  <text x="270" y="115" fill="#818cf8" font-size="10">v=+3.0 m/s</text>
+  <line x1="220" y1="170" x2="220" y2="125" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="210" y="185" fill="#94a3b8" font-size="9">2.0</text>
+  <text x="360" y="185" fill="#94a3b8" font-size="9">3.0</text>
+</svg>`; }
+
+function svgThreePhase() { return `<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="170" x2="480" y2="170" stroke="#475569" stroke-width="1"/>
+  <line x1="40" y1="170" x2="40" y2="10" stroke="#475569" stroke-width="1"/>
+  <text x="490" y="175" fill="#94a3b8" font-size="10">t(s)</text>
+  <text x="20" y="8" fill="#94a3b8" font-size="10">v(m/s)</text>
+  <line x1="40" y1="170" x2="200" y2="90" stroke="#38bdf8" stroke-width="3"/>
+  <line x1="200" y1="90" x2="300" y2="90" stroke="#34d399" stroke-width="3"/>
+  <line x1="300" y1="90" x2="420" y2="170" stroke="#f87171" stroke-width="3"/>
+  <text x="90" y="120" fill="#38bdf8" font-size="9">a=+2.5</text>
+  <text x="230" y="80" fill="#34d399" font-size="9">v=cte</text>
+  <text x="340" y="140" fill="#f87171" font-size="9">a=-5.0</text>
+  <text x="40" y="185" fill="#94a3b8" font-size="9">0</text>
+  <text x="195" y="185" fill="#94a3b8" font-size="9">8</text>
+  <text x="295" y="185" fill="#94a3b8" font-size="9">11</text>
+  <text x="410" y="185" fill="#94a3b8" font-size="9">15</text>
+</svg>`; }
+
+function svgBalloon() { return `<svg viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="150" cy="80" rx="40" ry="50" fill="#818cf8" opacity="0.7"/>
+  <line x1="150" y1="130" x2="150" y2="170" stroke="#94a3b8" stroke-width="1"/>
+  <rect x="135" y="170" width="30" height="20" fill="#64748b" rx="2"/>
+  <text x="155" y="160" fill="#94a3b8" font-size="9">v0=+5.00 m/s</text>
+  <line x1="150" y1="170" x2="150" y2="310" stroke="#475569" stroke-width="1"/>
+  <line x1="80" y1="310" x2="220" y2="310" stroke="#64748b" stroke-width="2"/>
+  <text x="160" y="240" fill="#38bdf8" font-size="9">y0=40.0m</text>
+  <path d="M 150 170 Q 160 150, 155 140 Q 145 155, 150 170" fill="#fbbf24" opacity="0.5"/>
+  <text x="170" y="145" fill="#fbbf24" font-size="9">sube luego baja</text>
+  <text x="100" y="330" fill="#94a3b8" font-size="10">Suelo (y=0)</text>
+</svg>`; }
+
+function svgCliff() { return `<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="50" width="120" height="250" fill="#334155" rx="2"/>
+  <rect x="120" y="250" width="40" height="50" fill="#475569"/>
+  <circle cx="110" cy="50" r="4" fill="#fbbf24"/>
+  <path d="M 110 50 Q 115 150, 140 280" stroke="#38bdf8" stroke-width="1" stroke-dasharray="4,4" fill="none"/>
+  <path d="M 140 280 Q 145 200, 130 100 Q 125 75, 110 55" stroke="#f87171" stroke-width="1" stroke-dasharray="4,4" fill="none"/>
+  <text x="150" y="150" fill="#38bdf8" font-size="9">caida</text>
+  <text x="150" y="200" fill="#f87171" font-size="9">sonido</text>
+  <text x="10" y="40" fill="#94a3b8" font-size="10">h = ?</text>
+  <line x1="10" y1="50" x2="10" y2="280" stroke="#94a3b8" stroke-width="1" marker-end="url(#ah)"/>
+  <text x="5" y="170" fill="#94a3b8" font-size="9">383 m</text>
+</svg>`; }
+
+function svgCliffJump() { return `<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="40" width="100" height="240" fill="#334155" rx="2"/>
+  <rect x="100" y="250" width="50" height="30" fill="#475569"/>
+  <circle cx="90" cy="40" r="5" fill="#fbbf24"/>
+  <line x1="90" y1="40" x2="250" y2="40" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4"/>
+  <text x="130" y="35" fill="#38bdf8" font-size="9">1.75 m</text>
+  <line x1="90" y1="40" x2="90" y2="250" stroke="#818cf8" stroke-width="1"/>
+  <text x="60" y="150" fill="#818cf8" font-size="9">9.00 m</text>
+  <path d="M 90 40 Q 120 60, 160 120 Q 200 180, 250 250" stroke="#34d399" stroke-width="2" fill="none"/>
+  <text x="170" y="100" fill="#34d399" font-size="9">trayectoria</text>
+  <text x="10" y="270" fill="#94a3b8" font-size="10">Agua</text>
+</svg>`; }
+
+function svgMarbleCavity() { return `<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+  <rect x="50" y="50" width="80" height="200" fill="#334155" rx="2"/>
+  <rect x="50" y="250" width="300" height="30" fill="#475569"/>
+  <circle cx="120" cy="50" r="5" fill="#fbbf24"/>
+  <rect x="230" y="250" width="80" height="15" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+  <text x="240" y="275" fill="#34d399" font-size="9">cavidad</text>
+  <line x1="120" y1="50" x2="230" y2="250" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="120" y1="50" x2="310" y2="250" stroke="#f87171" stroke-width="2" stroke-dasharray="4,4"/>
+  <text x="160" y="140" fill="#38bdf8" font-size="8">v_min</text>
+  <text x="200" y="160" fill="#f87171" font-size="8">v_max</text>
+  <text x="10" y="150" fill="#94a3b8" font-size="9">2.75m</text>
+  <line x1="120" y1="50" x2="120" y2="250" stroke="#64748b" stroke-width="1"/>
+</svg>`; }
+
+function svgCoinToss() { return `<svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="220" x2="370" y2="220" stroke="#475569" stroke-width="2"/>
+  <circle cx="50" cy="220" r="6" fill="#fbbf24"/>
+  <text x="35" y="240" fill="#94a3b8" font-size="9">Lanzamiento</text>
+  <rect x="260" y="120" width="40" height="5" fill="#38bdf8" rx="2"/>
+  <text x="250" y="115" fill="#38bdf8" font-size="9">platito</text>
+  <path d="M 50 220 Q 120 80, 280 120" stroke="#818cf8" stroke-width="2" fill="none"/>
+  <line x1="50" y1="220" x2="100" y2="180" stroke="#34d399" stroke-width="2"/>
+  <text x="80" y="175" fill="#34d399" font-size="8">v0=6.4m/s, 60°</text>
+  <line x1="50" y1="220" x2="280" y2="220" stroke="#64748b" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="140" y="235" fill="#94a3b8" font-size="9">2.1 m</text>
+  <line x1="280" y1="125" x2="280" y2="220" stroke="#64748b" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="285" y="180" fill="#94a3b8" font-size="9">h=?</text>
+</svg>`; }
+
+function svgFerrisWheel() { return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="150" cy="140" r="100" fill="none" stroke="#475569" stroke-width="2"/>
+  <circle cx="150" cy="140" r="4" fill="#94a3b8"/>
+  <line x1="150" y1="140" x2="150" y2="40" stroke="#475569" stroke-width="1"/>
+  <text x="155" y="90" fill="#94a3b8" font-size="9">R=14.0m</text>
+  <circle cx="150" cy="40" r="6" fill="#38bdf8"/>
+  <text x="160" y="35" fill="#38bdf8" font-size="9">arriba</text>
+  <line x1="150" y1="40" x2="150" y2="60" stroke="#38bdf8" stroke-width="2" marker-end="url(#ah)"/>
+  <circle cx="150" cy="240" r="6" fill="#f87171"/>
+  <text x="160" y="250" fill="#f87171" font-size="9">abajo</text>
+  <line x1="150" y1="240" x2="150" y2="220" stroke="#f87171" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="10" y="290" fill="#94a3b8" font-size="10">v=7.00m/s, a=v²/R=3.50m/s²</text>
+</svg>`; }
+
+function svgFerrisWheelAccel() { return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="150" cy="140" r="100" fill="none" stroke="#475569" stroke-width="2"/>
+  <circle cx="150" cy="140" r="4" fill="#94a3b8"/>
+  <circle cx="150" cy="240" r="6" fill="#fbbf24"/>
+  <line x1="150" y1="240" x2="200" y2="240" stroke="#38bdf8" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="205" y="245" fill="#38bdf8" font-size="9">v=3.00</text>
+  <line x1="150" y1="240" x2="150" y2="210" stroke="#f87171" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="155" y="220" fill="#f87171" font-size="8">a_rad</text>
+  <line x1="150" y1="240" x2="180" y2="240" stroke="#818cf8" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="185" y="250" fill="#818cf8" font-size="8">a_tan</text>
+  <line x1="150" y1="240" x2="175" y2="215" stroke="#34d399" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="180" y="210" fill="#34d399" font-size="8">a_total</text>
+  <text x="10" y="290" fill="#94a3b8" font-size="10">a=0.814 m/s² a 52.1°</text>
+</svg>`; }
+
+function svgBaseball() { return `<svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="60" cy="100" r="20" fill="#fbbf24"/>
+  <text x="45" y="105" fill="#0f172a" font-size="8" font-weight="bold">mano</text>
+  <line x1="80" y1="100" x2="350" y2="100" stroke="#38bdf8" stroke-width="3" marker-end="url(#ah)"/>
+  <text x="180" y="90" fill="#38bdf8" font-size="10">v = 45.0 m/s</text>
+  <text x="150" y="120" fill="#94a3b8" font-size="9">d = 1.50 m de contacto</text>
+  <line x1="80" y1="110" x2="350" y2="110" stroke="#64748b" stroke-width="1"/>
+</svg>`; }
+
+function svgCarCrash() { return `<svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+  <rect x="50" y="80" width="60" height="30" fill="#f87171" rx="5"/>
+  <text x="55" y="100" fill="#0f172a" font-size="8" font-weight="bold">auto</text>
+  <line x1="110" y1="95" x2="300" y2="95" stroke="#fbbf24" stroke-width="3" marker-end="url(#ah)"/>
+  <text x="170" y="85" fill="#fbbf24" font-size="9">d = ?</text>
+  <text x="130" y="115" fill="#94a3b8" font-size="9">v0=105km/h → v=0</text>
+  <text x="130" y="130" fill="#94a3b8" font-size="9">a_max = -250 m/s²</text>
+  <rect x="300" y="70" width="40" height="50" fill="#475569" rx="3"/>
+  <text x="295" y="135" fill="#94a3b8" font-size="9">tablero</text>
+</svg>`; }
+
+function svgRamp() { return `<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="170" x2="360" y2="170" stroke="#475569" stroke-width="2"/>
+  <line x1="40" y1="170" x2="200" y2="100" stroke="#38bdf8" stroke-width="2"/>
+  <line x1="200" y1="100" x2="200" y2="170" stroke="#64748b" stroke-width="1"/>
+  <rect x="30" y="165" width="15" height="10" fill="#f87171" rx="2"/>
+  <text x="100" y="160" fill="#38bdf8" font-size="9">rampa: 120m</text>
+  <text x="200" y="190" fill="#94a3b8" font-size="9">v0=0 → v=20m/s</text>
+  <line x1="200" y1="170" x2="360" y2="170" stroke="#34d399" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="250" y="160" fill="#34d399" font-size="9">autopista: v=20m/s</text>
+</svg>`; }
+
+function svgAccelGraph() { return `<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="170" x2="480" y2="170" stroke="#475569" stroke-width="1"/>
+  <line x1="40" y1="170" x2="40" y2="10" stroke="#475569" stroke-width="1"/>
+  <text x="490" y="175" fill="#94a3b8" font-size="10">t(s)</text>
+  <text x="15" y="8" fill="#94a3b8" font-size="10">a(m/s²)</text>
+  <rect x="40" y="90" width="50" height="80" fill="#38bdf8" opacity="0.3" stroke="#38bdf8" stroke-width="1"/>
+  <rect x="90" y="90" width="100" height="80" fill="#38bdf8" opacity="0.3" stroke="#38bdf8" stroke-width="1"/>
+  <rect x="190" y="90" width="100" height="80" fill="#f87171" opacity="0.3" stroke="#f87171" stroke-width="1"/>
+  <rect x="290" y="90" width="100" height="80" fill="#94a3b8" opacity="0.1" stroke="#94a3b8" stroke-width="1"/>
+  <rect x="390" y="90" width="50" height="80" fill="#38bdf8" opacity="0.3" stroke="#38bdf8" stroke-width="1"/>
+  <text x="50" y="85" fill="#38bdf8" font-size="8">+2.0</text>
+  <text x="200" y="85" fill="#f87171" font-size="8">-2.0</text>
+  <text x="30" y="185" fill="#94a3b8" font-size="8">0</text>
+  <text x="60" y="185" fill="#94a3b8" font-size="8">5</text>
+  <text x="135" y="185" fill="#94a3b8" font-size="8">15</text>
+  <text x="235" y="185" fill="#94a3b8" font-size="8">25</text>
+  <text x="335" y="185" fill="#94a3b8" font-size="8">35</text>
+  <text x="400" y="185" fill="#94a3b8" font-size="8">40</text>
+</svg>`; }
+
+function svgMoonLanding() { return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <rect x="40" y="250" width="220" height="50" fill="#475569" rx="2"/>
+  <text x="120" y="280" fill="#94a3b8" font-size="10">Superficie lunar</text>
+  <path d="M 140 40 L 160 40 L 165 60 L 135 60 Z" fill="#818cf8"/>
+  <line x1="150" y1="60" x2="150" y2="250" stroke="#475569" stroke-width="1"/>
+  <text x="160" y="150" fill="#38bdf8" font-size="9">5.0 m</text>
+  <line x1="150" y1="60" x2="150" y2="90" stroke="#fbbf24" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="155" y="75" fill="#fbbf24" font-size="8">v0=0.8</text>
+  <line x1="150" y1="250" x2="150" y2="230" stroke="#f87171" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="155" y="245" fill="#f87171" font-size="8">v=?</text>
+  <text x="10" y="20" fill="#94a3b8" font-size="9">g_luna = 1.6 m/s²</text>
+</svg>`; }
+
+function svgFlea() { return `<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="170" x2="380" y2="170" stroke="#475569" stroke-width="1"/>
+  <line x1="40" y1="170" x2="40" y2="20" stroke="#475569" stroke-width="1"/>
+  <text x="390" y="175" fill="#94a3b8" font-size="10">t(ms)</text>
+  <text x="15" y="15" fill="#94a3b8" font-size="10">v(cm/s)</text>
+  <line x1="40" y1="170" x2="200" y2="40" stroke="#38bdf8" stroke-width="3"/>
+  <line x1="200" y1="40" x2="360" y2="40" stroke="#34d399" stroke-width="3"/>
+  <text x="90" y="100" fill="#38bdf8" font-size="9">empuje</text>
+  <text x="250" y="30" fill="#34d399" font-size="9">vuelo</text>
+  <text x="40" y="185" fill="#94a3b8" font-size="8">0</text>
+  <text x="195" y="185" fill="#94a3b8" font-size="8">1.25</text>
+  <text x="350" y="185" fill="#94a3b8" font-size="8">2.5</text>
+  <text x="15" y="45" fill="#94a3b8" font-size="8">130</text>
+  <text x="10" y="175" fill="#94a3b8" font-size="8">0</text>
+</svg>`; }
+
+function svgRoadTrip() { return `<svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="60" x2="470" y2="60" stroke="#475569" stroke-width="2"/>
+  <circle cx="60" cy="60" r="8" fill="#38bdf8"/><text x="30" y="85" fill="#38bdf8" font-size="10">Seward</text>
+  <circle cx="300" cy="60" r="6" fill="#fbbf24"/><text x="280" y="85" fill="#fbbf24" font-size="10">Aurora</text>
+  <circle cx="180" cy="60" r="8" fill="#f87171"/><text x="155" y="85" fill="#f87171" font-size="10">York</text>
+  <line x1="68" y1="52" x2="292" y2="52" stroke="#38bdf8" stroke-width="3" marker-end="url(#ah)"/>
+  <text x="140" y="45" fill="#38bdf8" font-size="9">76 km (oeste)</text>
+  <line x1="300" y1="70" x2="188" y2="70" stroke="#f87171" stroke-width="3" marker-end="url(#ah)"/>
+  <text x="210" y="95" fill="#f87171" font-size="9">34 km (este)</text>
+</svg>`; }
+
+function defaultDiagram(type) { return `<svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+  <text x="50%" y="50%" text-anchor="middle" fill="#94a3b8" font-size="12">Diagrama del ejercicio</text>
+</svg>`; }
+
+const diagramMap = {
+  vectors: svgVectors, vectors4: svgVectors4, rocket: svgRocket, runner: svgRunner,
+  xt_graph: svgXTGraph, vt_graph: svgVTGraph, three_phase: svgThreePhase,
+  balloon: svgBalloon, cliff: svgCliff, cliff_jump: svgCliffJump, marble_cavity: svgMarbleCavity,
+  coin_toss: svgCoinToss, ferris_wheel: svgFerrisWheel, ferris_wheel_accel: svgFerrisWheelAccel,
+  baseball: svgBaseball, car_crash: svgCarCrash, ramp: svgRamp, accel_graph: svgAccelGraph,
+  moon_landing: svgMoonLanding, flea: svgFlea, road_trip: svgRoadTrip, table_graph: defaultDiagram
+};
+
+// ====== STATE ======
+const solvedKey = 'fisica_univ_solved';
+let solved = JSON.parse(localStorage.getItem(solvedKey) || '[]');
+
+function markSolved(id) {
+  if (!solved.includes(id)) { solved.push(id); localStorage.setItem(solvedKey, JSON.stringify(solved)); }
+}
+
+// ====== RENDER ======
+function renderNav() {
+  const nav = document.getElementById('chapterNav');
+  const chapters = Object.keys(exercises);
+  nav.innerHTML = chapters.map((ch, i) => `<button class="${i===0?'active':''}" data-chapter="${ch}">${ch}</button>`).join('');
+  nav.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      nav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.chapter-section').forEach(s => s.classList.remove('active'));
+      document.getElementById('ch-' + btn.dataset.chapter.replace(/ /g,'_')).classList.add('active');
+      updateProgress();
+    });
+  });
+}
+
+function renderStats() {
+  const total = Object.values(exercises).flat().length;
+  const done = solved.length;
+  document.getElementById('statsBar').innerHTML = `<span><span class="dot solved"></span> Resueltos: ${done}/${total}</span><span><span class="dot pending"></span> Pendientes: ${total - done}</span><span>Progreso: ${Math.round(done/total*100)}%</span>`;
+}
+
+function updateProgress() {
+  const total = Object.values(exercises).flat().length;
+  document.getElementById('progressBar').style.width = (solved.length / total * 100) + '%';
+  renderStats();
+}
+
+function renderExercise(ex, idx) {
+  const isSolved = solved.includes(ex.id);
+  const diagFn = diagramMap[ex.diagram] || defaultDiagram;
+  return `<div class="exercise-card ${isSolved ? 'solved' : ''}" id="ex-${ex.id.replace('.','_')}">
+    <div class="exercise-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3>${ex.id} — ${ex.title.replace(/^Ejercicio \d+\.\d+ — /, '')}</h3>
+      <span class="toggle">${isSolved ? '✓' : '▼'}</span>
+    </div>
+    <div class="exercise-body">
+      <div class="problem-statement"><strong>Problema:</strong><br>${ex.problem.replace(/\n/g, '<br>')}</div>
+      <div class="diagram-container">
+        ${diagFn()}
+        <div class="diagram-label">Figura de referencia — ${ex.id}</div>
+      </div>
+      <div class="tips-box"><strong>💡 Consejo:</strong> ${ex.tips}</div>
+      <div class="steps-container">
+        <h4 style="margin-bottom:0.5rem; color: var(--accent2); font-size:0.9rem;">Resolucion paso a paso:</h4>
+        ${ex.steps.map((s, i) => `<div class="step" onclick="this.classList.toggle('open')">
+          <div class="step-header"><span class="left"><span class="step-num">${i+1}</span>${s.title}</span><span class="toggle">▼</span></div>
+          <div class="step-body">${s.body ? s.body.replace(/\n/g, '<br>') : ''}${s.formula ? `<div class="formula-block">${s.formula}</div>` : ''}</div>
+        </div>`).join('')}
+      </div>
+      <div class="answer-section">
+        <button class="btn btn-primary" onclick="toggleAnswer('${ex.id.replace('.','_')}', this)">🔍 Verificar mi respuesta</button>
+        <div class="user-answer-section" id="ua-${ex.id.replace('.','_')}" style="display:none">
+          <textarea placeholder="Escribe tu respuesta aqui antes de ver la solucion..."></textarea>
+          <div style="margin-top:0.5rem; display:flex; gap:0.5rem;">
+            <button class="btn btn-success" onclick="revealAnswer('${ex.id.replace('.','_')}', this)">Mostrar respuesta correcta</button>
+          </div>
+        </div>
+        <div class="answer-reveal" id="ans-${ex.id.replace('.','_')}">
+          <h4>Respuesta correcta:</h4>
+          <pre style="white-space:pre-wrap; color: var(--text); font-size:0.85rem;">${ex.answer}</pre>
+          <div style="margin-top:0.5rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <button class="btn btn-success" onclick="markSolvedAndClose('${ex.id}', this)">✓ Lo resolvi correcto</button>
+            <button class="btn btn-outline" onclick="this.closest('.answer-reveal').classList.remove('visible')">Ocultar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderAll() {
+  const main = document.getElementById('mainContent');
+  const chapters = Object.keys(exercises);
+  main.innerHTML = chapters.map(ch => `<div class="chapter-section ${ch===chapters[0]?'active':''}" id="ch-${ch.replace(/ /g,'_')}">
+    ${exercises[ch].map((ex, i) => renderExercise(ex, i)).join('')}
+  </div>`).join('');
+  updateProgress();
+}
+
+// ====== INTERACTIONS ======
+window.toggleAnswer = function(id, btn) {
+  const ua = document.getElementById('ua-' + id);
+  if (ua.style.display === 'none') {
+    ua.style.display = 'block';
+    btn.textContent = '✏️ Escribi tu respuesta...';
+  }
+};
+
+window.revealAnswer = function(id, btn) {
+  const ans = document.getElementById('ans-' + id);
+  ans.classList.add('visible');
+  btn.closest('.answer-section').querySelector('.btn-primary').style.display = 'none';
+};
+
+window.markSolvedAndClose = function(id, btn) {
+  markSolved(id);
+  const card = document.getElementById('ex-' + id);
+  if (card) card.querySelector('.toggle').textContent = '✓';
+  updateProgress();
+  btn.textContent = '✓ Marcado como resuelto';
+  btn.disabled = true;
+};
+
+// ====== INIT ======
+renderNav();
+renderAll();
+</script>
+</body>
+</html>
