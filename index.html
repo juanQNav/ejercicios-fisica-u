@@ -233,7 +233,7 @@ const exercises = {
     {title: "b)iii) Aceleracion de 20.0 a 53 s", formula: "a = (113.09 - 89.40)/(53 - 20.0) = 23.69/33.0 = 0.718 m/s²"}
   ],
   answer: "a) No, la aceleracion no es constante (disminuye)\nb) i) 12.8 m/s², ii) 3.50 m/s², iii) 0.718 m/s²",
-  diagram: "table_graph"
+  diagram: "bugatti"
 },
 {
   id: "2.23",
@@ -730,6 +730,54 @@ function svgRoadTrip() { return `<svg viewBox="0 0 500 120" xmlns="http://www.w3
   <text x="210" y="95" fill="#f87171" font-size="9">34 km (este)</text>
 </svg>`; }
 
+function svgTableGraph() { return `<svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ah3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#38bdf8"/></marker></defs>
+  <line x1="50" y1="180" x2="480" y2="180" stroke="#475569" stroke-width="1"/>
+  <line x1="50" y1="180" x2="50" y2="20" stroke="#475569" stroke-width="1"/>
+  <text x="490" y="185" fill="#94a3b8" font-size="10">t(s)</text>
+  <text x="20" y="15" fill="#94a3b8" font-size="10">v(m/s)</text>
+  <polyline points="50,180 90,180 130,170 170,150 210,130 250,100 290,85 330,70 370,70" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="50" cy="180" r="3" fill="#38bdf8"/><circle cx="90" cy="180" r="3" fill="#38bdf8"/>
+  <circle cx="130" cy="170" r="3" fill="#38bdf8"/><circle cx="170" cy="150" r="3" fill="#38bdf8"/>
+  <circle cx="210" cy="130" r="3" fill="#38bdf8"/><circle cx="250" cy="100" r="3" fill="#38bdf8"/>
+  <circle cx="290" cy="85" r="3" fill="#38bdf8"/><circle cx="330" cy="70" r="3" fill="#38bdf8"/>
+  <circle cx="370" cy="70" r="3" fill="#38bdf8"/>
+  <text x="45" y="195" fill="#94a3b8" font-size="8">0</text>
+  <text x="85" y="195" fill="#94a3b8" font-size="8">2</text>
+  <text x="125" y="195" fill="#94a3b8" font-size="8">4</text>
+  <text x="165" y="195" fill="#94a3b8" font-size="8">6</text>
+  <text x="205" y="195" fill="#94a3b8" font-size="8">8</text>
+  <text x="245" y="195" fill="#94a3b8" font-size="8">10</text>
+  <text x="285" y="195" fill="#94a3b8" font-size="8">12</text>
+  <text x="325" y="195" fill="#94a3b8" font-size="8">14</text>
+  <text x="365" y="195" fill="#94a3b8" font-size="8">16</text>
+  <text x="20" y="185" fill="#94a3b8" font-size="8">0</text>
+  <text x="15" y="135" fill="#94a3b8" font-size="8">10</text>
+  <text x="15" y="75" fill="#94a3b8" font-size="8">22</text>
+  <text x="100" y="30" fill="#94a3b8" font-size="10">Gráfica v-t — Ejercicio 2.12</text>
+</svg>`; }
+
+function svgBugatti() { return `<svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ah4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#38bdf8"/></marker></defs>
+  <line x1="50" y1="180" x2="480" y2="180" stroke="#475569" stroke-width="1"/>
+  <line x1="50" y1="180" x2="50" y2="20" stroke="#475569" stroke-width="1"/>
+  <text x="490" y="185" fill="#94a3b8" font-size="10">t(s)</text>
+  <text x="15" y="15" fill="#94a3b8" font-size="10">v(mi/h)</text>
+  <path d="M 50 180 Q 80 160, 100 140 Q 200 80, 350 50 Q 420 40, 460 35" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+  <circle cx="50" cy="180" r="5" fill="#38bdf8"/><text x="30" y="195" fill="#94a3b8" font-size="8">0s</text>
+  <circle cx="100" cy="140" r="5" fill="#fbbf24"/><text x="85" y="130" fill="#fbbf24" font-size="8">60</text>
+  <circle cx="350" cy="50" r="5" fill="#818cf8"/><text x="330" y="45" fill="#818cf8" font-size="8">200</text>
+  <circle cx="460" cy="35" r="5" fill="#f87171"/><text x="445" y="30" fill="#f87171" font-size="8">253</text>
+  <text x="50" y="195" fill="#94a3b8" font-size="8">0</text>
+  <text x="95" y="195" fill="#94a3b8" font-size="8">2.1</text>
+  <text x="340" y="195" fill="#94a3b8" font-size="8">20.0</text>
+  <text x="455" y="195" fill="#94a3b8" font-size="8">53</text>
+  <text x="10" y="145" fill="#94a3b8" font-size="8">60</text>
+  <text x="5" y="55" fill="#94a3b8" font-size="8">200</text>
+  <text x="5" y="40" fill="#94a3b8" font-size="8">253</text>
+  <text x="130" y="30" fill="#94a3b8" font-size="10">Bugatti Veyron — v vs t</text>
+</svg>`; }
+
 function defaultDiagram(type) { return `<svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
   <text x="50%" y="50%" text-anchor="middle" fill="#94a3b8" font-size="12">Diagrama del ejercicio</text>
 </svg>`; }
@@ -740,7 +788,7 @@ const diagramMap = {
   balloon: svgBalloon, cliff: svgCliff, cliff_jump: svgCliffJump, marble_cavity: svgMarbleCavity,
   coin_toss: svgCoinToss, ferris_wheel: svgFerrisWheel, ferris_wheel_accel: svgFerrisWheelAccel,
   baseball: svgBaseball, car_crash: svgCarCrash, ramp: svgRamp, accel_graph: svgAccelGraph,
-  moon_landing: svgMoonLanding, flea: svgFlea, road_trip: svgRoadTrip, table_graph: defaultDiagram
+  moon_landing: svgMoonLanding, flea: svgFlea, road_trip: svgRoadTrip, table_graph: svgTableGraph, bugatti: svgBugatti
 };
 
 // ====== STATE ======
