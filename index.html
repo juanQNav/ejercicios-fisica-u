@@ -67,11 +67,39 @@ main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
 .stats .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 .stats .dot.solved { background: var(--success); }
 .stats .dot.pending { background: var(--warning); }
-@media (max-width: 640px) {
-  main { padding: 1rem; }
-  nav { padding: 0.5rem 1rem; }
-  header { padding: 1rem; }
-  header h1 { font-size: 1.2rem; }
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  header { padding: 0.75rem 1rem; }
+  header h1 { font-size: 1.1rem; }
+  header p { font-size: 0.75rem; }
+  nav { padding: 0.5rem 0.75rem; gap: 0.35rem; }
+  nav button { padding: 0.45rem 0.8rem; font-size: 0.75rem; min-height: 44px; }
+  .stats { padding: 0.5rem 0.75rem; font-size: 0.7rem; flex-wrap: wrap; }
+  main { padding: 0.75rem; }
+  .exercise-header { padding: 0.75rem 1rem; }
+  .exercise-header h3 { font-size: 0.85rem; }
+  .exercise-body { padding: 0 0.75rem 1rem; }
+  .problem-statement { padding: 0.75rem; font-size: 0.8rem; }
+  .diagram-container { padding: 0.5rem; }
+  .step-header { padding: 0.6rem 0.75rem; font-size: 0.8rem; min-height: 44px; }
+  .step-body { padding: 0.6rem 0.75rem; font-size: 0.8rem; }
+  .formula-block { padding: 0.5rem 0.75rem; font-size: 0.85rem; word-break: break-word; }
+  .tips-box { padding: 0.6rem 0.75rem; font-size: 0.75rem; }
+  .btn { padding: 0.65rem 1rem; font-size: 0.8rem; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .answer-section { display: flex; flex-direction: column; gap: 0.5rem; }
+  .user-answer-section textarea { font-size: 0.8rem; padding: 0.6rem; }
+  .answer-reveal { padding: 0.75rem; }
+  .answer-reveal pre { font-size: 0.8rem; }
+}
+@media (max-width: 420px) {
+  header h1 { font-size: 1rem; }
+  nav { padding: 0.4rem 0.5rem; }
+  nav button { padding: 0.4rem 0.6rem; font-size: 0.7rem; }
+  .exercise-header h3 { font-size: 0.8rem; }
+  .problem-statement { font-size: 0.75rem; }
+  .step-header { font-size: 0.75rem; }
+  .step-body { font-size: 0.75rem; }
+  .formula-block { font-size: 0.8rem; }
 }
 </style>
 </head>
