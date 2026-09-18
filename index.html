@@ -1318,7 +1318,7 @@ function renderExercise(ex, idx) {
           <pre style="white-space:pre-wrap; color: var(--text); font-size:0.85rem;">${ex.answer}</pre>
           <div style="margin-top:0.5rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
             <button class="btn btn-success" onclick="markSolvedAndClose('${ex.id}', this)">✓ Lo resolvi correcto</button>
-            <button class="btn btn-outline" onclick="this.closest('.answer-reveal').classList.remove('visible')">Ocultar</button>
+            <button class="btn btn-outline" onclick="hideAnswer('${ex.id.replace('.','_')}')">Ocultar</button>
           </div>
         </div>
       </div>
@@ -1400,8 +1400,15 @@ window.printFormulario = function() {
 window.revealAnswer = function(id, btn) {
   const ans = document.getElementById('ans-' + id);
   ans.classList.add('visible');
-  // Hide the button after clicking
   btn.style.display = 'none';
+};
+
+window.hideAnswer = function(id) {
+  const ans = document.getElementById('ans-' + id);
+  ans.classList.remove('visible');
+  // Restore the "Mostrar respuesta" button
+  const showBtn = ans.parentElement.querySelector('.btn-primary');
+  if (showBtn) showBtn.style.display = '';
 };
 
 window.markSolvedAndClose = function(id, btn) {
