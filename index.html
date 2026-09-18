@@ -71,6 +71,55 @@ main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
 .stats .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 .stats .dot.solved { background: var(--success); }
 .stats .dot.pending { background: var(--warning); }
+/* ====== FORMULARIO ====== */
+.formula-ref-section { display: none; }
+.formula-ref-section.active { display: block; }
+.formula-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+.formula-toolbar h2 { font-size: 1.2rem; color: var(--accent); }
+.btn-print { background: var(--accent2); color: white; }
+.btn-print:hover { background: #a5b4fc; }
+.formula-topic { background: var(--surface); border: 1px solid var(--surface2); border-radius: var(--radius); margin-bottom: 1.25rem; overflow: hidden; }
+.formula-topic-header { padding: 0.85rem 1.25rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--surface2); transition: background 0.2s; user-select: none; }
+.formula-topic-header:hover { background: #3d4f68; }
+.formula-topic-header h3 { font-size: 0.95rem; color: var(--accent2); }
+.formula-topic-header .toggle { color: var(--text2); transition: transform 0.3s; }
+.formula-topic.open .formula-topic-header .toggle { transform: rotate(180deg); }
+.formula-topic-body { display: none; padding: 1rem 1.25rem; }
+.formula-topic.open .formula-topic-body { display: block; }
+.formula-card { background: var(--bg); border: 1px solid var(--surface2); border-radius: 8px; margin-bottom: 0.75rem; overflow: hidden; }
+.formula-card-header { padding: 0.6rem 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--warning); font-weight: 600; transition: color 0.2s; }
+.formula-card-header:hover { color: #fcd34d; }
+.formula-card-header .toggle { font-size: 0.9rem; color: var(--text2); transition: transform 0.3s; }
+.formula-card.open .formula-card-header .toggle { transform: rotate(180deg); }
+.formula-card-body { display: none; padding: 0.75rem 1rem; border-top: 1px solid var(--surface2); }
+.formula-card.open .formula-card-body { display: block; }
+.formula-main { text-align: center; padding: 0.5rem; background: rgba(251,191,36,0.08); border-radius: 6px; margin-bottom: 0.75rem; font-family: 'Cambria Math', Georgia, serif; color: var(--warning); font-size: 1.05rem; }
+.despejes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.4rem; margin-bottom: 0.75rem; }
+.despeje-item { background: var(--surface2); border-radius: 6px; padding: 0.4rem 0.6rem; font-family: 'Cambria Math', Georgia, serif; font-size: 0.85rem; color: var(--text); text-align: center; }
+.despeje-item .label { color: var(--accent); font-size: 0.75rem; font-family: 'Segoe UI', system-ui, sans-serif; display: block; margin-bottom: 0.15rem; }
+.when-to-use { background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; padding: 0.6rem 0.75rem; font-size: 0.8rem; }
+.when-to-use strong { color: var(--success); }
+/* ====== PRINT ====== */
+@media print {
+  header, nav, .stats, .progress-bar, .btn, .formula-toolbar, .exercise-card, .chapter-section { display: none !important; }
+  .formula-ref-section { display: block !important; }
+  body { background: white !important; color: black !important; font-size: 10pt; }
+  .formula-topic { display: block !important; page-break-inside: avoid; border: 1px solid #ccc; margin-bottom: 0.75rem; }
+  .formula-topic-header { background: #f0f0f0 !important; color: #333 !important; }
+  .formula-topic-header h3 { color: #1a1a8a !important; }
+  .formula-topic-body { display: block !important; padding: 0.5rem; }
+  .formula-card { display: block !important; border: 1px solid #ddd; page-break-inside: avoid; }
+  .formula-card-body { display: block !important; }
+  .formula-main { color: #b8860b !important; background: #fff8dc !important; border: 1px solid #e0c060; }
+  .despeje-item { background: #f5f5f5 !important; color: #333 !important; border: 1px solid #ddd; }
+  .despeje-item .label { color: #2563eb !important; }
+  .when-to-use { background: #f0fdf4 !important; border-color: #86efac !important; color: #333 !important; }
+  .when-to-use strong { color: #16a34a !important; }
+  .print-header { display: block !important; text-align: center; margin-bottom: 1rem; border-bottom: 2px solid #333; padding-bottom: 0.5rem; }
+  .print-header h1 { font-size: 16pt; color: #1a1a8a; margin: 0; }
+  .print-header p { font-size: 9pt; color: #666; margin: 0.25rem 0 0; }
+}
+.print-header { display: none; }
 /* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
   header { padding: 0.75rem 1rem; }
@@ -103,6 +152,14 @@ main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
   .step-header { font-size: 0.75rem; }
   .step-body { font-size: 0.75rem; }
   .formula-block { font-size: 0.8rem; }
+  .formula-toolbar { flex-direction: column; align-items: flex-start; }
+  .formula-toolbar h2 { font-size: 1rem; }
+  .despejes-grid { grid-template-columns: 1fr; }
+  .formula-topic-header { padding: 0.6rem 0.75rem; min-height: 44px; }
+  .formula-topic-body { padding: 0.75rem; }
+  .formula-card-header { padding: 0.5rem 0.75rem; font-size: 0.8rem; min-height: 44px; }
+  .formula-card-body { padding: 0.5rem 0.75rem; }
+  .formula-main { font-size: 0.9rem; padding: 0.4rem; }
 }
 </style>
 </head>
@@ -528,6 +585,229 @@ const exercises = {
 ]
 };
 
+// ====== FORMULARIO DE REFERENCIA ======
+const formulaRef = [
+{
+  topic: "Cinematica en una dimension (MRU y MRUA)",
+  formulas: [
+    {
+      name: "Velocidad media",
+      main: "v<sub>med</sub> = Δx / Δt = (x − x₀) / (t − t₀)",
+      despejes: [
+        { label: "Desplazamiento", eq: "Δx = v<sub>med</sub> · Δt" },
+        { label: "Intervalo de tiempo", eq: "Δt = Δx / v<sub>med</sub>" },
+        { label: "Posicion final", eq: "x = x₀ + v<sub>med</sub> · Δt" }
+      ],
+      when: "Cualquier movimiento en linea recta. NO requiere aceleracion constante. Usa desplazamiento NETO (con signo), no distancia total."
+    },
+    {
+      name: "Rapidez media",
+      main: "Rapidez media = distancia total / tiempo total",
+      despejes: [
+        { label: "Distancia total", eq: "d = rapidez media · t" },
+        { label: "Tiempo total", eq: "t = distancia total / rapidez media" }
+      ],
+      when: "Siempre positiva. Suma TODAS las distancias recorridas (sin signo). Diferente de velocidad media cuando hay cambios de direccion."
+    },
+    {
+      name: "Aceleracion media",
+      main: "a<sub>med</sub> = Δv / Δt = (v − v₀) / (t − t₀)",
+      despejes: [
+        { label: "Cambio de velocidad", eq: "Δv = a<sub>med</sub> · Δt" },
+        { label: "Velocidad final", eq: "v = v₀ + a<sub>med</sub> · Δt" },
+        { label: "Intervalo de tiempo", eq: "Δt = Δv / a<sub>med</sub>" }
+      ],
+      when: "Cualquier movimiento. No requiere aceleracion constante. En grafica v-t es la pendiente de la recta secante."
+    },
+    {
+      name: "MRUA — Velocidad en funcion del tiempo",
+      main: "v = v₀ + a · t",
+      despejes: [
+        { label: "Velocidad inicial", eq: "v₀ = v − a · t" },
+        { label: "Aceleracion", eq: "a = (v − v₀) / t" },
+        { label: "Tiempo", eq: "t = (v − v₀) / a" }
+      ],
+      when: "Solo cuando la aceleracion es CONSTANTE. Relaciona velocidad, aceleracion y tiempo. NO involucra posicion."
+    },
+    {
+      name: "MRUA — Posicion en funcion del tiempo",
+      main: "x = x₀ + v₀ · t + ½ · a · t²",
+      despejes: [
+        { label: "Desplazamiento", eq: "Δx = v₀ · t + ½ · a · t²" },
+        { label: "Velocidad inicial", eq: "v₀ = (Δx − ½at²) / t" },
+        { label: "Aceleracion", eq: "a = 2(Δx − v₀t) / t²" }
+      ],
+      when: "Solo aceleracion constante. Da la posicion en cualquier instante. Si necesitas tiempo, resuelve la ecuacion cuadraticas."
+    },
+    {
+      name: "MRUA — Velocidad en funcion de la posicion",
+      main: "v² = v₀² + 2a(x − x₀)",
+      despejes: [
+        { label: "Velocidad final", eq: "v = ±√(v₀² + 2aΔx)" },
+        { label: "Velocidad inicial", eq: "v₀ = ±√(v² − 2aΔx)" },
+        { label: "Aceleracion", eq: "a = (v² − v₀²) / (2Δx)" },
+        { label: "Desplazamiento", eq: "Δx = (v² − v₀²) / (2a)" }
+      ],
+      when: "Solo aceleracion constante. Ideal cuando NO te dan el tiempo (o no lo necesitas). La mas usada en caida libre."
+    },
+    {
+      name: "MRUA — Posicion con velocidades promedio",
+      main: "x − x₀ = ((v₀ + v) / 2) · t",
+      despejes: [
+        { label: "Velocidad final", eq: "v = 2Δx/t − v₀" },
+        { label: "Velocidad inicial", eq: "v₀ = 2Δx/t − v" },
+        { label: "Tiempo", eq: "t = 2Δx / (v₀ + v)" }
+      ],
+      when: "Solo aceleracion constante. Util cuando conoces ambas velocidades y buscas tiempo o desplazamiento. No usa la aceleracion explicitamente."
+    }
+  ]
+},
+{
+  topic: "Caida libre",
+  formulas: [
+    {
+      name: "Caida libre — Velocidad",
+      main: "v<sub>y</sub> = v₀<sub>y</sub> − g · t &nbsp;(g = 9.80 m/s²)",
+      despejes: [
+        { label: "Tiempo", eq: "t = (v₀y − vy) / g" },
+        { label: "Velocidad inicial", eq: "v₀y = vy + g · t" }
+      ],
+      when: "Objetos en caida libre (sin resistencia del aire). g siempre apunta hacia abajo. Si arriba es positivo, ay = −g."
+    },
+    {
+      name: "Caida libre — Posicion",
+      main: "y = y₀ + v₀<sub>y</sub> · t − ½ · g · t²",
+      despejes: [
+        { label: "Desplazamiento vertical", eq: "Δy = v₀yt − ½gt²" },
+        { label: "Tiempo (v₀y = 0)", eq: "t = √(2Δy/g)" }
+      ],
+      when: "Caida libre. Resuelve para t con la formula cuadraticas cuando v₀y ≠ 0. El punto mas alto ocurre cuando vy = 0."
+    },
+    {
+      name: "Caida libre — Velocidad vs posicion",
+      main: "v<sub>y</sub>² = v₀<sub>y</sub>² − 2g(y − y₀)",
+      despejes: [
+        { label: "Velocidad final", eq: "vy = ±√(v₀y² − 2gΔy)" },
+        { label: "Altura maxima (vy=0)", eq: "y_max = y₀ + v₀y²/(2g)" }
+      ],
+      when: "Caida libre sin conocer el tiempo. Para altura maxima: pon vy = 0 y despeja y."
+    }
+  ]
+},
+{
+  topic: "Movimiento parabolico (tiro proyectil)",
+  formulas: [
+    {
+      name: "Componentes de velocidad inicial",
+      main: "v₀<sub>x</sub> = v₀ · cos(θ) &nbsp;&nbsp; v₀<sub>y</sub> = v₀ · sin(θ)",
+      despejes: [
+        { label: "Rapidez inicial", eq: "v₀ = √(v₀x² + v₀y²)" },
+        { label: "Angulo", eq: "θ = arctan(v₀y / v₀x)" }
+      ],
+      when: "Siempre que lanzas con angulo θ respecto a la horizontal. θ = 0 para lanzamiento horizontal."
+    },
+    {
+      name: "Movimiento horizontal (MRU)",
+      main: "x = v₀<sub>x</sub> · t",
+      despejes: [
+        { label: "Tiempo de vuelo", eq: "t = x / v₀x" },
+        { label: "Velocidad horizontal", eq: "v₀x = x / t" }
+      ],
+      when: "El movimiento horizontal es SIEMPRE MRU (ax = 0). vx nunca cambia en el vacio."
+    },
+    {
+      name: "Movimiento vertical (caida libre)",
+      main: "y = y₀ + v₀<sub>y</sub> · t − ½ · g · t²",
+      despejes: [
+        { label: "Velocidad vertical en t", eq: "vy = v₀y − g · t" },
+        { label: "Altura maxima", eq: "y_max = y₀ + v₀y²/(2g)" },
+        { label: "Tiempo al punto mas alto", eq: "t_subida = v₀y / g" }
+      ],
+      when: "El movimiento vertical es caida libre independiente. El tiempo de subida = tiempo de bajada si y₀ = y_final."
+    },
+    {
+      name: "Alcance horizontal maximo",
+      main: "R = v₀² · sin(2θ) / g",
+      despejes: [
+        { label: "Rapidez inicial", eq: "v₀ = √(R·g / sin(2θ))" },
+        { label: "Angulo (maximo R)", eq: "θ = 45° da alcance maximo" }
+      ],
+      when: "Solo cuando el proyectil sale y cae a la MISMA altura (y₀ = y_final). No aplica si hay diferencia de alturas."
+    }
+  ]
+},
+{
+  topic: "Movimiento circular",
+  formulas: [
+    {
+      name: "Aceleracion radial (centripeta)",
+      main: "a<sub>rad</sub> = v² / R",
+      despejes: [
+        { label: "Rapidez", eq: "v = √(a_rad · R)" },
+        { label: "Radio", eq: "R = v² / a_rad" }
+      ],
+      when: "Cualquier objeto en trayectoria circular. Siempre apunta al centro. En MCU es la UNICA aceleracion."
+    },
+    {
+      name: "Periodo (una revolucion)",
+      main: "T = 2πR / v = 2π / ω",
+      despejes: [
+        { label: "Rapidez", eq: "v = 2πR / T" },
+        { label: "Radio", eq: "R = vT / (2π)" },
+        { label: "Velocidad angular", eq: "ω = 2π / T" }
+      ],
+      when: "MCU. T es el tiempo de una vuelta completa. Relaciona rapidez lineal con el periodo."
+    },
+    {
+      name: "Aceleracion tangencial",
+      main: "a<sub>tan</sub> = dv/dt (cambia la rapidez)",
+      despejes: [
+        { label: "Cambio de rapidez", eq: "Δv = a_tan · Δt (si a_tan constante)" }
+      ],
+      when: "Solo en MCU NO uniforme. Es paralela a la velocidad. Si la rapidez es constante, a_tan = 0."
+    },
+    {
+      name: "Aceleracion total (MCU no uniforme)",
+      main: "a = √(a<sub>rad</sub>² + a<sub>tan</sub>²)",
+      despejes: [
+        { label: "Direccion", eq: "θ = arctan(a_rad / a_tan) respecto a la tangente" }
+      ],
+      when: "Cuando hay ambas componentes. La direccion NO apunta exactamente al centro."
+    }
+  ]
+},
+{
+  topic: "Vectores",
+  formulas: [
+    {
+      name: "Componentes de un vector",
+      main: "V<sub>x</sub> = V · cos(θ) &nbsp;&nbsp; V<sub>y</sub> = V · sin(θ)",
+      despejes: [
+        { label: "Magnitud", eq: "V = √(Vx² + Vy²)" },
+        { label: "Direccion", eq: "θ = arctan(Vy / Vx)" }
+      ],
+      when: "θ se mide desde el eje +x en sentido antihorario. Cuidado con el cuadrante: usa los signos de Vx y Vy."
+    },
+    {
+      name: "Suma de vectores (componentes)",
+      main: "R<sub>x</sub> = Ax + Bx &nbsp;&nbsp; R<sub>y</sub> = Ay + By",
+      despejes: [
+        { label: "Magnitud resultante", eq: "R = √(Rx² + Ry²)" },
+        { label: "Direccion resultante", eq: "θ = arctan(Ry / Rx)" },
+        { label: "Resta de vectores", eq: "Dx = Ax − Bx, Dy = Ay − By" }
+      ],
+      when: "El metodo mas general y preciso. Suma componente a componente. La resta es sumar el negativo."
+    },
+    {
+      name: "Vector en notacion unitaria",
+      main: "V = V<sub>x</sub> i + V<sub>y</sub> j",
+      despejes: [],
+      when: "Forma estandar de expresar vectores. i = (1,0), j = (0,1). Facilita sumas y restas algebraicas."
+    }
+  ]
+}
+];
+
 // ====== DIAGRAM SVG GENERATORS ======
 function svgVectors() { return `<svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
   <defs><marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#38bdf8"/></marker></defs>
@@ -898,13 +1178,20 @@ function markSolved(id) {
 function renderNav() {
   const nav = document.getElementById('chapterNav');
   const chapters = Object.keys(exercises);
-  nav.innerHTML = chapters.map((ch, i) => `<button class="${i===0?'active':''}" data-chapter="${ch}">${ch}</button>`).join('');
+  nav.innerHTML = chapters.map((ch, i) => `<button class="${i===0?'active':''}" data-chapter="${ch}">${ch}</button>`).join('')
+    + `<button data-chapter="form" style="margin-left:auto; border-color: var(--accent2); color: var(--accent2);">📐 Formulario</button>`;
   nav.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
       nav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       document.querySelectorAll('.chapter-section').forEach(s => s.classList.remove('active'));
-      document.getElementById('ch-' + btn.dataset.chapter.replace(/ /g,'_')).classList.add('active');
+      const formSection = document.getElementById('formulaRef');
+      if (formSection) formSection.classList.remove('active');
+      if (btn.dataset.chapter === 'form') {
+        if (formSection) formSection.classList.add('active');
+      } else {
+        document.getElementById('ch-' + btn.dataset.chapter.replace(/ /g,'_')).classList.add('active');
+      }
       updateProgress();
     });
   });
@@ -967,9 +1254,70 @@ function renderAll() {
   const chapters = Object.keys(exercises);
   main.innerHTML = chapters.map(ch => `<div class="chapter-section ${ch===chapters[0]?'active':''}" id="ch-${ch.replace(/ /g,'_')}">
     ${exercises[ch].map((ex, i) => renderExercise(ex, i)).join('')}
-  </div>`).join('');
+  </div>`).join('') + `<div class="formula-ref-section" id="formulaRef"></div>`;
+  renderFormulaRef();
   updateProgress();
 }
+
+// ====== FORMULARIO RENDER ======
+function renderFormulaRef() {
+  let html = `<div class="formula-toolbar">
+    <h2>Formulario de Fisica</h2>
+    <button class="btn btn-print" onclick="printFormulario()">📄 Descargar / Imprimir PDF</button>
+  </div>
+  <div class="print-header">
+    <h1>Formulario de Fisica Universitaria</h1>
+    <p>Sears & Zemansky, 12a ed. — Referencia rapida con despejes y casos de uso</p>
+  </div>`;
+
+  formulaRef.forEach((topic, ti) => {
+    html += `<div class="formula-topic" id="ft-${ti}">
+      <div class="formula-topic-header" onclick="toggleFormulaTopic(${ti})">
+        <h3>${topic.topic}</h3>
+        <span class="toggle">▼</span>
+      </div>
+      <div class="formula-topic-body">`;
+
+    topic.formulas.forEach((f, fi) => {
+      const despejesHtml = f.despejes.length > 0
+        ? `<div class="despejes-grid">${f.despejes.map(d =>
+            `<div class="despeje-item"><span class="label">${d.label}</span>${d.eq}</div>`
+          ).join('')}</div>`
+        : '';
+
+      html += `<div class="formula-card" id="fc-${ti}-${fi}">
+        <div class="formula-card-header" onclick="toggleFormulaCard(${ti}, ${fi})">
+          <span>${f.name}</span>
+          <span class="toggle">▼</span>
+        </div>
+        <div class="formula-card-body">
+          <div class="formula-main">${f.main}</div>
+          ${despejesHtml}
+          <div class="when-to-use"><strong>¿Cuando usarla?</strong> ${f.when}</div>
+        </div>
+      </div>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  document.getElementById('formulaRef').innerHTML = html;
+}
+
+window.toggleFormulaTopic = function(ti) {
+  document.getElementById('ft-' + ti).classList.toggle('open');
+};
+
+window.toggleFormulaCard = function(ti, fi) {
+  document.getElementById('fc-' + ti + '-' + fi).classList.toggle('open');
+};
+
+window.printFormulario = function() {
+  // Abre todos los topics y cards antes de imprimir
+  document.querySelectorAll('.formula-topic').forEach(el => el.classList.add('open'));
+  document.querySelectorAll('.formula-card').forEach(el => el.classList.add('open'));
+  window.print();
+};
 
 // ====== INTERACTIONS ======
 window.revealAnswer = function(id, btn) {
