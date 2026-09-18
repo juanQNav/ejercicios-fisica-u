@@ -586,161 +586,260 @@ const exercises = {
 };
 
 // ====== FORMULARIO DE REFERENCIA ======
+// Formulas basadas en Sears & Zemansky, Fisica Universitaria, 12a ed.
 const formulaRef = [
 {
-  topic: "Cinematica en una dimension (MRU y MRUA)",
+  topic: "Vectores (Capitulo 1)",
   formulas: [
     {
-      name: "Velocidad media",
-      main: "v<sub>med</sub> = Δx / Δt = (x − x₀) / (t − t₀)",
+      name: "Componentes rectangulares [Ec. 1.6]",
+      main: "A<sub>x</sub> = A · cos θ &nbsp;&nbsp; A<sub>y</sub> = A · sin θ",
       despejes: [
-        { label: "Desplazamiento", eq: "Δx = v<sub>med</sub> · Δt" },
-        { label: "Intervalo de tiempo", eq: "Δt = Δx / v<sub>med</sub>" },
-        { label: "Posicion final", eq: "x = x₀ + v<sub>med</sub> · Δt" }
+        { label: "Magnitud", eq: "A = √(Ax² + Ay²)" },
+        { label: "Direccion", eq: "θ = arctan(Ay / Ax)" }
+      ],
+      when: "θ se mide desde el eje +x positivo hacia +y (sentido antihorario). Cuidado con el cuadrante: verifica los signos de Ax y Ay."
+    },
+    {
+      name: "Magnitud de un vector [Ec. 1.7]",
+      main: "A = |A| = √(A<sub>x</sub>² + A<sub>y</sub>²)",
+      despejes: [
+        { label: "En 3D", eq: "A = √(Ax² + Ay² + Az²)" },
+        { label: "Componente x", eq: "Ax = ±√(A² − Ay²)" }
+      ],
+      when: "Siempre positiva. La magnitud es el largo del vector, independiente del sistema de coordenadas."
+    },
+    {
+      name: "Suma de vectores por componentes [Ec. 1.10-1.11]",
+      main: "R<sub>x</sub> = Ax + Bx + Cx + ... &nbsp;&nbsp; R<sub>y</sub> = Ay + By + Cy + ...",
+      despejes: [
+        { label: "Magnitud resultante", eq: "R = √(Rx² + Ry² + Rz²)" },
+        { label: "Direccion", eq: "θ = arctan(Ry / Rx)" },
+        { label: "Resta (A − B)", eq: "Rx = Ax − Bx, Ry = Ay − By" }
+      ],
+      when: "El metodo mas general y preciso. Suma componente a componente. La resta es sumar el negativo (−B)."
+    },
+    {
+      name: "Notacion con vectores unitarios [Ec. 1.16]",
+      main: "A = A<sub>x</sub> i + A<sub>y</sub> j + A<sub>z</sub> k",
+      despejes: [
+        { label: "Suma con unitarios", eq: "R = (Ax+Bx)i + (Ay+By)j + (Az+Bz)k" }
+      ],
+      when: "i, j, k tienen magnitud 1 y apuntan a lo largo de +x, +y, +z. Facilita sumas y restas algebraicas."
+    },
+    {
+      name: "Producto escalar (punto) [Ec. 1.18]",
+      main: "A · B = AB cos φ = Ax·Bx + Ay·By + Az·Bz",
+      despejes: [
+        { label: "Angulo entre vectores", eq: "cos φ = (A·B) / (AB)" },
+        { label: "Si φ = 90°", eq: "A · B = 0 (son perpendiculares)" }
+      ],
+      when: "Produce un escalar (numero). φ es el angulo entre los dos vectores (0 ≤ φ ≤ 180°). Si el producto punto es cero, los vectores son perpendiculares."
+    },
+    {
+      name: "Producto vectorial (cruz) [Ec. 1.22, 1.27]",
+      main: "|A × B| = AB sin φ",
+      despejes: [
+        { label: "Componente x", eq: "Cx = Ay·Bz − Az·By" },
+        { label: "Componente y", eq: "Cy = Az·Bx − Ax·Bz" },
+        { label: "Componente z", eq: "Cz = Ax·By − Ay·Bx" },
+        { label: "Regla mano derecha", eq: "A × B es perpendicular al plano de A y B" }
+      ],
+      when: "Produce un VECTOR perpendicular al plano de A y B. Direccion por regla de la mano derecha. Si φ = 0° o 180°, el producto cruz es cero (vectores paralelos)."
+    }
+  ]
+},
+{
+  topic: "Cinematica en una dimension (Capitulo 2)",
+  formulas: [
+    {
+      name: "Velocidad media [Ec. 2.2]",
+      main: "v<sub>med-x</sub> = Δx / Δt = (x₂ − x₁) / (t₂ − t₁)",
+      despejes: [
+        { label: "Desplazamiento", eq: "Δx = v_med-x · Δt" },
+        { label: "Intervalo de tiempo", eq: "Δt = Δx / v_med-x" },
+        { label: "Posicion final", eq: "x₂ = x₁ + v_med-x · Δt" }
       ],
       when: "Cualquier movimiento en linea recta. NO requiere aceleracion constante. Usa desplazamiento NETO (con signo), no distancia total."
     },
     {
-      name: "Rapidez media",
-      main: "Rapidez media = distancia total / tiempo total",
+      name: "Velocidad instantanea [Ec. 2.3]",
+      main: "v<sub>x</sub> = lim(Δt→0) Δx/Δt = dx/dt",
       despejes: [
-        { label: "Distancia total", eq: "d = rapidez media · t" },
-        { label: "Tiempo total", eq: "t = distancia total / rapidez media" }
+        { label: "Rapidez instantanea", eq: "|vx| (siempre positiva)" }
       ],
-      when: "Siempre positiva. Suma TODAS las distancias recorridas (sin signo). Diferente de velocidad media cuando hay cambios de direccion."
+      when: "Es la derivada de la posicion respecto al tiempo. En grafica x-t es la pendiente de la recta tangente en un punto."
     },
     {
-      name: "Aceleracion media",
-      main: "a<sub>med</sub> = Δv / Δt = (v − v₀) / (t − t₀)",
+      name: "Aceleracion media [Ec. 2.4]",
+      main: "a<sub>med-x</sub> = Δv<sub>x</sub> / Δt = (v₂<sub>x</sub> − v₁<sub>x</sub>) / (t₂ − t₁)",
       despejes: [
-        { label: "Cambio de velocidad", eq: "Δv = a<sub>med</sub> · Δt" },
-        { label: "Velocidad final", eq: "v = v₀ + a<sub>med</sub> · Δt" },
-        { label: "Intervalo de tiempo", eq: "Δt = Δv / a<sub>med</sub>" }
+        { label: "Cambio de velocidad", eq: "Δvx = a_med-x · Δt" },
+        { label: "Velocidad final", eq: "v₂x = v₁x + a_med-x · Δt" },
+        { label: "Intervalo de tiempo", eq: "Δt = Δvx / a_med-x" }
       ],
       when: "Cualquier movimiento. No requiere aceleracion constante. En grafica v-t es la pendiente de la recta secante."
     },
     {
-      name: "MRUA — Velocidad en funcion del tiempo",
-      main: "v = v₀ + a · t",
+      name: "Aceleracion instantanea [Ec. 2.5]",
+      main: "a<sub>x</sub> = dv<sub>x</sub>/dt = d²x/dt²",
+      despejes: [],
+      when: "Derivada de la velocidad respecto al tiempo (segunda derivada de la posicion). En grafica v-t es la pendiente de la tangente."
+    },
+    {
+      name: "MRU — Posicion (ax = 0) [Ec. 2.1]",
+      main: "x = x₀ + v<sub>x</sub> · t",
       despejes: [
-        { label: "Velocidad inicial", eq: "v₀ = v − a · t" },
-        { label: "Aceleracion", eq: "a = (v − v₀) / t" },
-        { label: "Tiempo", eq: "t = (v − v₀) / a" }
+        { label: "Velocidad", eq: "vx = (x − x₀) / t" },
+        { label: "Tiempo", eq: "t = (x − x₀) / vx" }
+      ],
+      when: "Solo cuando la aceleracion es CERO. La velocidad es constante: vx = v₀x. Es un caso particular del MRUA."
+    },
+    {
+      name: "MRUA — Velocidad en funcion del tiempo [Ec. 2.8]",
+      main: "v<sub>x</sub> = v₀<sub>x</sub> + a<sub>x</sub> · t",
+      despejes: [
+        { label: "Velocidad inicial", eq: "v₀x = vx − ax · t" },
+        { label: "Aceleracion", eq: "ax = (vx − v₀x) / t" },
+        { label: "Tiempo", eq: "t = (vx − v₀x) / ax" }
       ],
       when: "Solo cuando la aceleracion es CONSTANTE. Relaciona velocidad, aceleracion y tiempo. NO involucra posicion."
     },
     {
-      name: "MRUA — Posicion en funcion del tiempo",
-      main: "x = x₀ + v₀ · t + ½ · a · t²",
+      name: "MRUA — Posicion con velocidad media [Ec. 2.10 + 2.11]",
+      main: "x − x₀ = ((v₀<sub>x</sub> + v<sub>x</sub>) / 2) · t",
       despejes: [
-        { label: "Desplazamiento", eq: "Δx = v₀ · t + ½ · a · t²" },
-        { label: "Velocidad inicial", eq: "v₀ = (Δx − ½at²) / t" },
-        { label: "Aceleracion", eq: "a = 2(Δx − v₀t) / t²" }
+        { label: "Velocidad final", eq: "vx = 2(x−x₀)/t − v₀x" },
+        { label: "Velocidad inicial", eq: "v₀x = 2(x−x₀)/t − vx" },
+        { label: "Tiempo", eq: "t = 2(x − x₀) / (v₀x + vx)" }
+      ],
+      when: "Solo aceleracion constante. Util cuando conoces ambas velocidades y buscas tiempo o desplazamiento. No usa la aceleracion explicitamente."
+    },
+    {
+      name: "MRUA — Posicion en funcion del tiempo [Ec. 2.12]",
+      main: "x = x₀ + v₀<sub>x</sub> · t + ½ · a<sub>x</sub> · t²",
+      despejes: [
+        { label: "Desplazamiento", eq: "Δx = v₀x·t + ½ax·t²" },
+        { label: "Velocidad inicial", eq: "v₀x = (Δx − ½ax·t²) / t" },
+        { label: "Aceleracion", eq: "ax = 2(Δx − v₀xt) / t²" }
       ],
       when: "Solo aceleracion constante. Da la posicion en cualquier instante. Si necesitas tiempo, resuelve la ecuacion cuadraticas."
     },
     {
-      name: "MRUA — Velocidad en funcion de la posicion",
-      main: "v² = v₀² + 2a(x − x₀)",
+      name: "MRUA — Velocidad en funcion de la posicion [Ec. 2.13]",
+      main: "v<sub>x</sub>² = v₀<sub>x</sub>² + 2a<sub>x</sub>(x − x₀)",
       despejes: [
-        { label: "Velocidad final", eq: "v = ±√(v₀² + 2aΔx)" },
-        { label: "Velocidad inicial", eq: "v₀ = ±√(v² − 2aΔx)" },
-        { label: "Aceleracion", eq: "a = (v² − v₀²) / (2Δx)" },
-        { label: "Desplazamiento", eq: "Δx = (v² − v₀²) / (2a)" }
+        { label: "Velocidad final", eq: "vx = ±√(v₀x² + 2axΔx)" },
+        { label: "Velocidad inicial", eq: "v₀x = ±√(vx² − 2axΔx)" },
+        { label: "Aceleracion", eq: "ax = (vx² − v₀x²) / (2Δx)" },
+        { label: "Desplazamiento", eq: "Δx = (vx² − v₀x²) / (2ax)" }
       ],
       when: "Solo aceleracion constante. Ideal cuando NO te dan el tiempo (o no lo necesitas). La mas usada en caida libre."
-    },
-    {
-      name: "MRUA — Posicion con velocidades promedio",
-      main: "x − x₀ = ((v₀ + v) / 2) · t",
-      despejes: [
-        { label: "Velocidad final", eq: "v = 2Δx/t − v₀" },
-        { label: "Velocidad inicial", eq: "v₀ = 2Δx/t − v" },
-        { label: "Tiempo", eq: "t = 2Δx / (v₀ + v)" }
-      ],
-      when: "Solo aceleracion constante. Util cuando conoces ambas velocidades y buscas tiempo o desplazamiento. No usa la aceleracion explicitamente."
     }
   ]
 },
 {
-  topic: "Caida libre",
+  topic: "Caida libre y tiro vertical (Capitulo 2.5)",
   formulas: [
     {
-      name: "Caida libre — Velocidad",
-      main: "v<sub>y</sub> = v₀<sub>y</sub> − g · t &nbsp;(g = 9.80 m/s²)",
+      name: "Velocidad en caida libre",
+      main: "v<sub>y</sub> = v₀<sub>y</sub> − g · t &nbsp;&nbsp;(g = 9.80 m/s²)",
       despejes: [
         { label: "Tiempo", eq: "t = (v₀y − vy) / g" },
         { label: "Velocidad inicial", eq: "v₀y = vy + g · t" }
       ],
-      when: "Objetos en caida libre (sin resistencia del aire). g siempre apunta hacia abajo. Si arriba es positivo, ay = −g."
+      when: "Caso particular de MRUA en el eje vertical. Se sustituye x por y y ax por −g. La gravedad siempre apunta hacia abajo."
     },
     {
-      name: "Caida libre — Posicion",
+      name: "Posicion en caida libre",
       main: "y = y₀ + v₀<sub>y</sub> · t − ½ · g · t²",
       despejes: [
-        { label: "Desplazamiento vertical", eq: "Δy = v₀yt − ½gt²" },
-        { label: "Tiempo (v₀y = 0)", eq: "t = √(2Δy/g)" }
+        { label: "Desplazamiento vertical", eq: "Δy = v₀y·t − ½gt²" },
+        { label: "Tiempo (v₀y = 0)", eq: "t = √(2|Δy|/g)" }
       ],
       when: "Caida libre. Resuelve para t con la formula cuadraticas cuando v₀y ≠ 0. El punto mas alto ocurre cuando vy = 0."
     },
     {
-      name: "Caida libre — Velocidad vs posicion",
+      name: "Velocidad vs altura [Ec. 2.13 con y]",
       main: "v<sub>y</sub>² = v₀<sub>y</sub>² − 2g(y − y₀)",
       despejes: [
         { label: "Velocidad final", eq: "vy = ±√(v₀y² − 2gΔy)" },
-        { label: "Altura maxima (vy=0)", eq: "y_max = y₀ + v₀y²/(2g)" }
+        { label: "Altura maxima (vy=0)", eq: "ymax = y₀ + v₀y²/(2g)" },
+        { label: "Velocidad inicial", eq: "v₀y = ±√(vy² + 2gΔy)" }
       ],
       when: "Caida libre sin conocer el tiempo. Para altura maxima: pon vy = 0 y despeja y."
+    },
+    {
+      name: "Posicion con velocidad media vertical",
+      main: "y − y₀ = ((v₀<sub>y</sub> + v<sub>y</sub>) / 2) · t",
+      despejes: [
+        { label: "Tiempo", eq: "t = 2(y − y₀) / (v₀y + vy)" }
+      ],
+      when: "Caso particular de la Ec. 2.14 con ejes verticales. Util cuando conoces ambas velocidades verticales."
     }
   ]
 },
 {
-  topic: "Movimiento parabolico (tiro proyectil)",
+  topic: "Movimiento de proyectiles (Capitulo 3.3)",
   formulas: [
     {
-      name: "Componentes de velocidad inicial",
-      main: "v₀<sub>x</sub> = v₀ · cos(θ) &nbsp;&nbsp; v₀<sub>y</sub> = v₀ · sin(θ)",
+      name: "Componentes de velocidad inicial [Ec. 3.19]",
+      main: "v₀<sub>x</sub> = v₀ · cos α₀ &nbsp;&nbsp; v₀<sub>y</sub> = v₀ · sin α₀",
       despejes: [
         { label: "Rapidez inicial", eq: "v₀ = √(v₀x² + v₀y²)" },
-        { label: "Angulo", eq: "θ = arctan(v₀y / v₀x)" }
+        { label: "Angulo de lanzamiento", eq: "α₀ = arctan(v₀y / v₀x)" }
       ],
-      when: "Siempre que lanzas con angulo θ respecto a la horizontal. θ = 0 para lanzamiento horizontal."
+      when: "α₀ es el angulo respecto a la horizontal. α₀ = 0° para lanzamiento horizontal."
     },
     {
-      name: "Movimiento horizontal (MRU)",
-      main: "x = v₀<sub>x</sub> · t",
+      name: "Movimiento horizontal [Ec. 3.20, 3.22]",
+      main: "x = (v₀ · cos α₀) · t &nbsp;&nbsp; v<sub>x</sub> = v₀ · cos α₀",
       despejes: [
-        { label: "Tiempo de vuelo", eq: "t = x / v₀x" },
-        { label: "Velocidad horizontal", eq: "v₀x = x / t" }
+        { label: "Tiempo de vuelo", eq: "t = x / (v₀·cos α₀)" },
+        { label: "Rapidez inicial", eq: "v₀ = x / (t·cos α₀)" }
       ],
       when: "El movimiento horizontal es SIEMPRE MRU (ax = 0). vx nunca cambia en el vacio."
     },
     {
-      name: "Movimiento vertical (caida libre)",
-      main: "y = y₀ + v₀<sub>y</sub> · t − ½ · g · t²",
+      name: "Movimiento vertical [Ec. 3.21, 3.23]",
+      main: "y = (v₀ · sin α₀) · t − ½gt² &nbsp;&nbsp; v<sub>y</sub> = v₀ · sin α₀ − gt",
       despejes: [
-        { label: "Velocidad vertical en t", eq: "vy = v₀y − g · t" },
-        { label: "Altura maxima", eq: "y_max = y₀ + v₀y²/(2g)" },
-        { label: "Tiempo al punto mas alto", eq: "t_subida = v₀y / g" }
+        { label: "Altura maxima", eq: "h = v₀²sin²α₀ / (2g)" },
+        { label: "Tiempo de subida", eq: "t = v₀·sin α₀ / g" }
       ],
-      when: "El movimiento vertical es caida libre independiente. El tiempo de subida = tiempo de bajada si y₀ = y_final."
+      when: "El movimiento vertical es caida libre independiente (ay = −g). El tiempo de subida = tiempo de bajada si y₀ = y_final."
     },
     {
-      name: "Alcance horizontal maximo",
-      main: "R = v₀² · sin(2θ) / g",
+      name: "Ecuacion de la trayectoria [Ec. 3.27]",
+      main: "y = x·tan α₀ − (g · x²) / (2·v₀²·cos²α₀)",
+      despejes: [],
+      when: "Describe la forma parabolica y(x) eliminando el tiempo. Permite hallar y para cualquier x sin calcular t."
+    },
+    {
+      name: "Magnitud y direccion de la velocidad [Ec. 3.25, 3.26]",
+      main: "v = √(vx² + vy²) &nbsp;&nbsp; tan α = vy / vx",
       despejes: [
-        { label: "Rapidez inicial", eq: "v₀ = √(R·g / sin(2θ))" },
-        { label: "Angulo (maximo R)", eq: "θ = 45° da alcance maximo" }
+        { label: "Componente x", eq: "vx = √(v² − vy²)" },
+        { label: "Componente y", eq: "vy = √(v² − vx²)" }
       ],
-      when: "Solo cuando el proyectil sale y cae a la MISMA altura (y₀ = y_final). No aplica si hay diferencia de alturas."
+      when: "La velocidad instantanea es tangente a la trayectoria. α es el angulo de la velocidad respecto a la horizontal."
+    },
+    {
+      name: "Alcance horizontal maximo [terreno nivelado]",
+      main: "R = v₀² · sin(2α₀) / g",
+      despejes: [
+        { label: "Rapidez inicial", eq: "v₀ = √(R·g / sin(2α₀))" },
+        { label: "Alcance maximo absoluto", eq: "α₀ = 45° → R_max = v₀²/g" }
+      ],
+      when: "Solo cuando el proyectil sale y cae a la MISMA altura (y = y₀). No aplica si hay diferencia de alturas."
     }
   ]
 },
 {
-  topic: "Movimiento circular",
+  topic: "Movimiento circular (Capitulo 3.4)",
   formulas: [
     {
-      name: "Aceleracion radial (centripeta)",
+      name: "Aceleracion radial (centripeta) [Ec. 3.28]",
       main: "a<sub>rad</sub> = v² / R",
       despejes: [
         { label: "Rapidez", eq: "v = √(a_rad · R)" },
@@ -749,60 +848,38 @@ const formulaRef = [
       when: "Cualquier objeto en trayectoria circular. Siempre apunta al centro. En MCU es la UNICA aceleracion."
     },
     {
-      name: "Periodo (una revolucion)",
-      main: "T = 2πR / v = 2π / ω",
+      name: "Periodo y rapidez lineal [Ec. 3.29]",
+      main: "v = 2πR / T &nbsp;&nbsp; T = 2πR / v",
       despejes: [
-        { label: "Rapidez", eq: "v = 2πR / T" },
-        { label: "Radio", eq: "R = vT / (2π)" },
-        { label: "Velocidad angular", eq: "ω = 2π / T" }
+        { label: "Rapidez angular", eq: "ω = 2π / T = v / R" },
+        { label: "Radio", eq: "R = vT / (2π)" }
       ],
-      when: "MCU. T es el tiempo de una vuelta completa. Relaciona rapidez lineal con el periodo."
+      when: "T es el tiempo de una vuelta completa. Relaciona rapidez lineal con el periodo."
     },
     {
-      name: "Aceleracion tangencial",
-      main: "a<sub>tan</sub> = dv/dt (cambia la rapidez)",
+      name: "Aceleracion radial con periodo [Ec. 3.30]",
+      main: "a<sub>rad</sub> = 4π²R / T²",
       despejes: [
-        { label: "Cambio de rapidez", eq: "Δv = a_tan · Δt (si a_tan constante)" }
+        { label: "Periodo", eq: "T = 2π√(R / a_rad)" },
+        { label: "Radio", eq: "R = a_rad·T² / (4π²)" }
       ],
-      when: "Solo en MCU NO uniforme. Es paralela a la velocidad. Si la rapidez es constante, a_tan = 0."
+      when: "Forma alternativa de a_rad cuando conoces el periodo en vez de la rapidez lineal."
     },
     {
-      name: "Aceleracion total (MCU no uniforme)",
+      name: "Aceleracion tangencial [Ec. 3.31]",
+      main: "a<sub>tan</sub> = d|v|/dt",
+      despejes: [
+        { label: "Si a_tan constante", eq: "Δ|v| = a_tan · Δt" }
+      ],
+      when: "Solo en MCU no uniforme. Es paralela a la velocidad (tangente a la trayectoria). Si la rapidez es constante, a_tan = 0."
+    },
+    {
+      name: "Aceleracion total [MCU no uniforme]",
       main: "a = √(a<sub>rad</sub>² + a<sub>tan</sub>²)",
       despejes: [
-        { label: "Direccion", eq: "θ = arctan(a_rad / a_tan) respecto a la tangente" }
+        { label: "Vector total", eq: "a = a_rad + a_tan" }
       ],
       when: "Cuando hay ambas componentes. La direccion NO apunta exactamente al centro."
-    }
-  ]
-},
-{
-  topic: "Vectores",
-  formulas: [
-    {
-      name: "Componentes de un vector",
-      main: "V<sub>x</sub> = V · cos(θ) &nbsp;&nbsp; V<sub>y</sub> = V · sin(θ)",
-      despejes: [
-        { label: "Magnitud", eq: "V = √(Vx² + Vy²)" },
-        { label: "Direccion", eq: "θ = arctan(Vy / Vx)" }
-      ],
-      when: "θ se mide desde el eje +x en sentido antihorario. Cuidado con el cuadrante: usa los signos de Vx y Vy."
-    },
-    {
-      name: "Suma de vectores (componentes)",
-      main: "R<sub>x</sub> = Ax + Bx &nbsp;&nbsp; R<sub>y</sub> = Ay + By",
-      despejes: [
-        { label: "Magnitud resultante", eq: "R = √(Rx² + Ry²)" },
-        { label: "Direccion resultante", eq: "θ = arctan(Ry / Rx)" },
-        { label: "Resta de vectores", eq: "Dx = Ax − Bx, Dy = Ay − By" }
-      ],
-      when: "El metodo mas general y preciso. Suma componente a componente. La resta es sumar el negativo."
-    },
-    {
-      name: "Vector en notacion unitaria",
-      main: "V = V<sub>x</sub> i + V<sub>y</sub> j",
-      despejes: [],
-      when: "Forma estandar de expresar vectores. i = (1,0), j = (0,1). Facilita sumas y restas algebraicas."
     }
   ]
 }
