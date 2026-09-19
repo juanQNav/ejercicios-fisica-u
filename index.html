@@ -101,7 +101,7 @@ main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
 .when-to-use strong { color: var(--success); }
 /* ====== PRINT ====== */
 @media print {
-  header, nav, .stats, .progress-bar, .btn, .formula-toolbar, .exercise-card, .chapter-section, .flashcard-section { display: none !important; }
+  header, nav, .stats, .progress-bar, .btn, .formula-toolbar, .exercise-card, .chapter-section, .flashcard-section, .mnemo-section { display: none !important; }
   .formula-ref-section { display: block !important; }
   body { background: white !important; color: black !important; font-size: 10pt; }
   .formula-topic { display: block !important; page-break-inside: avoid; border: 1px solid #ccc; margin-bottom: 0.75rem; }
@@ -120,6 +120,47 @@ main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
   .print-header p { font-size: 9pt; color: #666; margin: 0.25rem 0 0; }
 }
 .print-header { display: none; }
+/* ====== MNEMOTECNIAS ====== */
+.mnemo-section { display: none; }
+.mnemo-section.active { display: block; }
+.mnemo-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.5rem; }
+.mnemo-toolbar h2 { font-size: 1.2rem; color: var(--accent); }
+.mnemo-group-tabs { display: flex; gap: 0.4rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.mnemo-group-tab { padding: 0.4rem 0.8rem; border: 1px solid var(--surface2); background: transparent; color: var(--text2); border-radius: 8px; cursor: pointer; font-size: 0.75rem; transition: all 0.2s; }
+.mnemo-group-tab:hover { border-color: var(--warning); color: var(--warning); }
+.mnemo-group-tab.active { background: var(--warning); color: var(--bg); border-color: var(--warning); font-weight: 600; }
+.mnemo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; }
+.mnemo-card { background: var(--surface); border: 1px solid var(--surface2); border-radius: var(--radius); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+.mnemo-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.mnemo-card-header { padding: 1rem 1.25rem; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; user-select: none; }
+.mnemo-card-header .mnemo-emoji { font-size: 1.5rem; flex-shrink: 0; }
+.mnemo-card-header .mnemo-info { flex: 1; }
+.mnemo-card-header .mnemo-name { font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-bottom: 0.25rem; }
+.mnemo-card-header .mnemo-formula-mini { font-family: 'Cambria Math', Georgia, serif; font-size: 0.85rem; color: var(--warning); background: rgba(251,191,36,0.08); padding: 0.2rem 0.5rem; border-radius: 4px; display: inline-block; }
+.mnemo-card-header .mnemo-toggle { font-size: 1.2rem; color: var(--text2); transition: transform 0.3s; flex-shrink: 0; margin-top: 0.25rem; }
+.mnemo-card.open .mnemo-card-header .mnemo-toggle { transform: rotate(180deg); }
+.mnemo-card-body { display: none; padding: 0 1.25rem 1.25rem; }
+.mnemo-card.open .mnemo-card-body { display: block; }
+.mnemo-text { background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.15); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.85rem; color: var(--text); line-height: 1.5; }
+.mnemo-text .highlight { color: var(--warning); font-weight: 600; }
+.mnemo-text .formula-ref { font-family: 'Cambria Math', Georgia, serif; color: var(--accent2); font-size: 0.8rem; display: block; margin-top: 0.5rem; opacity: 0.7; }
+.mnemo-card .mnemo-tag { display: inline-block; font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-top: 0.5rem; font-weight: 600; }
+.mnemo-tag.trick { background: rgba(129,140,248,0.15); color: var(--accent2); }
+@media (max-width: 768px) {
+  .mnemo-grid { grid-template-columns: 1fr; }
+  .mnemo-card-header { padding: 0.75rem 1rem; min-height: 44px; }
+  .mnemo-card-body { padding: 0 0.75rem 1rem; }
+  .mnemo-text { font-size: 0.8rem; padding: 0.6rem 0.75rem; }
+  .mnemo-group-tab { min-height: 44px; }
+}
+@media (max-width: 420px) {
+  .mnemo-toolbar { flex-direction: column; align-items: flex-start; }
+  .mnemo-toolbar h2 { font-size: 1rem; }
+  .mnemo-card-header .mnemo-formula-mini { font-size: 0.75rem; }
+}
+@media print {
+  .mnemo-section { display: none !important; }
+}
 /* ====== FLASHCARDS ====== */
 .flashcard-section { display: none; }
 .flashcard-section.active { display: block; }
@@ -1351,6 +1392,190 @@ const flashcardData = [
   }
 ];
 
+
+// ====== MNEMOTECNIAS ======
+// Mnemotecnias graciosas para cada fórmula de n.md + vectores
+const mnemoData = [
+  {
+    group: "MRU",
+    cards: [
+      {
+        emoji: "🚗",
+        name: "Velocidad constante",
+        formula: "v = Δx / Δt",
+        text: `<span class="highlight">X sobre T</span> — Distancia entre Tiempo. Si recorres mucho en poco, eres rápido. Si recorres poco en mucho... eres tú el lunes por la mañana.`,
+        tag: "La regla de oro del MRU"
+      },
+      {
+        emoji: "🏃",
+        name: "Desplazamiento",
+        formula: "x = v · t",
+        text: `Es como tus excusas: mucho tiempo × mucha velocidad = <span class="highlight">mucho problema</span>. Si vas a 60 km/h durante 2 horas... ya sabes, 120 km más lejos de tu casa.`,
+        tag: "Simple y directa"
+      }
+    ]
+  },
+  {
+    group: "MRUA",
+    cards: [
+      {
+        emoji: "📈",
+        name: "Aceleración",
+        formula: "a = (vf − vi) / t",
+        text: `El <span class="highlight">cambio de velocidad</span> entre el tiempo. Como tu motivación en exámenes: empieza alta (vi), termina en cero (vf), y el tiempo fue testigo. a = (0 − 100) / semestre = -∞`,
+        tag: "Delta V sobre T"
+      },
+      {
+        emoji: "🚀",
+        name: "Velocidad final",
+        formula: "vf = vi + a · t",
+        text: `Velocidad Final = Inicial MÁS aceleración por tiempo. Si arrancas lento pero aceleras... <span class="highlight">llegas</span>. Como estudiar a las 11pm para el examen de las 7am: vi=0, pero a=ENORME.`,
+        tag: "vi más a por t"
+      },
+      {
+        emoji: "💥",
+        name: "Velocidad final al cuadrado (sin tiempo)",
+        formula: "vf² = vi² + 2a · x",
+        text: `Sin tiempo, solo <span class="highlight">drama al cuadrado</span>. Como tu ex que vuelve: vi² (el pasado) + 2ax (el presente incómodo). El 2 es porque siempre duele el doble.`,
+        tag: "La que no necesita tiempo"
+      },
+      {
+        emoji: "⏰",
+        name: "Desplazamiento (en función del tiempo)",
+        formula: "x = vi · t + ½ a · t²",
+        text: `El término <span class="highlight">t² pesa más</span>. Como los problemas que dejas para después: al principio crecen linealmente (vi·t), pero luego EXPLOTAN (½at²). Por eso no dejes todo para el último día.`,
+        tag: "El t² te va a cobrar"
+      },
+      {
+        emoji: "⚖️",
+        name: "Desplazamiento (promedio de velocidades)",
+        formula: "x = ((vf + vi) / 2) · t",
+        text: `El <span class="highlight">promedio siempre te salva</span>, como el profe que curva el examen. (vf + vi) / 2 es el promedio aritmético — ni vi ni vf, sino algo en medio. Como tu calificación: ni reprobada ni perfecta.`,
+        tag: "El promedio al rescate"
+      }
+    ]
+  },
+  {
+    group: "Tiro Vertical",
+    cards: [
+      {
+        emoji: "🎯",
+        name: "Aceleración de la gravedad",
+        formula: "g = (vi − vf) / t",
+        text: `Misma forma que aceleración pero <span class="highlight">vi − vf</span> en vez de vf − vi. La gravedad te frena, como tu mamá cuando le dices que vas a salir a las 2am.`,
+        tag: "vi menos vf (al revés)"
+      },
+      {
+        emoji: "📉",
+        name: "Velocidad final",
+        formula: "vf = vi − g · t",
+        text: `La gravedad <span class="highlight">SIEMPRE RESTA</span>. Como los impuestos, como el lunes, como cuando abres Netflix y dice '¿Sigues viendo?' después de 8 capítulos. No importa cuánto quieras subir, g te baja.`,
+        tag: "g siempre resta"
+      },
+      {
+        emoji: "🎢",
+        name: "Velocidad final al cuadrado",
+        formula: "vf² = vi² − 2g · Δy",
+        text: `La gravedad te quita <span class="highlight">2gΔy de energía</span>. Como el lunes te quita las ganas de vivir. Cuanto más subes (Δy positivo), más te quita. Por eso en el punto más alto vf = 0: ya no te quedan ganas.`,
+        tag: "La que no necesita tiempo"
+      },
+      {
+        emoji: "🏗️",
+        name: "Desplazamiento vertical",
+        formula: "Δy = vi · t − ½ g · t²",
+        text: `Subes con vi·t pero <span class="highlight">g te baja</span> con ½gt². Como tu autoestima después de ver Instagram: empieza bien (vi·t sube) pero termina en el suelo (½gt² gana).`,
+        tag: "El t² siempre gana"
+      },
+      {
+        emoji: "🏔️",
+        name: "Altura máxima (vf = 0)",
+        formula: "h_máx = vi² / (2g)",
+        text: `Entre más impulso (vi), más alto llegas. <span class="highlight">vi² entre 2g</span>. Como tus expectativas de la carrera: vi² = muchas ganas, 2g = la realidad. El resultado suele ser menor de lo planeado.`,
+        tag: "Donde vf se vuelve cero"
+      }
+    ]
+  },
+  {
+    group: "Caída Libre",
+    cards: [
+      {
+        emoji: "🪂",
+        name: "Aceleración de la gravedad",
+        formula: "g = vf / t",
+        text: `Caer rápido en poco tiempo = <span class="highlight">gravedad intensa</span>. Como cuando te caes enfrente de tu crush: velocidad máxima, tiempo mínimo, gravedad MÁXIMA. El suelo siempre gana.`,
+        tag: "Caso especial con vi = 0"
+      },
+      {
+        emoji: "📊",
+        name: "Velocidad final",
+        formula: "vf = g · t",
+        text: `Entre más caes, más rápido. <span class="highlight">g por t</span>, simple. Como tus notas: al principio del semestre todo bien, pero conforme pasa el tiempo... la gravedad hace su trabajo.`,
+        tag: "Directa y sin complicaciones"
+      },
+      {
+        emoji: "💫",
+        name: "Velocidad final al cuadrado",
+        formula: "vf² = 2g · h",
+        text: `Más altura = más velocidad al caer. <span class="highlight">2g por h</span>. Como subirte a la mesa del profe: gran altura (h grande), gran impacto (vf enorme). No lo hagas.`,
+        tag: "Solo h y g, sin tiempo"
+      },
+      {
+        emoji: "⌛",
+        name: "Altura / Desplazamiento",
+        formula: "h = ½ g · t²",
+        text: `El <span class="highlight">tiempo al cuadrado DOMINA</span>. Como procrastinar: 1 hora se vuelve 4, y de repente son las 3am estudiando. El t² es la razón por la que siempre dejas todo para el final... y siempre sale mal.`,
+        tag: "h crece con t²"
+      }
+    ]
+  },
+  {
+    group: "Vectores (Cap. 1)",
+    cards: [
+      {
+        emoji: "📐",
+        name: "Componentes rectangulares",
+        formula: "Ax = A·cos θ, Ay = A·sin θ",
+        text: `<span class="highlight">X es coseno, Y es seno</span>. Truco: 'El coseno se <strong>acuesta</strong> (horizontal), el seno se <strong>para</strong> (vertical)'. O piensa en la cama: coseno = acostado (eje X), seno = parado (eje Y).`,
+        tag: "Coseno = acostado, Seno = parado"
+      },
+      {
+        emoji: "📏",
+        name: "Magnitud de un vector",
+        formula: "A = √(Ax² + Ay²)",
+        text: `Es <span class="highlight">Pitágoras</span>, nada más. La hipotenusa del vector. Si Ax=3 y Ay=4, A=5. El triángulo más famoso después del de las Bermudas. En 3D solo agregas +Az² — porque en la vida real todo es más complicado.`,
+        tag: "Pitágoras en 2D (o 3D)"
+      },
+      {
+        emoji: "🧦",
+        name: "Suma de vectores por componentes",
+        formula: "Rx = Ax+Bx, Ry = Ay+By",
+        text: `<span class="highlight">X con X, Y con Y</span>. Como juntar calcetines: blancos con blancos, negros con negros. No mezcles componentes o tu vector queda como el outfit de tu tío en la boda.`,
+        tag: "Componentes con componentes"
+      },
+      {
+        emoji: "🤺",
+        name: "Notación con vectores unitarios",
+        formula: "A = Ax i + Ay j + Az k",
+        text: `<span class="highlight">i, j, k</span> — Los tres mosqueteros del espacio. ¡Todos para uno! Cada uno defiende su eje: i protege X, j protege Y, k protege Z. Si falta uno, el vector queda cojo.`,
+        tag: "Los mosqueteros del espacio"
+      },
+      {
+        emoji: "🎯",
+        name: "Producto escalar (punto)",
+        formula: "A · B = AB cos φ",
+        text: `El punto es <span class="highlight">REDONDO</span> como cos(0°) = 1. Si los vectores van en la misma dirección, producto MÁXIMO. Si son perpendiculares (90°), cos = 0 y el producto es CERO. Como tu interés en esa clase de las 7am.`,
+        tag: "Punto = redondo = coseno"
+      },
+      {
+        emoji: "✖️",
+        name: "Producto vectorial (cruz)",
+        formula: "|A × B| = AB sin φ",
+        text: `La <span class="highlight">X de CRUZ</span> se parece a 'sin'. Produce un vector PERPENDICULAR a ambos. Como ese amigo que siempre piensa diferente: A va para un lado, B para otro, y el resultado va para donde NINGUNO esperaba.`,
+        tag: "Cruz = X = seno"
+      }
+    ]
+  }
+];
 // ====== STATE ======
 const solvedKey = 'fisica_univ_solved';
 let solved = JSON.parse(localStorage.getItem(solvedKey) || '[]');
@@ -1364,7 +1589,8 @@ function renderNav() {
   const nav = document.getElementById('chapterNav');
   const chapters = Object.keys(exercises);
   nav.innerHTML = chapters.map((ch, i) => `<button class="${i===0?'active':''}" data-chapter="${ch}">${ch}</button>`).join('')
-    + `<button data-chapter="flashcards" style="border-color: var(--warning); color: var(--warning);">⚡ Flashcards</button>`
+    + `<button data-chapter="mnemos" style="border-color: var(--warning); color: var(--warning);">🧠 Mnemotecnias</button>`
+    + `<button data-chapter="flashcards" style="border-color: var(--accent); color: var(--accent);">⚡ Flashcards</button>`
     + `<button data-chapter="form" style="margin-left:auto; border-color: var(--accent2); color: var(--accent2);">📐 Formulario</button>`;
   nav.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1373,13 +1599,18 @@ function renderNav() {
       document.querySelectorAll('.chapter-section').forEach(s => s.classList.remove('active'));
       const formSection = document.getElementById('formulaRef');
       const flashSection = document.getElementById('flashcardSection');
+      const mnemoSection = document.getElementById('mnemoSection');
       if (formSection) formSection.classList.remove('active');
       if (flashSection) flashSection.classList.remove('active');
+      if (mnemoSection) mnemoSection.classList.remove('active');
       if (btn.dataset.chapter === 'form') {
         if (formSection) formSection.classList.add('active');
       } else if (btn.dataset.chapter === 'flashcards') {
         if (flashSection) flashSection.classList.add('active');
         initFlashcards();
+      } else if (btn.dataset.chapter === 'mnemos') {
+        if (mnemoSection) mnemoSection.classList.add('active');
+        renderMnemos();
       } else {
         document.getElementById('ch-' + btn.dataset.chapter.replace(/ /g,'_')).classList.add('active');
       }
@@ -1445,7 +1676,8 @@ function renderAll() {
   const chapters = Object.keys(exercises);
   main.innerHTML = chapters.map(ch => `<div class="chapter-section ${ch===chapters[0]?'active':''}" id="ch-${ch.replace(/ /g,'_')}">
     ${exercises[ch].map((ex, i) => renderExercise(ex, i)).join('')}
-  </div>`).join('') + `<div class="flashcard-section" id="flashcardSection"></div>` + `<div class="formula-ref-section" id="formulaRef"></div>`;
+  </div>`).join('') + `<div class="mnemo-section" id="mnemoSection"></div>` + `<div class="flashcard-section" id="flashcardSection"></div>` + `<div class="formula-ref-section" id="formulaRef"></div>`;
+  renderMnemos();
   renderFlashcards();
   renderFormulaRef();
   updateProgress();
@@ -1730,6 +1962,66 @@ window.shuffleCurrentGroup = function() {
   renderCurrentFlashcard();
 };
 
+
+// ====== MNEMOTECNIAS ENGINE ======
+function renderMnemos() {
+  const container = document.getElementById('mnemoSection');
+  if (!container) return;
+
+  // Group tabs
+  const tabs = mnemoData.map((g, i) =>
+    `<button class="mnemo-group-tab ${i === 0 ? 'active' : ''}" data-group="${i}">${g.group}</button>`
+  ).join('');
+
+  container.innerHTML = `
+    <div class="mnemo-toolbar">
+      <h2>🧠 Mnemotecnias — Acuerdate de TODO</h2>
+    </div>
+    <div class="mnemo-group-tabs" id="mnemoGroupTabs">${tabs}</div>
+    <div class="mnemo-grid" id="mnemoGrid"></div>
+  `;
+
+  // Group tab click handlers
+  container.querySelectorAll('.mnemo-group-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      container.querySelectorAll('.mnemo-group-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderMnemoGroup(parseInt(btn.dataset.group));
+    });
+  });
+
+  renderMnemoGroup(0);
+}
+
+function renderMnemoGroup(groupIdx) {
+  const grid = document.getElementById('mnemoGrid');
+  if (!grid) return;
+
+  const group = mnemoData[groupIdx];
+  if (!group) return;
+
+  grid.innerHTML = group.cards.map((card, i) => `
+    <div class="mnemo-card" id="mc-${groupIdx}-${i}" onclick="toggleMnemoCard(${groupIdx}, ${i})">
+      <div class="mnemo-card-header">
+        <span class="mnemo-emoji">${card.emoji}</span>
+        <div class="mnemo-info">
+          <div class="mnemo-name">${card.name}</div>
+          <div class="mnemo-formula-mini">${card.formula}</div>
+        </div>
+        <span class="mnemo-toggle">▼</span>
+      </div>
+      <div class="mnemo-card-body">
+        <div class="mnemo-text">${card.text}</div>
+        <span class="mnemo-tag trick">${card.tag}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+window.toggleMnemoCard = function(groupIdx, cardIdx) {
+  const card = document.getElementById('mc-' + groupIdx + '-' + cardIdx);
+  if (card) card.classList.toggle('open');
+};
 // ====== INIT ======
 renderNav();
 renderAll();
