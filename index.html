@@ -1395,6 +1395,9 @@ const flashcardData = [
 
 // ====== MNEMOTECNIAS ======
 // Mnemotecnias graciosas para cada fórmula de n.md + vectores
+
+// ====== MNEMOTECNIAS ======
+// Frases mnemotécnicas donde las letras iniciales = variables de la fórmula
 const mnemoData = [
   {
     group: "MRU",
@@ -1403,15 +1406,17 @@ const mnemoData = [
         emoji: "🚗",
         name: "Velocidad constante",
         formula: "v = Δx / Δt",
-        text: `<span class="highlight">X sobre T</span> — Distancia entre Tiempo. Si recorres mucho en poco, eres rápido. Si recorres poco en mucho... eres tú el lunes por la mañana.`,
-        tag: "La regla de oro del MRU"
+        phrase: "<strong>D</strong>iego <strong>E</strong>s <strong>V</strong>iejo <strong>y</strong> <strong>T</strong>acaño",
+        decode: "D = V × T → Δx = v · Δt. Y al revés: V = D/T y T = D/V.",
+        text: "La frase clásica de toda clase de física. Si te sabes esta, te sabes las tres."
       },
       {
         emoji: "🏃",
         name: "Desplazamiento",
         formula: "x = v · t",
-        text: `Es como tus excusas: mucho tiempo × mucha velocidad = <span class="highlight">mucho problema</span>. Si vas a 60 km/h durante 2 horas... ya sabes, 120 km más lejos de tu casa.`,
-        tag: "Simple y directa"
+        phrase: "<strong>X</strong>avier <strong>V</strong>e <strong>T</strong>ele",
+        decode: "X = V × T → Desplazamiento = Velocidad × Tiempo",
+        text: "Xavier lleva 3 horas viendo tele. Su velocidad de zapping: 1 canal/min. Su desplazamiento mental: infinito."
       }
     ]
   },
@@ -1422,36 +1427,41 @@ const mnemoData = [
         emoji: "📈",
         name: "Aceleración",
         formula: "a = (vf − vi) / t",
-        text: `El <span class="highlight">cambio de velocidad</span> entre el tiempo. Como tu motivación en exámenes: empieza alta (vi), termina en cero (vf), y el tiempo fue testigo. a = (0 − 100) / semestre = -∞`,
-        tag: "Delta V sobre T"
+        phrase: "<strong>A</strong> <strong>F</strong>útbol <strong>V</strong>amos <strong>I</strong>guales, <strong>T</strong>odos",
+        decode: "A = (VF − VI) / T → Aceleración = (Vel. Final − Vel. Inicial) / Tiempo",
+        text: "Al fútbol todos vamos con la misma velocidad inicial... hasta que te toca ser portero."
       },
       {
         emoji: "🚀",
-        name: "Velocidad final",
+        name: "Velocidad final (en función del tiempo)",
         formula: "vf = vi + a · t",
-        text: `Velocidad Final = Inicial MÁS aceleración por tiempo. Si arrancas lento pero aceleras... <span class="highlight">llegas</span>. Como estudiar a las 11pm para el examen de las 7am: vi=0, pero a=ENORME.`,
-        tag: "vi más a por t"
+        phrase: "<strong>V</strong>ete <strong>F</strong>eliz, <strong>V</strong>ive <strong>I</strong>ntenso, <strong>M</strong>ÁS <strong>A</strong>marte <strong>T</strong>oca",
+        decode: "VF = VI + A × T → Vel. Final = Vel. Inicial + Aceleración × Tiempo",
+        text: "Si arrancas feliz (vi > 0) y te aceleran (a > 0)... llegas rápido y con ganas de más."
       },
       {
         emoji: "💥",
         name: "Velocidad final al cuadrado (sin tiempo)",
         formula: "vf² = vi² + 2a · x",
-        text: `Sin tiempo, solo <span class="highlight">drama al cuadrado</span>. Como tu ex que vuelve: vi² (el pasado) + 2ax (el presente incómodo). El 2 es porque siempre duele el doble.`,
-        tag: "La que no necesita tiempo"
+        phrase: "<strong>V</strong>ete <strong>F</strong>eliz <strong>²</strong>, <strong>V</strong>ive <strong>I</strong>ntenso <strong>²</strong>, <strong>M</strong>ÁS <strong>D</strong>os <strong>A</strong>dolescentes <strong>X</strong>-traños",
+        decode: "VF² = VI² + 2AX → Al cuadrado todo, más el doble de a por x",
+        text: "No necesita el tiempo. Como tu crush que llega sin avisar."
       },
       {
         emoji: "⏰",
         name: "Desplazamiento (en función del tiempo)",
         formula: "x = vi · t + ½ a · t²",
-        text: `El término <span class="highlight">t² pesa más</span>. Como los problemas que dejas para después: al principio crecen linealmente (vi·t), pero luego EXPLOTAN (½at²). Por eso no dejes todo para el último día.`,
-        tag: "El t² te va a cobrar"
+        phrase: "<strong>X</strong>avier <strong>V</strong>ino <strong>I</strong>ntencionalmente <strong>T</strong>arde, <strong>M</strong>ÁS <strong>m</strong>edio <strong>A</strong>troz <strong>T</strong>iempo <strong>²</strong>",
+        decode: "X = VI×T + ½A×T² → El t² siempre domina al final",
+        text: "Xavier llega tarde. Siempre. El t² es la razón: al principio crece lento, después EXPLOTA."
       },
       {
         emoji: "⚖️",
         name: "Desplazamiento (promedio de velocidades)",
         formula: "x = ((vf + vi) / 2) · t",
-        text: `El <span class="highlight">promedio siempre te salva</span>, como el profe que curva el examen. (vf + vi) / 2 es el promedio aritmético — ni vi ni vf, sino algo en medio. Como tu calificación: ni reprobada ni perfecta.`,
-        tag: "El promedio al rescate"
+        phrase: "<strong>X</strong>avier <strong>V</strong>a <strong>F</strong>iel <strong>m</strong>ás <strong>V</strong>a <strong>I</strong>nseparable, <strong>D</strong>ividido <strong>D</strong>os <strong>T</strong>ontos",
+        decode: "X = (VF + VI) / 2 × T → Promedio de velocidades por tiempo",
+        text: "El promedio siempre te salva, como el profe que curva el examen. Ni reprobada ni perfecta: justo en medio."
       }
     ]
   },
@@ -1462,36 +1472,41 @@ const mnemoData = [
         emoji: "🎯",
         name: "Aceleración de la gravedad",
         formula: "g = (vi − vf) / t",
-        text: `Misma forma que aceleración pero <span class="highlight">vi − vf</span> en vez de vf − vi. La gravedad te frena, como tu mamá cuando le dices que vas a salir a las 2am.`,
-        tag: "vi menos vf (al revés)"
+        phrase: "<strong>G</strong>abi <strong>V</strong>a <strong>I</strong>nsegura <strong>m</strong>enos <strong>V</strong>a <strong>F</strong>eliz, <strong>T</strong>onta",
+        decode: "G = (VI − VF) / T → Gravedad = (Vel. Inicial − Vel. Final) / Tiempo",
+        text: "Aquí el orden se invierte: VI − VF. La gravedad te frena, como tu mamá a las 2am."
       },
       {
         emoji: "📉",
         name: "Velocidad final",
         formula: "vf = vi − g · t",
-        text: `La gravedad <span class="highlight">SIEMPRE RESTA</span>. Como los impuestos, como el lunes, como cuando abres Netflix y dice '¿Sigues viendo?' después de 8 capítulos. No importa cuánto quieras subir, g te baja.`,
-        tag: "g siempre resta"
+        phrase: "<strong>V</strong>ete <strong>F</strong>eliz, <strong>V</strong>ive <strong>I</strong>ntenso, <strong>M</strong>ENOS <strong>G</strong>ritando <strong>T</strong>odo",
+        decode: "VF = VI − G × T → La gravedad SIEMPRE RESTA",
+        text: "Como los lunes, como los impuestos, como cuando abres Netflix: '¿Sigues viendo?' después de 8 capítulos. g siempre resta."
       },
       {
         emoji: "🎢",
         name: "Velocidad final al cuadrado",
         formula: "vf² = vi² − 2g · Δy",
-        text: `La gravedad te quita <span class="highlight">2gΔy de energía</span>. Como el lunes te quita las ganas de vivir. Cuanto más subes (Δy positivo), más te quita. Por eso en el punto más alto vf = 0: ya no te quedan ganas.`,
-        tag: "La que no necesita tiempo"
+        phrase: "<strong>V</strong>ete <strong>F</strong>eliz <strong>²</strong>, <strong>V</strong>ive <strong>I</strong>ntenso <strong>²</strong>, <strong>M</strong>ENOS <strong>D</strong>os <strong>G</strong>ritones <strong>Δ</strong>ramáticos <strong>Y</strong>",
+        decode: "VF² = VI² − 2GΔY → Menos el doble de g por el cambio de altura",
+        text: "Cuanto más subes, más te quita. En el punto más alto vf = 0: ya no quedan ganas. Como el semestre."
       },
       {
         emoji: "🏗️",
-        name: "Desplazamiento vertical",
+        name: "Desplazamiento vertical (Altura)",
         formula: "Δy = vi · t − ½ g · t²",
-        text: `Subes con vi·t pero <span class="highlight">g te baja</span> con ½gt². Como tu autoestima después de ver Instagram: empieza bien (vi·t sube) pero termina en el suelo (½gt² gana).`,
-        tag: "El t² siempre gana"
+        phrase: "<strong>Δ</strong>aniel <strong>Y</strong>a <strong>V</strong>ino <strong>I</strong>nflado, <strong>T</strong>onto, <strong>M</strong>ENOS <strong>m</strong>edio <strong>G</strong>ordo <strong>T</strong>irado <strong>²</strong>",
+        decode: "ΔY = VI×T − ½G×T² → Subes con vi pero g te baja con t²",
+        text: "Subes con ganas (vi·t) pero la gravedad te tumba (½gt²). Como tu autoestima después de Instagram."
       },
       {
         emoji: "🏔️",
         name: "Altura máxima (vf = 0)",
         formula: "h_máx = vi² / (2g)",
-        text: `Entre más impulso (vi), más alto llegas. <span class="highlight">vi² entre 2g</span>. Como tus expectativas de la carrera: vi² = muchas ganas, 2g = la realidad. El resultado suele ser menor de lo planeado.`,
-        tag: "Donde vf se vuelve cero"
+        phrase: "<strong>H</strong>ugo <strong>M</strong>áximo <strong>V</strong>iene <strong>I</strong>ntenso <strong>²</strong>, <strong>D</strong>ividido <strong>D</strong>os <strong>G</strong>ritos",
+        decode: "H_máx = VI² / (2G) → Más impulso inicial, más altura",
+        text: "Más vi = más altura. Como tus expectativas de la carrera: vi² = muchas ganas, 2g = la realidad."
       }
     ]
   },
@@ -1502,29 +1517,33 @@ const mnemoData = [
         emoji: "🪂",
         name: "Aceleración de la gravedad",
         formula: "g = vf / t",
-        text: `Caer rápido en poco tiempo = <span class="highlight">gravedad intensa</span>. Como cuando te caes enfrente de tu crush: velocidad máxima, tiempo mínimo, gravedad MÁXIMA. El suelo siempre gana.`,
-        tag: "Caso especial con vi = 0"
+        phrase: "<strong>G</strong>abi <strong>V</strong>a <strong>F</strong>eliz <strong>T</strong>oda",
+        decode: "G = VF / T → Gravedad = Vel. Final / Tiempo. Sin vi porque parte del reposo.",
+        text: "Caer rápido en poco tiempo = gravedad intensa. Como caerte enfrente de tu crush: vf máxima, t mínimo."
       },
       {
         emoji: "📊",
-        name: "Velocidad final",
+        name: "Velocidad final (en función del tiempo)",
         formula: "vf = g · t",
-        text: `Entre más caes, más rápido. <span class="highlight">g por t</span>, simple. Como tus notas: al principio del semestre todo bien, pero conforme pasa el tiempo... la gravedad hace su trabajo.`,
-        tag: "Directa y sin complicaciones"
+        phrase: "<strong>V</strong>ete <strong>F</strong>eliz, <strong>G</strong>ritando <strong>T</strong>odo",
+        decode: "VF = G × T → Entre más caes, más rápido",
+        text: "Simple y directa. Como tus notas al inicio del semestre: todo bien, pero conforme pasa el tiempo..."
       },
       {
         emoji: "💫",
         name: "Velocidad final al cuadrado",
         formula: "vf² = 2g · h",
-        text: `Más altura = más velocidad al caer. <span class="highlight">2g por h</span>. Como subirte a la mesa del profe: gran altura (h grande), gran impacto (vf enorme). No lo hagas.`,
-        tag: "Solo h y g, sin tiempo"
+        phrase: "<strong>V</strong>ete <strong>F</strong>eliz <strong>²</strong>, <strong>D</strong>os <strong>G</strong>ritones <strong>H</strong>éroes",
+        decode: "VF² = 2 × G × H → Más altura = más velocidad al caer",
+        text: "Más altura, más impacto. Como subirte a la mesa del profe: h grande, vf enorme. No lo hagas."
       },
       {
         emoji: "⌛",
         name: "Altura / Desplazamiento",
         formula: "h = ½ g · t²",
-        text: `El <span class="highlight">tiempo al cuadrado DOMINA</span>. Como procrastinar: 1 hora se vuelve 4, y de repente son las 3am estudiando. El t² es la razón por la que siempre dejas todo para el final... y siempre sale mal.`,
-        tag: "h crece con t²"
+        phrase: "<strong>H</strong>ugo <strong>m</strong>edio <strong>G</strong>ritando <strong>T</strong>irado <strong>²</strong>",
+        decode: "H = ½ G × T² → La distancia crece con el cuadrado del tiempo",
+        text: "El t² DOMINA. Como procrastinar: 1 hora se vuelve 4, y de repente son las 3am. El t² es por eso."
       }
     ]
   },
@@ -1535,43 +1554,49 @@ const mnemoData = [
         emoji: "📐",
         name: "Componentes rectangulares",
         formula: "Ax = A·cos θ, Ay = A·sin θ",
-        text: `<span class="highlight">X es coseno, Y es seno</span>. Truco: 'El coseno se <strong>acuesta</strong> (horizontal), el seno se <strong>para</strong> (vertical)'. O piensa en la cama: coseno = acostado (eje X), seno = parado (eje Y).`,
-        tag: "Coseno = acostado, Seno = parado"
+        phrase: "<strong>A</strong>lejandro <strong>X</strong>iménez: <strong>A</strong> <strong>C</strong>uesta <strong>O</strong>cho, <strong>A</strong>lejandro <strong>Y</strong>barra: <strong>A</strong> <strong>S</strong>ube <strong>E</strong>n <strong>N</strong>ueve",
+        decode: "AX = A·COS θ, AY = A·SIN θ. Truco: 'Coseno se ACUESTA (eje X), Seno se PARA (eje Y)'",
+        text: "Como en la cama: coseno = acostado (X), seno = parado (Y). θ se mide desde +x en sentido antihorario."
       },
       {
         emoji: "📏",
         name: "Magnitud de un vector",
         formula: "A = √(Ax² + Ay²)",
-        text: `Es <span class="highlight">Pitágoras</span>, nada más. La hipotenusa del vector. Si Ax=3 y Ay=4, A=5. El triángulo más famoso después del de las Bermudas. En 3D solo agregas +Az² — porque en la vida real todo es más complicado.`,
-        tag: "Pitágoras en 2D (o 3D)"
+        phrase: "<strong>A</strong> <strong>R</strong>aíz de <strong>A</strong> <strong>X</strong> <strong>M</strong>ÁS <strong>A</strong> <strong>Y</strong>",
+        decode: "A = √(Ax² + Ay²) → Es Pitágoras puro. La hipotenusa del vector.",
+        text: "Si Ax=3 y Ay=4, A=5. El triángulo más famoso después del de las Bermudas. En 3D agregas +Az²."
       },
       {
         emoji: "🧦",
         name: "Suma de vectores por componentes",
         formula: "Rx = Ax+Bx, Ry = Ay+By",
-        text: `<span class="highlight">X con X, Y con Y</span>. Como juntar calcetines: blancos con blancos, negros con negros. No mezcles componentes o tu vector queda como el outfit de tu tío en la boda.`,
-        tag: "Componentes con componentes"
+        phrase: "<strong>R</strong>oberto <strong>X</strong> = <strong>A</strong>lex <strong>m</strong>ÁS <strong>B</strong>en, <strong>R</strong>oberto <strong>Y</strong> = <strong>A</strong>na <strong>m</strong>ÁS <strong>B</strong>eatriz",
+        decode: "RX = AX + BX, RY = AY + BY → X con X, Y con Y",
+        text: "Como juntar calcetines: blancos con blancos. No mezcles componentes o tu vector queda como el outfit de tu tío."
       },
       {
         emoji: "🤺",
         name: "Notación con vectores unitarios",
         formula: "A = Ax i + Ay j + Az k",
-        text: `<span class="highlight">i, j, k</span> — Los tres mosqueteros del espacio. ¡Todos para uno! Cada uno defiende su eje: i protege X, j protege Y, k protege Z. Si falta uno, el vector queda cojo.`,
-        tag: "Los mosqueteros del espacio"
+        phrase: "<strong>A</strong>lejandro <strong>X</strong>: <strong>i</strong>ncluye <strong>X</strong>, <strong>A</strong>na <strong>Y</strong>: <strong>j</strong>unta <strong>Y</strong>, <strong>A</strong>lex <strong>Z</strong>: <strong>k</strong>ilo de <strong>Z</strong>anahorias",
+        decode: "A = Ax·i + Ay·j + Az·k → i, j, k son los unitarios de cada eje",
+        text: "Los tres mosqueteros del espacio. i protege X, j protege Y, k protege Z. Si falta uno, el vector queda cojo."
       },
       {
         emoji: "🎯",
         name: "Producto escalar (punto)",
         formula: "A · B = AB cos φ",
-        text: `El punto es <span class="highlight">REDONDO</span> como cos(0°) = 1. Si los vectores van en la misma dirección, producto MÁXIMO. Si son perpendiculares (90°), cos = 0 y el producto es CERO. Como tu interés en esa clase de las 7am.`,
-        tag: "Punto = redondo = coseno"
+        phrase: "<strong>A</strong> <strong>P</strong>unto <strong>B</strong> = <strong>A</strong> <strong>B</strong> por <strong>C</strong>oser <strong>F</strong>i",
+        decode: "A · B = |A|·|B|·cos(φ) → El punto es REDONDO como cos(0°) = 1",
+        text: "Si van en la misma dirección, producto MÁXIMO. Si son perpendiculares (90°), cos = 0 → CERO. Como tu interés a las 7am."
       },
       {
         emoji: "✖️",
         name: "Producto vectorial (cruz)",
         formula: "|A × B| = AB sin φ",
-        text: `La <span class="highlight">X de CRUZ</span> se parece a 'sin'. Produce un vector PERPENDICULAR a ambos. Como ese amigo que siempre piensa diferente: A va para un lado, B para otro, y el resultado va para donde NINGUNO esperaba.`,
-        tag: "Cruz = X = seno"
+        phrase: "<strong>A</strong> <strong>C</strong>ruz <strong>B</strong> = <strong>A</strong> <strong>B</strong> por <strong>S</strong>acar <strong>I</strong>gual <strong>F</strong>i",
+        decode: "|A × B| = |A|·|B|·sin(φ) → La X de CRUZ se parece a 'sin'",
+        text: "Produce un vector PERPENDICULAR a ambos. Como ese amigo que siempre piensa diferente: va donde NINGUNO esperaba."
       }
     ]
   }
