@@ -101,7 +101,7 @@ main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
 .when-to-use strong { color: var(--success); }
 /* ====== PRINT ====== */
 @media print {
-  header, nav, .stats, .progress-bar, .btn, .formula-toolbar, .exercise-card, .chapter-section { display: none !important; }
+  header, nav, .stats, .progress-bar, .btn, .formula-toolbar, .exercise-card, .chapter-section, .flashcard-section { display: none !important; }
   .formula-ref-section { display: block !important; }
   body { background: white !important; color: black !important; font-size: 10pt; }
   .formula-topic { display: block !important; page-break-inside: avoid; border: 1px solid #ccc; margin-bottom: 0.75rem; }
@@ -120,6 +120,62 @@ main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
   .print-header p { font-size: 9pt; color: #666; margin: 0.25rem 0 0; }
 }
 .print-header { display: none; }
+/* ====== FLASHCARDS ====== */
+.flashcard-section { display: none; }
+.flashcard-section.active { display: block; }
+.flashcard-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.5rem; }
+.flashcard-toolbar h2 { font-size: 1.2rem; color: var(--accent); }
+.fc-group-tabs { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.fc-group-tab { padding: 0.4rem 0.8rem; border: 1px solid var(--surface2); background: transparent; color: var(--text2); border-radius: 8px; cursor: pointer; font-size: 0.75rem; transition: all 0.2s; }
+.fc-group-tab:hover { border-color: var(--accent2); color: var(--accent2); }
+.fc-group-tab.active { background: var(--accent2); color: white; border-color: var(--accent2); }
+.fc-progress { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--text2); margin-bottom: 0.75rem; }
+.fc-progress-bar { flex: 1; height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+.fc-progress-fill { height: 100%; background: linear-gradient(90deg, var(--success), var(--accent)); transition: width 0.3s; border-radius: 3px; }
+.fc-container { perspective: 1200px; min-height: 280px; margin-bottom: 1rem; }
+.fc-card { position: relative; width: 100%; min-height: 260px; cursor: pointer; transition: transform 0.6s; transform-style: preserve-3d; }
+.fc-card.flipped { transform: rotateY(180deg); }
+.fc-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.fc-front { background: var(--surface); border: 2px solid var(--surface2); }
+.fc-front .fc-label { font-size: 0.75rem; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.fc-front .fc-topic { font-size: 0.85rem; color: var(--text2); margin-bottom: 0.75rem; }
+.fc-front .fc-name { font-size: 1.15rem; color: var(--warning); font-weight: 700; margin-bottom: 1rem; line-height: 1.4; }
+.fc-front .fc-hint { font-size: 0.8rem; color: var(--text2); font-style: italic; }
+.fc-back { background: var(--surface); border: 2px solid var(--success); transform: rotateY(180deg); }
+.fc-back .fc-formula { font-family: 'Cambria Math', Georgia, serif; font-size: 1.2rem; color: var(--warning); background: rgba(251,191,36,0.08); padding: 0.75rem 1.25rem; border-radius: 8px; margin-bottom: 1rem; line-height: 1.6; }
+.fc-back .fc-despejes { font-size: 0.8rem; color: var(--text2); margin-bottom: 0.75rem; }
+.fc-back .fc-despejes strong { color: var(--accent); }
+.fc-back .fc-when { font-size: 0.8rem; color: var(--success); background: rgba(52,211,153,0.08); padding: 0.5rem 0.75rem; border-radius: 6px; }
+.fc-back .fc-when strong { color: var(--success); }
+.fc-nav { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.fc-nav button { padding: 0.5rem 1rem; border: 1px solid var(--surface2); background: var(--surface); color: var(--text); border-radius: 8px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+.fc-nav button:hover { border-color: var(--accent); color: var(--accent); }
+.fc-nav button:disabled { opacity: 0.3; cursor: default; }
+.fc-nav .fc-counter { font-size: 0.85rem; color: var(--text2); min-width: 60px; text-align: center; }
+.fc-actions { display: flex; justify-content: center; gap: 0.5rem; }
+.fc-btn-mastered { background: var(--success); color: var(--bg); border: none; padding: 0.5rem 1.25rem; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: all 0.2s; }
+.fc-btn-mastered:hover { background: #6ee7b7; }
+.fc-btn-mastered.is-mastered { background: var(--surface2); color: var(--text2); cursor: default; }
+.fc-btn-shuffle { background: transparent; border: 1px solid var(--surface2); color: var(--text2); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+.fc-btn-shuffle:hover { border-color: var(--accent2); color: var(--accent2); }
+@media (max-width: 768px) {
+  .fc-face { padding: 1rem; }
+  .fc-front .fc-name { font-size: 1rem; }
+  .fc-back .fc-formula { font-size: 1rem; padding: 0.5rem 0.75rem; }
+  .fc-container { min-height: 240px; }
+  .fc-card { min-height: 230px; }
+  .fc-group-tabs { gap: 0.3rem; }
+  .fc-group-tab { padding: 0.35rem 0.6rem; font-size: 0.7rem; min-height: 44px; }
+  .fc-btn-mastered, .fc-btn-shuffle { min-height: 44px; }
+  .fc-nav button { min-height: 44px; }
+}
+@media (max-width: 420px) {
+  .fc-front .fc-name { font-size: 0.9rem; }
+  .fc-back .fc-formula { font-size: 0.9rem; }
+  .fc-nav { gap: 0.5rem; }
+  .fc-toolbar { flex-direction: column; align-items: flex-start; }
+  .fc-toolbar h2 { font-size: 1rem; }
+}
 /* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
   header { padding: 0.75rem 1rem; }
@@ -1243,6 +1299,58 @@ const diagramMap = {
   moon_landing: svgMoonLanding, flea: svgFlea, road_trip: svgRoadTrip, table_graph: svgTableGraph, bugatti: svgBugatti
 };
 
+// ====== FLASHCARD DATA ======
+// Fórmulas basadas en n.md — MRU, MRUA, Tiro Vertical, Caída Libre
+const flashcardData = [
+  {
+    group: "MRU",
+    cards: [
+      { name: "Velocidad constante", formula: "v = Δx / Δt = (x<sub>f</sub> − x<sub>i</sub>) / (t<sub>f</sub> − t<sub>i</sub>)", despejes: "Δx = v · Δt &nbsp;|&nbsp; Δt = Δx / v", hint: "Relaciona desplazamiento con intervalo de tiempo" },
+      { name: "Desplazamiento", formula: "x = v · t", despejes: "v = x / t &nbsp;|&nbsp; t = x / v", hint: "En MRU la velocidad es constante, desplazamiento lineal" }
+    ]
+  },
+  {
+    group: "MRUA",
+    cards: [
+      { name: "Aceleración", formula: "a = (v<sub>f</sub> − v<sub>i</sub>) / t", despejes: "v<sub>f</sub> = v<sub>i</sub> + a·t &nbsp;|&nbsp; t = (v<sub>f</sub> − v<sub>i</sub>) / a", hint: "Cambio de velocidad dividido entre el tiempo" },
+      { name: "Velocidad final (en función del tiempo)", formula: "v<sub>f</sub> = v<sub>i</sub> + a · t", despejes: "v<sub>i</sub> = v<sub>f</sub> − a·t &nbsp;|&nbsp; a = (v<sub>f</sub> − v<sub>i</sub>) / t &nbsp;|&nbsp; t = (v<sub>f</sub> − v<sub>i</sub>) / a", hint: "Velocidad inicial más lo que gana por aceleración" },
+      { name: "Velocidad final al cuadrado (sin tiempo)", formula: "v<sub>f</sub>² = v<sub>i</sub>² + 2a · x", despejes: "v<sub>f</sub> = ±√(v<sub>i</sub>² + 2ax) &nbsp;|&nbsp; a = (v<sub>f</sub>² − v<sub>i</sub>²) / (2x) &nbsp;|&nbsp; x = (v<sub>f</sub>² − v<sub>i</sub>²) / (2a)", hint: "Útil cuando NO te dan el tiempo" },
+      { name: "Desplazamiento (en función del tiempo)", formula: "x = v<sub>i</sub> · t + (a · t²) / 2", despejes: "v<sub>i</sub> = (x − ½at²) / t &nbsp;|&nbsp; a = 2(x − v<sub>i</sub>t) / t²", hint: "Término lineal más término cuadrático" },
+      { name: "Desplazamiento (promedio de velocidades)", formula: "x = ((v<sub>f</sub> + v<sub>i</sub>) / 2) · t", despejes: "t = 2x / (v<sub>f</sub> + v<sub>i</sub>) &nbsp;|&nbsp; v<sub>f</sub> = 2x / t − v<sub>i</sub>", hint: "Velocidad promedio por tiempo, no usa aceleración" }
+    ]
+  },
+  {
+    group: "Tiro Vertical",
+    cards: [
+      { name: "Aceleración de la gravedad", formula: "g = (v<sub>i</sub> − v<sub>f</sub>) / t", despejes: "v<sub>i</sub> = v<sub>f</sub> + g·t &nbsp;|&nbsp; v<sub>f</sub> = v<sub>i</sub> − g·t &nbsp;|&nbsp; t = (v<sub>i</sub> − v<sub>f</sub>) / g", hint: "Misma forma que a = Δv/Δt, pero vi−vf da g positiva al subir" },
+      { name: "Velocidad final", formula: "v<sub>f</sub> = v<sub>i</sub> − g · t", despejes: "v<sub>i</sub> = v<sub>f</sub> + g·t &nbsp;|&nbsp; g = (v<sub>i</sub> − v<sub>f</sub>) / t &nbsp;|&nbsp; t = (v<sub>i</sub> − v<sub>f</sub>) / g", hint: "La gravedad resta porque apunta hacia abajo" },
+      { name: "Velocidad final al cuadrado", formula: "v<sub>f</sub>² = v<sub>i</sub>² − 2g · Δy", despejes: "v<sub>f</sub> = ±√(v<sub>i</sub>² − 2gΔy) &nbsp;|&nbsp; Δy = (v<sub>i</sub>² − v<sub>f</sub>²) / (2g)", hint: "No necesita el tiempo — útil cuando no te dan t" },
+      { name: "Desplazamiento vertical (Altura)", formula: "Δy = v<sub>i</sub> · t − ½ g · t²", despejes: "v<sub>i</sub> = (Δy + ½gt²) / t &nbsp;|&nbsp; t se resuelve con fórmula cuadrática", hint: "Cuidado: el signo de g resta porque apunta hacia abajo" },
+      { name: "Altura máxima (vf = 0)", formula: "h<sub>máx</sub> = v<sub>i</sub>² / (2g)", despejes: "v<sub>i</sub> = √(2g · h<sub>máx</sub>) &nbsp;|&nbsp; g = v<sub>i</sub>² / (2h<sub>máx</sub>)", hint: "En el punto más alto la velocidad es cero" }
+    ]
+  },
+  {
+    group: "Caída Libre",
+    cards: [
+      { name: "Aceleración de la gravedad", formula: "g = v<sub>f</sub> / t", despejes: "v<sub>f</sub> = g · t &nbsp;|&nbsp; t = v<sub>f</sub> / g", hint: "Caso especial de a = Δv/Δt con vi = 0" },
+      { name: "Velocidad final (en función del tiempo)", formula: "v<sub>f</sub> = g · t", despejes: "g = v<sub>f</sub> / t &nbsp;|&nbsp; t = v<sub>f</sub> / g", hint: "Parte del reposo, la velocidad crece linealmente" },
+      { name: "Velocidad final al cuadrado", formula: "v<sub>f</sub>² = 2g · h", despejes: "v<sub>f</sub> = √(2gh) &nbsp;|&nbsp; h = v<sub>f</sub>² / (2g) &nbsp;|&nbsp; g = v<sub>f</sub>² / (2h)", hint: "Sin tiempo, solo velocidad y altura recorrida" },
+      { name: "Altura / Desplazamiento", formula: "h = ½ g · t²", despejes: "t = √(2h / g) &nbsp;|&nbsp; g = 2h / t²", hint: "Parte del reposo, la distancia crece con el cuadrado del tiempo" }
+    ]
+  },
+  {
+    group: "Vectores (Cap. 1)",
+    cards: [
+      { name: "Componentes rectangulares", formula: "A<sub>x</sub> = A · cos θ &nbsp;&nbsp; A<sub>y</sub> = A · sin θ", despejes: "A = √(Ax²+Ay²) &nbsp;|&nbsp; θ = arctan(Ay/Ax)", hint: "θ se mide desde +x en sentido antihorario" },
+      { name: "Magnitud de un vector", formula: "A = √(A<sub>x</sub>² + A<sub>y</sub>²)", despejes: "En 3D: A = √(Ax²+Ay²+Az²)", hint: "Siempre positiva — es el largo del vector" },
+      { name: "Suma de vectores por componentes", formula: "R<sub>x</sub> = Ax + Bx &nbsp;&nbsp; R<sub>y</sub> = Ay + By", despejes: "R = √(Rx²+Ry²) &nbsp;|&nbsp; θ = arctan(Ry/Rx) &nbsp;|&nbsp; Resta: Rx = Ax−Bx", hint: "Suma componente a componente — el método más general" },
+      { name: "Notación con vectores unitarios", formula: "A = A<sub>x</sub> i + A<sub>y</sub> j + A<sub>z</sub> k", despejes: "R = (Ax+Bx)i + (Ay+By)j + (Az+Bz)k", hint: "i, j, k tienen magnitud 1 y apuntan a +x, +y, +z" },
+      { name: "Producto escalar (punto)", formula: "A · B = AB cos φ = Ax·Bx + Ay·By + Az·Bz", despejes: "cos φ = (A·B)/(AB) &nbsp;|&nbsp; Si φ=90°: A·B = 0", hint: "Produce un escalar. Si es cero, los vectores son perpendiculares" },
+      { name: "Producto vectorial (cruz) — magnitud", formula: "|A × B| = AB sin φ", despejes: "Cx = Ay·Bz − Az·By &nbsp;|&nbsp; Cy = Az·Bx − Ax·Bz &nbsp;|&nbsp; Cz = Ax·By − Ay·Bx", hint: "Produce un vector perpendicular al plano de A y B. Regla mano derecha" }
+    ]
+  }
+];
+
 // ====== STATE ======
 const solvedKey = 'fisica_univ_solved';
 let solved = JSON.parse(localStorage.getItem(solvedKey) || '[]');
@@ -1256,6 +1364,7 @@ function renderNav() {
   const nav = document.getElementById('chapterNav');
   const chapters = Object.keys(exercises);
   nav.innerHTML = chapters.map((ch, i) => `<button class="${i===0?'active':''}" data-chapter="${ch}">${ch}</button>`).join('')
+    + `<button data-chapter="flashcards" style="border-color: var(--warning); color: var(--warning);">⚡ Flashcards</button>`
     + `<button data-chapter="form" style="margin-left:auto; border-color: var(--accent2); color: var(--accent2);">📐 Formulario</button>`;
   nav.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1263,9 +1372,14 @@ function renderNav() {
       btn.classList.add('active');
       document.querySelectorAll('.chapter-section').forEach(s => s.classList.remove('active'));
       const formSection = document.getElementById('formulaRef');
+      const flashSection = document.getElementById('flashcardSection');
       if (formSection) formSection.classList.remove('active');
+      if (flashSection) flashSection.classList.remove('active');
       if (btn.dataset.chapter === 'form') {
         if (formSection) formSection.classList.add('active');
+      } else if (btn.dataset.chapter === 'flashcards') {
+        if (flashSection) flashSection.classList.add('active');
+        initFlashcards();
       } else {
         document.getElementById('ch-' + btn.dataset.chapter.replace(/ /g,'_')).classList.add('active');
       }
@@ -1331,7 +1445,8 @@ function renderAll() {
   const chapters = Object.keys(exercises);
   main.innerHTML = chapters.map(ch => `<div class="chapter-section ${ch===chapters[0]?'active':''}" id="ch-${ch.replace(/ /g,'_')}">
     ${exercises[ch].map((ex, i) => renderExercise(ex, i)).join('')}
-  </div>`).join('') + `<div class="formula-ref-section" id="formulaRef"></div>`;
+  </div>`).join('') + `<div class="flashcard-section" id="flashcardSection"></div>` + `<div class="formula-ref-section" id="formulaRef"></div>`;
+  renderFlashcards();
   renderFormulaRef();
   updateProgress();
 }
@@ -1418,6 +1533,201 @@ window.markSolvedAndClose = function(id, btn) {
   updateProgress();
   btn.textContent = '✓ Marcado como resuelto';
   btn.disabled = true;
+};
+
+// ====== FLASHCARD ENGINE ======
+const fcMasteredKey = 'fisica_fc_mastered';
+let fcMastered = JSON.parse(localStorage.getItem(fcMasteredKey) || '{}');
+let fcState = { groupIdx: 0, cardIdx: 0, flipped: false, order: [] };
+
+function markFcMastered(groupIdx, cardIdx) {
+  const key = flashcardData[groupIdx].group + '-' + cardIdx;
+  fcMastered[key] = true;
+  localStorage.setItem(fcMasteredKey, JSON.stringify(fcMastered));
+}
+
+function isFcMastered(groupIdx, cardIdx) {
+  return !!fcMastered[flashcardData[groupIdx].group + '-' + cardIdx];
+}
+
+function fcGroupMasteredCount(groupIdx) {
+  const cards = flashcardData[groupIdx].cards;
+  let count = 0;
+  for (let i = 0; i < cards.length; i++) { if (isFcMastered(groupIdx, i)) count++; }
+  return count;
+}
+
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+function initFlashcards() {
+  // Build ordered index: shuffle within each group but keep group order
+  fcState.order = [];
+  flashcardData.forEach((g, gi) => { g.cards.forEach((_, ci) => fcState.order.push({ g: gi, c: ci })); });
+  // Shuffle within groups
+  const shuffled = [];
+  flashcardData.forEach((g, gi) => {
+    const indices = g.cards.map((_, ci) => ci);
+    const shuffledIndices = shuffleArray(indices);
+    shuffledIndices.forEach(ci => shuffled.push({ g: gi, c: ci }));
+  });
+  fcState.order = shuffled;
+  fcState.groupIdx = 0;
+  fcState.cardIdx = 0;
+  fcState.flipped = false;
+  renderCurrentFlashcard();
+}
+
+function renderFlashcards() {
+  const container = document.getElementById('flashcardSection');
+  if (!container) return;
+
+  // Group tabs
+  const tabs = flashcardData.map((g, i) =>
+    `<button class="fc-group-tab ${i === 0 ? 'active' : ''}" data-group="${i}">${g.group}</button>`
+  ).join('');
+
+  container.innerHTML = `
+    <div class="flashcard-toolbar">
+      <h2>⚡ Flashcards de Fórmulas</h2>
+    </div>
+    <div class="fc-group-tabs" id="fcGroupTabs">${tabs}</div>
+    <div class="fc-progress" id="fcProgress"></div>
+    <div class="fc-container" id="fcContainer" onclick="flipCurrentCard()"></div>
+    <div class="fc-nav" id="fcNav"></div>
+    <div class="fc-actions" id="fcActions"></div>
+  `;
+
+  // Group tab click handlers
+  container.querySelectorAll('.fc-group-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      container.querySelectorAll('.fc-group-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      fcState.groupIdx = parseInt(btn.dataset.group);
+      fcState.cardIdx = 0;
+      fcState.flipped = false;
+      renderCurrentFlashcard();
+    });
+  });
+
+  renderCurrentFlashcard();
+}
+
+function renderCurrentFlashcard() {
+  const container = document.getElementById('fcContainer');
+  const nav = document.getElementById('fcNav');
+  const actions = document.getElementById('fcActions');
+  const progress = document.getElementById('fcProgress');
+  if (!container || !nav || !actions || !progress) return;
+
+  // Find current card within the group
+  const group = flashcardData[fcState.groupIdx];
+  if (!group) return;
+
+  // Find card by scanning the order for this group
+  const groupOrder = fcState.order.filter(o => o.g === fcState.groupIdx);
+  if (fcState.cardIdx >= groupOrder.length) fcState.cardIdx = 0;
+  const currentOrder = groupOrder[fcState.cardIdx];
+  if (!currentOrder) return;
+
+  const card = group.cards[currentOrder.c];
+  const mastered = isFcMastered(fcState.groupIdx, currentOrder.c);
+  const masteredCount = fcGroupMasteredCount(fcState.groupIdx);
+  const total = group.cards.length;
+  const pct = Math.round(masteredCount / total * 100);
+
+  // Progress
+  progress.innerHTML = `<span>${group.group}</span>
+    <div class="fc-progress-bar"><div class="fc-progress-fill" style="width:${pct}%"></div></div>
+    <span>${masteredCount}/${total} aprendidas (${pct}%)</span>`;
+
+  // Card
+  container.innerHTML = `<div class="fc-card ${fcState.flipped ? 'flipped' : ''}">
+    <div class="fc-face fc-front">
+      <div class="fc-label">¿Cuál es la fórmula?</div>
+      <div class="fc-topic">${group.group}</div>
+      <div class="fc-name">${card.name}</div>
+      <div class="fc-hint">💡 ${card.hint}</div>
+    </div>
+    <div class="fc-face fc-back">
+      <div class="fc-formula">${card.formula}</div>
+      <div class="fc-despejes"><strong>Despejes:</strong> ${card.despejes}</div>
+      <div class="fc-when"><strong>💡 Pista:</strong> ${card.hint}</div>
+    </div>
+  </div>`;
+
+  // Nav
+  const isFirst = fcState.cardIdx === 0;
+  const isLast = fcState.cardIdx >= groupOrder.length - 1;
+  nav.innerHTML = `
+    <button ${isFirst ? 'disabled' : ''} onclick="fcPrev()">◀ Anterior</button>
+    <span class="fc-counter">${fcState.cardIdx + 1} / ${groupOrder.length}</span>
+    <button ${isLast ? 'disabled' : ''} onclick="fcNext()">Siguiente ▶</button>
+  `;
+
+  // Actions
+  const masteredBtnClass = mastered ? 'fc-btn-mastered is-mastered' : 'fc-btn-mastered';
+  const masteredBtnText = mastered ? '✓ Aprendida' : '✓ Ya me la sé';
+  actions.innerHTML = `
+    <button class="${masteredBtnClass}" onclick="toggleFcMastered(event, ${fcState.groupIdx}, ${currentOrder.c})">${masteredBtnText}</button>
+    <button class="fc-btn-shuffle" onclick="shuffleCurrentGroup()">🔀 Mezclar</button>
+  `;
+}
+
+window.flipCurrentCard = function() {
+  fcState.flipped = !fcState.flipped;
+  const card = document.querySelector('.fc-card');
+  if (card) card.classList.toggle('flipped');
+};
+
+window.fcPrev = function() {
+  const groupOrder = fcState.order.filter(o => o.g === fcState.groupIdx);
+  if (fcState.cardIdx > 0) {
+    fcState.cardIdx--;
+    fcState.flipped = false;
+    renderCurrentFlashcard();
+  }
+};
+
+window.fcNext = function() {
+  const groupOrder = fcState.order.filter(o => o.g === fcState.groupIdx);
+  if (fcState.cardIdx < groupOrder.length - 1) {
+    fcState.cardIdx++;
+    fcState.flipped = false;
+    renderCurrentFlashcard();
+  }
+};
+
+window.toggleFcMastered = function(event, groupIdx, cardIdx) {
+  event.stopPropagation();
+  const key = flashcardData[groupIdx].group + '-' + cardIdx;
+  if (fcMastered[key]) {
+    delete fcMastered[key];
+  } else {
+    fcMastered[key] = true;
+  }
+  localStorage.setItem(fcMasteredKey, JSON.stringify(fcMastered));
+  renderCurrentFlashcard();
+};
+
+window.shuffleCurrentGroup = function() {
+  // Re-shuffle only the current group's cards in the order array
+  const groupOrder = fcState.order.filter(o => o.g === fcState.groupIdx);
+  const otherOrder = fcState.order.filter(o => o.g !== fcState.groupIdx);
+  const shuffled = shuffleArray(groupOrder);
+
+  // Rebuild the full order: groups before stay, current group shuffled, groups after stay
+  const before = fcState.order.slice(0, fcState.order.indexOf(groupOrder[0]));
+  const afterStartIdx = fcState.order.lastIndexOf(groupOrder[groupOrder.length - 1]) + 1;
+  const after = fcState.order.slice(afterStartIdx);
+  fcState.order = [...before, ...shuffled, ...after];
+
+  fcState.cardIdx = 0;
+  fcState.flipped = false;
+  renderCurrentFlashcard();
 };
 
 // ====== INIT ======
