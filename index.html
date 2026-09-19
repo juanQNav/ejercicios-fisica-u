@@ -2036,8 +2036,11 @@ function renderMnemoGroup(groupIdx) {
         <span class="mnemo-toggle">▼</span>
       </div>
       <div class="mnemo-card-body">
-        <div class="mnemo-text">${card.text}</div>
-        <span class="mnemo-tag trick">${card.tag}</span>
+        <div class="mnemo-text">
+          <div style="font-size:1.05rem; margin-bottom:0.5rem; color:var(--warning); line-height:1.4;">${card.phrase}</div>
+          <div style="font-size:0.85rem; opacity:0.8; border-top:1px solid rgba(255,255,255,0.1); padding-top:0.4rem; margin-top:0.4rem;">${card.decode}</div>
+          <div style="font-size:0.8rem; margin-top:0.5rem; color:var(--text2);">${card.text}</div>
+        </div>
       </div>
     </div>
   `).join('');
