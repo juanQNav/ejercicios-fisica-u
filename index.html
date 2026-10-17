@@ -679,6 +679,643 @@ const exercises = {
   answer: "a) 0.814 m/s² a 52.1° sobre la horizontal hacia la derecha",
   diagram: "ferris_wheel_accel"
 }
+],
+"Capitulo 4": [
+{
+  id: "4.3",
+  title: "Ejercicio 4.3 — Componentes de una fuerza",
+  problem: "Se aplica una fuerza F = 10 N a 45° debajo de la horizontal. Encuentre las componentes horizontal (Fx) y vertical (Fy) de la fuerza.",
+  tips: "Recuerda que coseno da la componente horizontal y seno da la vertical. El angulo es debajo de la horizontal, asi que Fy apunta hacia abajo.",
+  videos: [
+    {title: "Curso completo de Vectores", url: "https://www.youtube.com/watch?v=IN4QpARYaN4"}
+  ],
+  steps: [
+    {title: "Identificar datos", body: "F = 10 N, θ = 45° debajo de la horizontal."},
+    {title: "Componente horizontal", body: "Fx = F·cos(45°) = 10 × 0.7071", formula: "Fx = 7.1 N (horizontal, hacia la derecha)"},
+    {title: "Componente vertical", body: "Fy = F·sin(45°) = 10 × 0.7071", formula: "Fy = 7.1 N (vertical, hacia abajo)"}
+  ],
+  answer: "Fx = 7.1 N, Fy = 7.1 N",
+  diagram: "force_components"
+},
+{
+  id: "4.4",
+  title: "Ejercicio 4.4 — Fuerza sobre una rampa",
+  problem: "Se aplica una fuerza F a 30° respecto a una rampa. La componente paralela a la rampa debe ser 60.0 N. a) Encuentre la magnitud de F. b) Encuentre la componente perpendicular Fy.",
+  tips: "La componente paralela a la rampa usa coseno. Para encontrar la fuerza total a partir de una componente, divide entre coseno.",
+  videos: [
+    {title: "Curso completo de Vectores", url: "https://www.youtube.com/watch?v=IN4QpARYaN4"}
+  ],
+  steps: [
+    {title: "a) Magnitud de F", body: "Fx = F·cos(30°) → F = 60.0/cos(30°) = 60.0/0.8660", formula: "F = 69.3 N"},
+    {title: "b) Componente perpendicular", body: "Fy = F·sin(30°) = 69.3 × 0.5000", formula: "Fy = 34.6 N"}
+  ],
+  answer: "a) F = 69.3 N, b) Fy = 34.6 N",
+  diagram: "ramp_force"
+},
+{
+  id: "4.6",
+  title: "Ejercicio 4.6 — Resultante de dos fuerzas",
+  problem: "F1 = 9.00 N a 120.0°, F2 = 6.00 N a 233.1°. Encuentre: a) las componentes (Rx, Ry) de la resultante; b) la magnitud R.",
+  tips: "Usa componentes: Fx = F·cos(θ), Fy = F·sin(θ). Despues suma las componentes por separado. La magnitud es la suma pitagorica.",
+  videos: [
+    {title: "Suma de vectores método analítico", url: "https://www.youtube.com/watch?v=68Eq_4cvoR4"}
+  ],
+  steps: [
+    {title: "Componentes de F1", body: "F1x = 9.00·cos(120°) = -4.50 N\nF1y = 9.00·sin(120°) = 7.794 N"},
+    {title: "Componentes de F2", body: "F2x = 6.00·cos(233.1°) = -3.60 N\nF2y = 6.00·sin(233.1°) = -4.794 N"},
+    {title: "a) Componentes de la resultante", body: "Rx = -4.50 + (-3.60) = -8.10 N\nRy = 7.794 + (-4.794) = 3.00 N", formula: "Rx = -8.10 N, Ry = 3.00 N"},
+    {title: "b) Magnitud de la resultante", body: "R = √((-8.10)² + (3.00)²) = √(65.61 + 9.00) = √74.61", formula: "R ≈ 8.64 N"}
+  ],
+  answer: "a) Rx = -8.10 N, Ry = 3.00 N\nb) R = 8.64 N",
+  diagram: "two_forces_resultant"
+},
+{
+  id: "4.10",
+  title: "Ejercicio 4.10 — Masa de un bloque con fuerza horizontal",
+  problem: "Una fuerza horizontal de 80.0 N se aplica a un bloque sobre una superficie sin friccion. Partiendo del reposo, el bloque recorre 11.0 m en 5.00 s. a) Encuentre la masa. b) Despues de 5.00 s se retira la fuerza. ¿Que distancia recorre el bloque en los siguientes 5.00 s?",
+  tips: "Usa cinematica para encontrar la aceleracion primero (x = ½at² desde el reposo), luego la segunda ley de Newton para la masa. Despues de que la fuerza se detiene, no hay aceleracion → velocidad constante (primera ley de Newton).",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "a) Aceleracion del bloque", body: "Desde el reposo: Δx = ½at²\na = 2(11.0)/(5.00)² = 22.0/25.0", formula: "a = 0.880 m/s²"},
+    {title: "a) Masa del bloque", body: "F = ma → m = F/a = 80.0/0.880", formula: "m = 90.9 kg"},
+    {title: "b) Velocidad al retirar la fuerza", body: "v = 0 + 0.880(5.00)", formula: "v = 4.40 m/s"},
+    {title: "b) Distancia en los siguientes 5.00 s", body: "Sin fuerza → velocidad constante (a = 0):\nΔx = v·t = 4.40 × 5.00", formula: "Δx = 22.0 m"}
+  ],
+  answer: "a) m = 90.9 kg\nb) Δx = 22.0 m",
+  diagram: "block_horizontal"
+},
+{
+  id: "4.15",
+  title: "Ejercicio 4.15 — Cohete con fuerza variable",
+  problem: "Un cohete de masa 8.00 kg tiene una fuerza F(t) = A + Bt². En t = 0, F = 100.0 N. En t = 2.00 s, F = 150.0 N. a) Encuentre A y B. b) Encuentre la fuerza neta y aceleracion en t = 0 y t = 3.00 s (en la Tierra). c) Encuentre la aceleracion en t = 3.00 s en el espacio (g = 0).",
+  tips: "¡La fuerza depende del tiempo! Sustituye las condiciones para encontrar las constantes. En la Tierra resta el peso; en el espacio no hay gravedad.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "a) Constantes A y B", body: "En t = 0: F(0) = A + B(0)² = A = 100.0 N\nEn t = 2.00: 150.0 = 100.0 + B(2.00)² = 100.0 + 4.00B", formula: "A = 100.0 N, B = 12.5 N/s²"},
+    {title: "b) En la Tierra, t = 0", body: "w = 8.00 × 9.80 = 78.4 N\nF_net = 100.0 - 78.4 = 21.6 N\na = 21.6/8.00", formula: "F_net = 21.6 N, a = 2.70 m/s²"},
+    {title: "b) En la Tierra, t = 3.00 s", body: "F(3) = 100.0 + 12.5(9.00) = 212.5 N\nF_net = 212.5 - 78.4 = 134.1 N\na = 134.1/8.00", formula: "F_net = 134.1 N, a = 16.8 m/s²"},
+    {title: "c) En el espacio (g = 0), t = 3.00 s", body: "F(3) = 212.5 N, sin gravedad\na = 212.5/8.00", formula: "a = 26.6 m/s²"}
+  ],
+  answer: "a) A = 100.0 N, B = 12.5 N/s²\nb) t=0: F_net = 21.6 N, a = 2.70 m/s²; t=3: F_net = 134.1 N, a = 16.8 m/s²\nc) 26.6 m/s²",
+  diagram: "rocket_variable"
+},
+{
+  id: "4.16",
+  title: "Ejercicio 4.16 — Electrón acelerado",
+  problem: "Un electrón de masa 9.11×10⁻³¹ kg es acelerado desde el reposo en una distancia de 1.80 cm hasta alcanzar 3.00×10⁶ m/s. a) Encuentre la aceleracion. b) Encuentre el tiempo. c) Encuentre la fuerza neta.",
+  tips: "¡Convierte cm a m! Usa v² = v₀² + 2aΔx porque tienes distancia y velocidades pero no tiempo. La fuerza es diminuta pero la aceleracion es enorme porque la masa del electrón es diminuta.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "a) Aceleracion", body: "v² = v₀² + 2aΔx → a = v²/(2Δx)\na = (3.00×10⁶)²/(2 × 0.0180) = 9.00×10¹²/0.0360", formula: "a = 2.50×10¹⁴ m/s²"},
+    {title: "b) Tiempo", body: "t = 2Δx/v = 2(0.0180)/(3.00×10⁶)", formula: "t = 1.20×10⁻⁸ s"},
+    {title: "c) Fuerza neta", body: "F = ma = (9.11×10⁻³¹)(2.50×10¹⁴)", formula: "F = 2.28×10⁻¹⁶ N"}
+  ],
+  answer: "a) 2.50×10¹⁴ m/s²\nb) 1.20×10⁻⁸ s\nc) 2.28×10⁻¹⁶ N",
+  diagram: "electron_accel"
+},
+{
+  id: "4.17",
+  title: "Ejercicio 4.17 — Fuerza sobre un peñasco",
+  problem: "Un peñasco pesa 2400 N. ¿Que fuerza horizontal le produce una aceleracion de 12.0 m/s²?",
+  tips: "El peso te da la masa via w = mg. Despues usa F = ma. ¡No confundas peso (Newtons) con masa (kg)!",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "Masa del peñasco", body: "m = w/g = 2400/9.80", formula: "m = 244.9 kg"},
+    {title: "Fuerza requerida", body: "F = ma = 244.9 × 12.0", formula: "F = 2940 N"}
+  ],
+  answer: "F = 2940 N",
+  diagram: "boulder_push"
+},
+{
+  id: "4.20",
+  title: "Ejercicio 4.20 — Mochila en un asteroide",
+  problem: "Una mochila pesa 17.5 N en la Tierra. En un asteroide pesa 3.24 N. a) Encuentre g en el asteroide. b) ¿Cual es la masa de la mochila en el asteroide?",
+  tips: "¡La masa es INTRINSECA — no cambia con la ubicacion! El peso = mg cambia porque cambia g, pero la masa permanece igual.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "Masa de la mochila", body: "m = 17.5/9.80", formula: "m = 1.786 kg"},
+    {title: "a) Gravedad del asteroide", body: "g_asteroide = 3.24/1.786", formula: "g = 1.81 m/s²"},
+    {title: "b) Masa en el asteroide", body: "La masa no cambia con la ubicacion.", formula: "m = 1.79 kg"}
+  ],
+  answer: "a) g = 1.81 m/s²\nb) m = 1.79 kg",
+  diagram: "asteroid"
+},
+{
+  id: "4.24",
+  title: "Ejercicio 4.24 — Pasajero en elevador",
+  problem: "Un pasajero pesa 650 N. El piso del elevador ejerce una fuerza normal de 620 N hacia arriba. ¿Cuales son las fuerzas de reaccion? ¿El pasajero acelera?",
+  tips: "Los pares de la 3ra ley de Newton actuan sobre OBJETOS DIFERENTES. La normal y el peso aqui actuan sobre el MISMO objeto (pasajero), ¡asi que NO son par accion-reaccion!",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "Reaccion a la normal", body: "El pasajero empuja el piso hacia abajo con 620 N (3ra ley).", formula: "620 N hacia abajo (sobre el piso)"},
+    {title: "Reaccion al peso", body: "El pasajero jala la Tierra hacia arriba con 650 N (3ra ley).", formula: "650 N hacia arriba (sobre la Tierra)"},
+    {title: "Aceleracion del pasajero", body: "m = 650/9.80 = 66.33 kg\nΣF = 620 - 650 = -30 N\na = -30/66.33", formula: "a = -0.452 m/s² (hacia abajo)"}
+  ],
+  answer: "Reacciones: 620 N hacia abajo (sobre el piso), 650 N hacia arriba (sobre la Tierra)\na = 0.452 m/s² hacia abajo",
+  diagram: "elevator"
+},
+{
+  id: "4.25",
+  title: "Ejercicio 4.25 — Aceleración de la Tierra por una estudiante",
+  problem: "Una estudiante de 45 kg cae con a = 9.8 m/s². ¿Con que aceleracion acelera la Tierra hacia la estudiante?",
+  tips: "Tercera ley de Newton: misma fuerza sobre ambos objetos. Pero a = F/m, y la masa de la Tierra es enorme, asi que su aceleracion es esencialmente cero.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "Fuerza sobre la estudiante", body: "F = ma = 45 × 9.8", formula: "F = 441 N"},
+    {title: "Fuerza sobre la Tierra (3ra ley)", body: "La estudiante jala la Tierra con la misma fuerza: 441 N."},
+    {title: "Aceleracion de la Tierra", body: "a = F/m_Tierra = 441/(6.0×10²⁴)", formula: "a = 7.4×10⁻²³ m/s²"}
+  ],
+  answer: "a_Tierra = 7.4×10⁻²³ m/s²",
+  diagram: "earth_pull"
+},
+{
+  id: "4.32",
+  title: "Ejercicio 4.32 — Esquiador en pendiente",
+  problem: "Un esquiador de 65.0 kg es arrastrado pendiente arriba por una pendiente sin friccion de 26.0° a velocidad constante. a) Dibuje el diagrama de cuerpo libre. b) Encuentre la tension en la cuerda de remolque.",
+  tips: "Usa ejes a lo largo de la pendiente. La componente del peso paralela a la pendiente es mg·sin(θ). A velocidad constante, la tension equilibra exactamente esta componente.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "Fuerzas presentes", body: "T (pendiente arriba), n (perpendicular a la pendiente), w = mg (hacia abajo).\nVelocidad constante → a = 0 → ΣFx = 0."},
+    {title: "b) Tension en la cuerda", body: "T = mg·sin(26.0°) = (65.0)(9.80)sin(26.0°) = 637 × 0.4384", formula: "T = 279 N"}
+  ],
+  answer: "T = 279 N",
+  diagram: "skier_slope"
+},
+{
+  id: "4.33",
+  title: "Ejercicio 4.33 — Camión jala un auto",
+  problem: "Un camion jala un auto en una carretera horizontal mediante una cuerda. El auto esta en neutral (sin friccion en las ruedas). El sistema acelera. a) Dibuje el diagrama de cuerpo libre del auto. b) Dibuje el diagrama de cuerpo libre del camion. c) ¿Que fuerza acelera al sistema completo?",
+  tips: "Las ruedas del camion empujan hacia atras al suelo; por la 3ra ley de Newton, el suelo empuja hacia adelante a las ruedas. ¡ESTO es lo que mueve todo el sistema!",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "a) DCL del auto", body: "n_C arriba, w_C abajo, F_camion_sobre_auto hacia adelante (unica fuerza horizontal)."},
+    {title: "b) DCL del camion", body: "n_T arriba, w_T abajo, F_auto_sobre_camion hacia atras (reaccion), f_suelo hacia adelante (friccion estatica en llantas motrices)."},
+    {title: "c) Fuerza que acelera el sistema", body: "La friccion estatica del suelo sobre las llantas motrices del camion es la unica fuerza externa horizontal que acelera todo el sistema."}
+  ],
+  answer: "c) Friccion estatica del suelo sobre las llantas del camion",
+  diagram: "truck_car"
+}
+],
+"Capitulo 5": [
+{
+  id: "5.2",
+  title: "Ejercicio 5.2 — Tensión en cuerdas con peso",
+  problem: "En tres arreglos diferentes de cuerdas, un peso w cuelga en equilibrio. Encuentre la tension en cada cuerda.",
+  tips: "Cuando una sola cuerda sostiene un peso en equilibrio, la tension es igual al peso sin importar el arreglo.",
+  videos: [
+    {title: "Curso completo de Vectores", url: "https://www.youtube.com/watch?v=IN4QpARYaN4"}
+  ],
+  steps: [
+    {title: "Condicion de equilibrio", body: "En los tres casos, la cuerda que sostiene directamente el peso tiene T = w.\nΣFy = T - w = 0."},
+    {title: "Conclusion", body: "Cada segmento de cuerda tiene la misma tension porque el peso esta en equilibrio.", formula: "T = w en todos los casos"}
+  ],
+  answer: "T = w en todos los casos",
+  diagram: "rope_arrangements"
+},
+{
+  id: "5.4",
+  title: "Ejercicio 5.4 — Persona colgada de una cuerda",
+  problem: "Una persona de 90.0 kg cuelga de una cuerda que forma angulo θ con la horizontal a cada lado. a) Encuentre T cuando θ = 10.0°. b) Encuentre el angulo minimo θ si la cuerda se rompe a 2.50×10⁴ N.",
+  tips: "Ambos lados de la cuerda comparten el peso. ¡Menor angulo = mayor tension! Una cuerda casi horizontal tiene tension enorme.",
+  videos: [
+    {title: "Curso completo de Vectores", url: "https://www.youtube.com/watch?v=IN4QpARYaN4"}
+  ],
+  steps: [
+    {title: "a) Tension con θ = 10.0°", body: "2T·sin(10.0°) = mg\nT = 882/(2 × 0.17365)", formula: "T = 2540 N"},
+    {title: "b) Angulo minimo", body: "sin(θ) = mg/(2T_max) = 882/(2 × 25000) = 0.01764", formula: "θ = arcsin(0.01764) = 1.01°"}
+  ],
+  answer: "a) T = 2540 N\nb) θ = 1.01°",
+  diagram: "person_rope"
+},
+{
+  id: "5.8",
+  title: "Ejercicio 5.8 — Bola de demolicion con dos cables",
+  problem: "Una bola de demolicion de 4090 kg es sostenida por el cable A (horizontal) y el cable B (a 40° desde la vertical). a) Encuentre T_B. b) Encuentre T_A.",
+  tips: "La componente vertical del cable B sostiene el peso. El cable A equilibra la componente horizontal del cable B. ¡Descompón el cable con angulo!",
+  videos: [
+    {title: "Curso completo de Vectores", url: "https://www.youtube.com/watch?v=IN4QpARYaN4"}
+  ],
+  steps: [
+    {title: "Peso de la bola", body: "w = 4090 × 9.80", formula: "w = 40082 N"},
+    {title: "a) Tension del cable B (equilibrio vertical)", body: "T_B·cos(40°) = mg\nT_B = 40082/cos(40°) = 40082/0.7660", formula: "T_B = 5.23×10⁴ N"},
+    {title: "b) Tension del cable A (equilibrio horizontal)", body: "T_A = T_B·sin(40°) = 52323 × 0.6428", formula: "T_A = 3.36×10⁴ N"}
+  ],
+  answer: "a) T_B = 5.23×10⁴ N\nb) T_A = 3.36×10⁴ N",
+  diagram: "wrecking_ball"
+},
+{
+  id: "5.9",
+  title: "Ejercicio 5.9 — Tres cuerdas con peso",
+  problem: "a) Con TC a 30° y TA a 45° de la horizontal, encuentre las tensiones en terminos de w. b) Con TA a 60° y TB a 45°, encuentre las tensiones en terminos de w.",
+  tips: "Plantea ΣFx = 0 y ΣFy = 0 en el nudo. Dos ecuaciones, dos incognitas. ¡Cuidado con que angulo va con que funcion trigonometrica!",
+  videos: [
+    {title: "Curso completo de Vectores", url: "https://www.youtube.com/watch?v=IN4QpARYaN4"}
+  ],
+  steps: [
+    {title: "a) Ecuaciones de equilibrio", body: "ΣFx: TC·cos(30°) - TA·cos(45°) = 0\nΣFy: TC·sin(30°) + TA·sin(45°) - w = 0"},
+    {title: "a) Resolver para TC y TA", body: "TC = w/(cos30° + sin30°) = w/1.366\nTA = TC·cos30°/cos45°", formula: "TC = 0.732w, TA = 0.897w"},
+    {title: "b) Ecuaciones de equilibrio", body: "ΣFx: TA·sin(60°) - TB·cos(45°) = 0\nΣFy: TB·sin(45°) - TA·cos(60°) - w = 0"},
+    {title: "b) Resolver para TA y TB", body: "TA = w/(sin60° - cos60°) = w/0.366", formula: "TA = 2.73w, TB = 3.35w"}
+  ],
+  answer: "a) TC = 0.732w, TA = 0.897w\nb) TA = 2.73w, TB = 3.35w",
+  diagram: "three_ropes"
+},
+{
+  id: "5.10",
+  title: "Ejercicio 5.10 — Auto en rampa con cable",
+  problem: "Un auto de 1130 kg esta sobre una rampa de 25.0°, sostenido por un cable a 31.0° sobre la rampa. a) Dibuje el diagrama de cuerpo libre. b) Encuentre la tension del cable. c) Encuentre la fuerza normal.",
+  tips: "Usa ejes paralelos y perpendiculares a la rampa. El cable tiene componentes TANTO a lo largo como perpendicular a la rampa.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "Peso del auto", body: "w = 1130 × 9.80", formula: "w = 11074 N"},
+    {title: "b) Tension del cable (eje paralelo a la rampa)", body: "T·cos(31°) = w·sin(25°)\nT = 11074·sin(25°)/cos(31°)", formula: "T = 5460 N"},
+    {title: "c) Fuerza normal (eje perpendicular a la rampa)", body: "n + T·sin(31°) = w·cos(25°)\nn = 11074·cos(25°) - 5460·sin(31°)", formula: "n = 7220 N"}
+  ],
+  answer: "b) T = 5460 N\nc) n = 7220 N",
+  diagram: "car_ramp"
+},
+{
+  id: "5.12",
+  title: "Ejercicio 5.12 — Sistema de cuerdas con peso",
+  problem: "Un peso de 60.0 N cuelga de un sistema de cuerdas. La cuerda diagonal forma 45° con la horizontal. Encuentre todas las tensiones.",
+  tips: "Trabaja nudo por nudo. En cada nudo aplica ΣFx = 0 y ΣFy = 0. La cuerda diagonal tiene la mayor tension.",
+  videos: [
+    {title: "Curso completo de Vectores", url: "https://www.youtube.com/watch?v=IN4QpARYaN4"}
+  ],
+  steps: [
+    {title: "Cuerda inferior", body: "Sostiene directamente el peso.", formula: "T' = w = 60.0 N"},
+    {title: "Nudo inferior: cuerda diagonal", body: "T·sin(45°) = T'\nT = 60.0/sin(45°)", formula: "T = 84.9 N"},
+    {title: "Componente horizontal de la diagonal", body: "F2 = T·cos(45°) = 84.9 × 0.7071", formula: "F2 = 60.0 N"},
+    {title: "Nudo superior", body: "F1 = T·cos(45°) = 60.0 N\nT'' = T·sin(45°) = 60.0 N", formula: "F1 = 60.0 N, T'' = 60.0 N"}
+  ],
+  answer: "T' = 60.0 N, T = 84.9 N, F1 = F2 = 60.0 N, T'' = 60.0 N",
+  diagram: "rope_system"
+},
+{
+  id: "5.13",
+  title: "Ejercicio 5.13 — Bola de hierro contra pared",
+  problem: "Una bola de hierro de 45.0 kg (r = 16.0 cm) cuelga de un alambre de 30.0 cm sujeto a una pared sin friccion. a) Encuentre la tension del alambre. b) Encuentre la fuerza sobre la pared.",
+  tips: "El alambre se une a la superficie de la bola, no al centro. Primero encuentra el angulo con geometria. Luego equilibrio: la componente vertical de T sostiene el peso, la horizontal empuja contra la pared.",
+  videos: [
+    {title: "Curso completo de Vectores", url: "https://www.youtube.com/watch?v=IN4QpARYaN4"}
+  ],
+  steps: [
+    {title: "Angulo del alambre", body: "sin(φ) = r/(L+r) = 16.0/(30.0+16.0) = 16.0/46.0 = 0.3478", formula: "φ = 20.35°"},
+    {title: "a) Tension del alambre (equilibrio vertical)", body: "T·cos(φ) = mg\nT = 441/cos(20.35°) = 441/0.9376", formula: "T = 470 N"},
+    {title: "b) Fuerza sobre la pared (equilibrio horizontal)", body: "n = T·sin(φ) = 470 × sin(20.35°)", formula: "n = 163 N"}
+  ],
+  answer: "a) T = 470 N\nb) n = 163 N",
+  diagram: "iron_ball_wall"
+},
+{
+  id: "5.14",
+  title: "Ejercicio 5.14 — Dos bloques en rampa",
+  problem: "Dos bloques de peso w cada uno estan sobre una rampa de angulo α, conectados por cuerdas. a) Encuentre la tension T1 entre los bloques. b) Encuentre la tension T2 en la cuerda superior.",
+  tips: "La cuerda superior sostiene AMBOS bloques, asi que tiene el doble de tension. La componente del peso de cada bloque a lo largo de la rampa es w·sin(α).",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "a) Bloque B (inferior)", body: "T1 equilibra la componente del peso a lo largo de la rampa.", formula: "T1 = w·sin(α)"},
+    {title: "b) Bloque A (superior)", body: "T2 - T1 - w·sin(α) = 0\nT2 = T1 + w·sin(α) = w·sin(α) + w·sin(α)", formula: "T2 = 2w·sin(α)"}
+  ],
+  answer: "a) T1 = w·sin(α)\nb) T2 = 2w·sin(α)",
+  diagram: "two_blocks_ramp"
+},
+{
+  id: "5.15",
+  title: "Ejercicio 5.15 — Esfera en rampa con alambre horizontal",
+  problem: "Una esfera de peso mg descansa sobre una rampa sin friccion de 35.0°, sostenida por un alambre horizontal. Encuentre la fuerza normal n y la tension T del alambre.",
+  tips: "Usa ejes horizontal y vertical (NO ejes de la rampa). La fuerza normal tiene AMBAS componentes (horizontal y vertical) porque es perpendicular a la rampa, no vertical.",
+  videos: [
+    {title: "Curso completo de Vectores", url: "https://www.youtube.com/watch?v=IN4QpARYaN4"}
+  ],
+  steps: [
+    {title: "Equilibrio vertical", body: "n·cos(35°) = mg\nn = mg/cos(35°)", formula: "n = 1.22mg"},
+    {title: "Equilibrio horizontal", body: "T = n·sin(35°) = 1.22mg × sin(35°)", formula: "T = 0.700mg"}
+  ],
+  answer: "n = 1.22mg, T = 0.700mg",
+  diagram: "sphere_ramp_wire"
+},
+{
+  id: "5.18",
+  title: "Ejercicio 5.18 — Tres trineos conectados",
+  problem: "Tres trineos de 10.0, 20.0 y 30.0 kg son jalados por P = 125 N sobre hielo sin friccion. a) Encuentre la aceleracion. b) Encuentre las tensiones TA y TB.",
+  tips: "Trata todos los trineos como un solo sistema para la aceleracion. Para las tensiones individuales, aisla cada trineo y aplica F = ma.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "a) Aceleracion del sistema", body: "m_total = 10.0 + 20.0 + 30.0 = 60.0 kg\na = P/m_total = 125/60.0", formula: "a = 2.08 m/s²"},
+    {title: "b) Tension TA (trineo de 10 kg)", body: "P - TA = 10.0 × 2.083\nTA = 125 - 20.83", formula: "TA = 104 N"},
+    {title: "b) Tension TB (trineo de 30 kg)", body: "TB = 30.0 × 2.083", formula: "TB = 62.5 N"}
+  ],
+  answer: "a) a = 2.08 m/s²\nb) TA = 104 N, TB = 62.5 N",
+  diagram: "three_sleds"
+},
+{
+  id: "5.19",
+  title: "Ejercicio 5.19 — Ladrillos y contrapeso (polea)",
+  problem: "Ladrillos de 15.0 kg y un contrapeso de 28.0 kg conectados por una cuerda sobre una polea. a) Dibuje los diagramas de cuerpo libre. b) Encuentre la aceleracion. c) Encuentre la tension.",
+  tips: "¡Maquina de Atwood! La masa mayor baja. Suma las ecuaciones para eliminar T. Verifica: T = m2(g - a) debe dar lo mismo.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "Ecuaciones de movimiento", body: "Ladrillos suben: T - m1·g = m1·a\nContrapeso baja: m2·g - T = m2·a"},
+    {title: "b) Aceleracion", body: "Sumando: (m2 - m1)g = (m1 + m2)a\na = (13.0/43.0) × 9.80", formula: "a = 2.96 m/s²"},
+    {title: "c) Tension", body: "T = m1(g + a) = 15.0 × (9.80 + 2.96)", formula: "T = 191 N"}
+  ],
+  answer: "b) a = 2.96 m/s²\nc) T = 191 N",
+  diagram: "atwood"
+},
+{
+  id: "5.26",
+  title: "Ejercicio 5.26 — Cohete con velocidad dada por función",
+  problem: "Un cohete de masa 2540 kg tiene v_y(t) = At + Bt². En t = 0, a_y = 1.50 m/s². En t = 1.00 s, v_y = 2.00 m/s. a) Encuentre A y B. b) Aceleracion en t = 4.00 s. c) Empuje en t = 4.00 s. d) Empuje inicial.",
+  tips: "Deriva v(t) para obtener a(t). Usa condiciones iniciales para encontrar constantes. El empuje debe vencer la gravedad Y acelerar: T = m(g + a).",
+  videos: [
+    {title: "Aceleración instantánea y derivadas", url: "https://www.youtube.com/watch?v=6g61XJ-lp5E"}
+  ],
+  steps: [
+    {title: "a) Constantes A y B", body: "a(t) = A + 2Bt. En t = 0: A = 1.50 m/s²\nEn t = 1.00: 1.50(1) + B(1)² = 2.00", formula: "A = 1.50 m/s², B = 0.50 m/s³"},
+    {title: "b) Aceleracion en t = 4.00 s", body: "a(4) = 1.50 + 2(0.50)(4.00)", formula: "a = 5.50 m/s²"},
+    {title: "c) Empuje en t = 4.00 s", body: "T = m(g + a) = 2540(9.80 + 5.50) = 2540 × 15.30", formula: "T = 3.89×10⁴ N"},
+    {title: "d) Empuje inicial (t = 0)", body: "T = 2540(9.80 + 1.50) = 2540 × 11.30", formula: "T = 2.87×10⁴ N"}
+  ],
+  answer: "a) A = 1.50 m/s², B = 0.50 m/s³\nb) 5.50 m/s²\nc) 3.89×10⁴ N\nd) 2.87×10⁴ N",
+  diagram: "rocket_thrust"
+},
+{
+  id: "5.27",
+  title: "Ejercicio 5.27 — Diagramas de cuerpo libre con fricción",
+  problem: "Dibuje los diagramas de cuerpo libre para: a) Caja jalada hacia la derecha sobre un piso con friccion. b) Caja deslizandose por una rampa con friccion. c) Caja sobre la cama de un camion que acelera hacia la derecha (la caja no se desliza).",
+  tips: "La friccion SIEMPRE se opone al movimiento relativo (cinetica) o a la tendencia de movimiento (estatica). En el caso c), la caja tiende a deslizarse hacia atras respecto al camion, asi que la friccion estatica apunta hacia ADELANTE.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "a) Caja en piso con friccion", body: "Fuerzas: w abajo, n arriba, F aplicada a la derecha, f_k friccion a la izquierda (se opone al movimiento)."},
+    {title: "b) Caja en rampa con friccion", body: "Fuerzas: w abajo, n perpendicular a la rampa, f_k pendiente arriba (se opone al deslizamiento hacia abajo)."},
+    {title: "c) Caja en camion acelerando", body: "Fuerzas: w abajo, n arriba, f_s hacia la DERECHA. ¡La friccion estatica empuja la caja hacia adelante con el camion — esto es lo que la acelera!"}
+  ],
+  answer: "Identificar la direccion de todas las fuerzas, incluyendo la direccion de la friccion",
+  diagram: "friction_fbd"
+},
+{
+  id: "5.29",
+  title: "Ejercicio 5.29 — Caja con fricción",
+  problem: "Una caja de 11.2 kg es empujada sobre un piso horizontal con μk = 0.20. a) ¿Que fuerza horizontal la mantiene en movimiento a velocidad constante? b) Si se elimina esa fuerza cuando v = 3.50 m/s, ¿que distancia recorre hasta detenerse?",
+  tips: "Velocidad constante significa a = 0, asi que la fuerza aplicada es igual a la friccion. Despues de eliminar la fuerza, solo la friccion desacelera: a = -μk·g.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "a) Fuerza a velocidad constante", body: "n = mg = 11.2 × 9.80 = 109.76 N\nf_k = μk·n = 0.20 × 109.76 = 22 N\nA velocidad constante: F = f_k", formula: "F = 22 N"},
+    {title: "b) Distancia de frenado", body: "a = -μk·g = -0.20 × 9.80 = -1.96 m/s²\n0 = (3.50)² + 2(-1.96)(Δx)\nΔx = 12.25/3.92", formula: "Δx = 3.1 m"}
+  ],
+  answer: "a) F = 22 N\nb) Δx = 3.1 m",
+  diagram: "box_friction"
+},
+{
+  id: "5.31",
+  title: "Ejercicio 5.31 — Bloque empujado contra pared vertical",
+  problem: "Un bloque de 120 N es empujado hacia arriba en una pared vertical a velocidad constante por una fuerza F a 53.1° de la vertical. μk = 0.15. a) Encuentre F. b) Encuentre la fuerza normal.",
+  tips: "La fuerza empuja contra la pared creando fuerza normal, y su componente vertical debe vencer TANTO el peso como la friccion. La friccion va hacia ABAJO porque el bloque sube.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "Ecuacion horizontal", body: "n = F·cos(53.1°)"},
+    {title: "Ecuacion vertical (velocidad constante, a = 0)", body: "F·sin(53.1°) - w - μk·n = 0\nF·sin(53.1°) - 120 - 0.15·F·cos(53.1°) = 0\nF(sin53.1° - 0.15·cos53.1°) = 120\nF(0.7997 - 0.0901) = 120"},
+    {title: "a) Fuerza F", body: "F = 120/0.7096", formula: "F = 169 N"},
+    {title: "b) Fuerza normal", body: "n = 169 × cos(53.1°)", formula: "n = 101 N"}
+  ],
+  answer: "a) F = 169 N\nb) n = 101 N",
+  diagram: "block_wall"
+},
+{
+  id: "5.33",
+  title: "Ejercicio 5.33 — Dos cajas bajando rampa",
+  problem: "Dos cajas (32.0 kg arriba, 48.0 kg abajo) deslizan por una rampa (altura 2.50 m, base 4.75 m) a velocidad constante. μk = 0.444 entre la caja inferior y la rampa. a) Encuentre la fuerza T aplicada por la persona. b) Encuentre la friccion sobre la caja superior.",
+  tips: "Trata ambas cajas como un solo sistema para la parte a). Para la parte b), la caja superior no se desliza respecto a la inferior — la friccion estatica la sostiene. La persona empuja pendiente arriba para mantener velocidad constante.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "Angulo de la rampa", body: "φ = arctan(2.50/4.75)", formula: "φ = 27.76°"},
+    {title: "a) Fuerza de la persona (sistema completo)", body: "m_total = 80.0 kg\nT = m_total·g·(sinφ - μk·cosφ) = 784 × (0.4658 - 0.444 × 0.8849) = 784 × 0.0729", formula: "T = 57.1 N"},
+    {title: "b) Friccion sobre la caja superior", body: "La caja superior no desliza respecto a la inferior → friccion estatica:\nf_s = m_top·g·sin(φ) = 32.0 × 9.80 × 0.4658", formula: "f_s = 146 N"}
+  ],
+  answer: "a) T = 57.1 N\nb) f_s = 146 N",
+  diagram: "two_boxes_ramp"
+},
+{
+  id: "5.34",
+  title: "Ejercicio 5.34 — Distancia de frenado",
+  problem: "Un auto a 29.1 m/s frena en pavimento seco (μk = 0.80). a) Encuentre la distancia de frenado. b) Sobre hielo (μk = 0.25), ¿que rapidez maxima se detiene en la misma distancia?",
+  tips: "La distancia de frenado depende de μk: menos friccion = mayor distancia. Para la misma distancia con menor μk, necesitas menor velocidad.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "a) Distancia en pavimento seco", body: "a = -μk·g = -0.80 × 9.80 = -7.84 m/s²\n0 = (29.1)² + 2(-7.84)(Δx)\nΔx = 846.81/15.68", formula: "Δx = 54.0 m"},
+    {title: "b) Rapidez maxima sobre hielo", body: "v = √(2 × 0.25 × 9.80 × 54.0) = √264.6", formula: "v = 16.3 m/s"}
+  ],
+  answer: "a) 54.0 m\nb) 16.3 m/s",
+  diagram: "braking"
+},
+{
+  id: "5.35",
+  title: "Ejercicio 5.35 — Comparacion de distancias de frenado",
+  problem: "Compare la distancia de frenado sobre Teflon (μk = 0.04) vs. laton (μk = 0.44) para la misma rapidez inicial.",
+  tips: "La distancia es INVERSAMENTE proporcional a μk. Menor friccion = mucha mayor distancia de frenado. La razon de distancias = razon inversa de los valores de μk.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "Relacion de distancias", body: "s = v₀²/(2μk·g), entonces s es proporcional a 1/μk"},
+    {title: "Razon", body: "s_Teflon/s_laton = μk_laton/μk_Teflon = 0.44/0.04", formula: "Razon = 11"}
+  ],
+  answer: "La distancia en Teflon es 11 veces mayor que en laton",
+  diagram: "friction_compare"
+},
+{
+  id: "5.37",
+  title: "Ejercicio 5.37 — Dos cajas arrastradas con fricción",
+  problem: "Dos cajas A (mA) y B (mB) son jaladas a velocidad constante por una fuerza F. Ambas tienen friccion con coeficiente μk. A esta detras de B, conectadas por una cuerda con tension T. a) Encuentre F. b) Encuentre T.",
+  tips: "A velocidad constante, fuerza neta = 0 sobre cada caja. La tension de A solo necesita vencer la friccion de A. La fuerza F debe vencer AMBAS fricciones.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "Caja A: equilibrio", body: "n_A = mA·g\nT = μk·mA·g (la tension equilibra la friccion de A)", formula: "T = μk·mA·g"},
+    {title: "Caja B: equilibrio", body: "n_B = mB·g\nF - T - μk·mB·g = 0\nF = T + μk·mB·g = μk·mA·g + μk·mB·g", formula: "F = μk(mA + mB)g"}
+  ],
+  answer: "a) F = μk(mA + mB)g\nb) T = μk·mA·g",
+  diagram: "two_boxes_pull"
+},
+{
+  id: "5.38",
+  title: "Ejercicio 5.38 — Coeficiente de friccion de rodamiento",
+  problem: "Una llanta con rapidez inicial v₀ se desacelera hasta v₀/2 en una distancia L. Encuentre μr.",
+  tips: "Usa cinematica para encontrar la aceleracion simbolicamente, luego relaciona con la friccion via la segunda ley de Newton.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "Aceleracion (cinematica)", body: "(v₀/2)² - v₀² = 2aL\nv₀²/4 - v₀² = 2aL\na = -3v₀²/(8L)"},
+    {title: "Relacion con friccion de rodamiento", body: "a = -μr·g → μr = 3v₀²/(8gL)", formula: "μr = 3v₀²/(8gL)"}
+  ],
+  answer: "μr = 3v₀²/(8gL)",
+  diagram: "rolling_friction"
+},
+{
+  id: "5.39",
+  title: "Ejercicio 5.39 — Caja tirada con cuerda en angulo",
+  problem: "Una caja de 90.0 kg es jalada a 25° sobre la horizontal a velocidad constante. μk = 0.35. a) Derive la expresion para F. b) Calcule F.",
+  tips: "Jalar hacia ARRIBA reduce la fuerza normal (y por tanto la friccion). ¡Por eso jalar en angulo requiere MENOS fuerza que jalar horizontalmente!",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "a) Derivacion", body: "n = mg - F·sin(25°)\nF·cos(25°) = μk·n = μk(mg - F·sin25°)\nF·cos25° + μk·F·sin25° = μk·mg"},
+    {title: "a) Expresion para F", body: "F(cos25° + μk·sin25°) = μk·mg", formula: "F = μk·mg/(cosθ + μk·sinθ)"},
+    {title: "b) Calcular F", body: "F = 0.35 × 882/(0.9063 + 0.35 × 0.4226) = 308.7/1.0542", formula: "F = 293 N"}
+  ],
+  answer: "a) F = μk·mg/(cosθ + μk·sinθ)\nb) F = 293 N",
+  diagram: "box_angle_pull"
+},
+{
+  id: "5.45",
+  title: "Ejercicio 5.45 — Tres bloques con fricción",
+  problem: "Bloque A (25.0 N, horizontal), Bloque B (25.0 N, en rampa de 36.9°), Bloque C (colgante). Todos se mueven a velocidad constante. μk = 0.35. a) Dibuje los diagramas de cuerpo libre. b) Encuentre T1 (entre A y B). c) Encuentre w_C.",
+  tips: "Bloque A en horizontal: T1 = friccion = μk·wA. Bloque B en rampa: T2 = T1 + componente de peso + friccion. Bloque C: wC = T2.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "b) Tension T1 (bloque A, horizontal)", body: "T1 = μk·wA = 0.35 × 25.0", formula: "T1 = 8.75 N"},
+    {title: "c) Peso del bloque C", body: "wC = T1 + wB·sin(36.9°) + μk·wB·cos(36.9°)\nwC = 8.75 + 15.01 + 7.00", formula: "wC = 30.8 N"}
+  ],
+  answer: "b) T1 = 8.75 N\nc) wC = 30.8 N",
+  diagram: "three_blocks_friction"
+},
+{
+  id: "5.47",
+  title: "Ejercicio 5.47 — Rapidez terminal padre-hija",
+  problem: "Padre (80 kg, velocidad terminal 42 m/s) e hija (45 kg, D = 0.25 kg/m). a) Encuentre D para el padre. b) Encuentre la velocidad terminal de la hija.",
+  tips: "Velocidad terminal: la fuerza de arrastre es igual al peso. D = mg/vt². Misma velocidad terminal si la razon mg/D es la misma.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "a) D del padre", body: "D = mg/vt² = 80×9.80/(42)² = 784/1764", formula: "D = 0.44 kg/m"},
+    {title: "b) Velocidad terminal de la hija", body: "vt = √(mg/D) = √(45×9.80/0.25) = √(441/0.25) = √1764", formula: "vt = 42 m/s"}
+  ],
+  answer: "a) D = 0.44 kg/m\nb) vt = 42 m/s",
+  diagram: "terminal_velocity"
+},
+{
+  id: "5.48",
+  title: "Ejercicio 5.48 — Aceleración a mitad de rapidez terminal",
+  problem: "Un objeto cae con arrastre f = Dv². En v = vt/2, encuentre la aceleracion: a) subiendo, b) bajando.",
+  tips: "A la mitad de la velocidad terminal, el arrastre es ¼ del peso (porque f es proporcional a v²). Cuando sube, el arrastre se suma al peso (ambos abajo). Cuando baja, el arrastre parcialmente cancela el peso.",
+  videos: [
+    {title: "Ecuaciones y gráficas del MRUA", url: "https://www.youtube.com/watch?v=rKF6ZmOeg1E"}
+  ],
+  steps: [
+    {title: "Arrastre a vt/2", body: "f = D(vt/2)² = ¼Dvt² = ¼mg = w/4"},
+    {title: "a) Subiendo (arrastre y peso hacia abajo)", body: "ΣF = -w - w/4 = -5w/4\na = -5g/4", formula: "a = -12.3 m/s² (hacia abajo)"},
+    {title: "b) Bajando (arrastre arriba, peso abajo)", body: "ΣF = -w + w/4 = -3w/4\na = -3g/4", formula: "a = -7.35 m/s² (hacia abajo)"}
+  ],
+  answer: "a) 12.3 m/s² hacia abajo\nb) 7.35 m/s² hacia abajo",
+  diagram: "drag_half_vt"
+},
+{
+  id: "5.50",
+  title: "Ejercicio 5.50 — Curva en carretera plana",
+  problem: "Una curva de R = 220 m. Con v = 25.0 m/s: a) Encuentre μs minimo. b) Si μs se reduce a 1/3, encuentre la rapidez maxima.",
+  tips: "La fuerza centripeta viene de la friccion estatica. La velocidad es proporcional a √μs. Un tercio de la friccion significa velocidad dividida entre √3.",
+  videos: [
+    {title: "Aceleración instantánea y derivadas", url: "https://www.youtube.com/watch?v=6g61XJ-lp5E"}
+  ],
+  steps: [
+    {title: "a) Coeficiente minimo", body: "μs = v²/(gR) = 625/(9.80 × 220) = 625/2156", formula: "μs = 0.290"},
+    {title: "b) Rapidez maxima con μs/3", body: "v2 = v1/√3 = 25.0/1.732", formula: "v = 14.4 m/s"}
+  ],
+  answer: "a) μs = 0.290\nb) v = 14.4 m/s",
+  diagram: "flat_curve"
+},
+{
+  id: "5.51",
+  title: "Ejercicio 5.51 — Curva peraltada",
+  problem: "Una curva de R = 50.0 m esta peraltada a β = 25.0°. Encuentre la rapidez ideal (sin necesidad de friccion).",
+  tips: "En una curva peraltada, la componente horizontal de la fuerza normal proporciona la aceleracion centripeta. ¡No se necesita friccion a la rapidez ideal!",
+  videos: [
+    {title: "Aceleración instantánea y derivadas", url: "https://www.youtube.com/watch?v=6g61XJ-lp5E"}
+  ],
+  steps: [
+    {title: "Rapidez ideal", body: "tan(β) = v²/(gR) → v = √(gR·tan(β))\nv = √(9.80 × 50.0 × tan(25°)) = √(490 × 0.4663) = √228.5", formula: "v = 15.1 m/s (≈ 54.4 km/h)"}
+  ],
+  answer: "v = 15.1 m/s (≈ 54.4 km/h)",
+  diagram: "banked_curve"
+},
+{
+  id: "5.52",
+  title: "Ejercicio 5.52 — Silla volante (carrusel)",
+  problem: "Una silla en cadenas de L = 5.00 m, angulo θ = 30° desde la vertical, distancia del pivote d = 3.00 m. R = 3.00 + 5.00·sin(30°) = 5.50 m. a) Encuentre a_rad. b) Encuentre v. c) Encuentre el periodo T. d) Encuentre la fuerza sobre la silla en terminos del peso.",
+  tips: "¡Es un pendulo conico! La componente vertical de la cadena sostiene el peso, la componente horizontal proporciona la fuerza centripeta. R incluye la distancia del pivote y la proyeccion horizontal de la cadena.",
+  videos: [
+    {title: "Aceleración instantánea y derivadas", url: "https://www.youtube.com/watch?v=6g61XJ-lp5E"}
+  ],
+  steps: [
+    {title: "a) Aceleracion radial", body: "a_rad = g·tan(30°) = 9.80 × 0.5774", formula: "a_rad = 5.66 m/s²"},
+    {title: "b) Velocidad", body: "v = √(a_rad × R) = √(5.66 × 5.50) = √31.12", formula: "v = 5.58 m/s"},
+    {title: "c) Periodo", body: "T = 2πR/v = 2π(5.50)/5.58", formula: "T = 6.19 s"},
+    {title: "d) Fuerza sobre la silla", body: "F = mg/cos(30°) = w/0.8660", formula: "F = 1.155w ≈ 1.16w"}
+  ],
+  answer: "a) 5.66 m/s²\nb) 5.58 m/s\nc) 6.19 s\nd) F = 1.16w",
+  diagram: "chair_swing"
+},
+{
+  id: "5.53",
+  title: "Ejercicio 5.53 — Tirante de soporte en rotación",
+  problem: "Peso de la silla 255 N + persona 825 N = 1080 N total. R = 7.50 m, 32.0 rev/min. Encuentre la tension y el angulo con la vertical.",
+  tips: "La tension debe proporcionar TANTO la fuerza centripeta (horizontal) como sostener el peso (vertical). Alta tasa de rotacion → alta aceleracion centripeta → la cadena esta casi horizontal.",
+  videos: [
+    {title: "Aceleración instantánea y derivadas", url: "https://www.youtube.com/watch?v=6g61XJ-lp5E"}
+  ],
+  steps: [
+    {title: "Datos y velocidad", body: "m = 1080/9.80 = 110.2 kg\nT_periodo = 1/(32.0/60) = 1.875 s\nv = 2πR/T = 2π(7.50)/1.875", formula: "v = 25.13 m/s"},
+    {title: "Aceleracion radial", body: "a_rad = v²/R = (25.13)²/7.50", formula: "a_rad = 84.2 m/s²"},
+    {title: "Componentes de la tension", body: "Tx = m·a_rad = 110.2 × 84.2 = 9280 N\nTy = 1080 N"},
+    {title: "Magnitud de la tension", body: "T = √(9280² + 1080²) = √(86.12M + 1.166M)", formula: "T = 9340 N = 9.34 kN"},
+    {title: "Angulo con la vertical", body: "θ = arctan(Tx/Ty) = arctan(84.2/9.80) = arctan(8.59)", formula: "θ = 83.4°"}
+  ],
+  answer: "T = 9.34 kN, θ = 83.4°",
+  diagram: "rotating_seat"
+}
 ]
 };
 
