@@ -1500,6 +1500,160 @@ const exercises = {
   ],
   answer: "a) d = v0²/(2μkg).\nb) i) ½ de d; ii) 4d; iii) 2d.",
   diagram: "skidding_car"
+},
+{
+  id: "6.43",
+  title: "Ejercicio 6.43 — Energía de una lámpara y rapidez equivalente",
+  problem: "Un foco de 100 W permanece encendido durante 1.0 h. ¿A qué rapidez tendría que moverse una persona de 70 kg para tener una energía cinética igual a la energía consumida por el foco?",
+  tips: "La energía consumida es E = Pt. Iguala esa energía a ½mv² y convierte horas a segundos antes de calcular.",
+  videos: [suggestedVideos.power, suggestedVideos.kinetic],
+  steps: [
+    {title: "Energía eléctrica consumida", body: "Δt = 1.0 h = 3600 s. E = PΔt = (100 W)(3600 s).", formula: "E = 3.60 × 10⁵ J"},
+    {title: "Igualar a la energía cinética", body: "½mv² = E; v = √(2E/m) = √[2(3.60 × 10⁵ J)/(70 kg)].", formula: "v = 101 m/s ≈ 100 m/s"},
+    {title: "Interpretar el resultado", body: "La rapidez equivale a más de 360 km/h y es unas diez veces la rapidez de un corredor de élite; la igualdad compara energías, no una conversión eficiente de energía eléctrica en movimiento."}
+  ],
+  answer: "v ≈ 1.01 × 10² m/s (≈ 364 km/h).",
+  diagram: "energy_power"
+},
+{
+  id: "6.44",
+  title: "Ejercicio 6.44 — Consumo de energía y colectores solares",
+  problem: "La energía consumida por la sociedad humana es aproximadamente 1.0 × 10¹⁹ J/año. a) Calcule la potencia media en watts. b) Calcule la potencia per cápita si la población es 6.5 × 10⁹ personas. c) Si toda esa energía se obtuviera del Sol, ¿qué área de colectores se necesitaría con eficiencia de 40% y una potencia solar media incidente de 1.0 × 10³ W/m²?",
+  tips: "Convierte el año a segundos y divide la potencia total por la población indicada. El solucionario recuperado usa 3.0 × 10⁸ en su cálculo per cápita, aunque el enunciado recuperado indica 6.5 × 10⁹; aquí se muestran ambos resultados para hacer visible esa discrepancia.",
+  videos: [suggestedVideos.power, suggestedVideos.energyProblem],
+  steps: [
+    {title: "a) Potencia media total", body: "1 año ≈ 3.156 × 10⁷ s. P = E/Δt = (1.0 × 10¹⁹ J)/(3.156 × 10⁷ s).", formula: "P ≈ 3.17 × 10¹¹ W"},
+    {title: "b) Potencia por persona", body: "Con la población indicada, Ppersona = (3.17 × 10¹¹ W)/(6.5 × 10⁹ personas) ≈ 48.7 W/persona. El valor 3.0 × 10⁸ que aparece en el cálculo recuperado del solucionario daría ≈1.06 × 10³ W/persona; no coincide con la población del enunciado."},
+    {title: "c) Área solar efectiva", body: "La potencia útil por área es ηI = (0.40)(1.0 × 10³ W/m²) = 400 W/m². A = P/(ηI) = (3.17 × 10¹¹ W)/(400 W/m²) = 7.92 × 10⁸ m².", formula: "A ≈ 792 km² ≈ 8.0 × 10² km²"}
+  ],
+  answer: "a) 3.17 × 10¹¹ W.\nb) 48.7 W/persona con 6.5 × 10⁹ personas; 1.06 × 10³ W/persona si se usa 3.0 × 10⁸, como en el cálculo recuperado del solucionario.\nc) ≈792 km² (≈800 km²).",
+  diagram: "solar_collectors"
+},
+{
+  id: "6.45",
+  title: "Ejercicio 6.45 — Potencia media de una magnetoestrella",
+  problem: "Una magnetoestrella liberó durante 0.20 s tanta energía como el Sol libera durante 250 000 años. Si P es la potencia media de salida del Sol, ¿cuál fue la potencia media de la magnetoestrella en términos de P?",
+  tips: "Iguala las energías PΔt de ambas fuentes. Al expresar ambos tiempos en las mismas unidades, el cociente de potencias es el cociente inverso de duraciones.",
+  videos: [suggestedVideos.power, suggestedVideos.energyProblem],
+  steps: [
+    {title: "Igualar las energías liberadas", body: "Pmag(0.20 s) = P(250 000 años)."},
+    {title: "Convertir el tiempo del Sol", body: "250 000 años × 3.156 × 10⁷ s/año = 7.89 × 10¹² s."},
+    {title: "Despejar la potencia media", body: "Pmag/P = (7.89 × 10¹² s)/(0.20 s).", formula: "Pmag ≈ 3.9 × 10¹³ P"}
+  ],
+  answer: "Pmag ≈ 3.9 × 10¹³ P.",
+  diagram: "magnetar_power"
+},
+{
+  id: "6.46",
+  title: "Ejercicio 6.46 — Potencia térmica por fricción",
+  problem: "Una piedra de 20.0 kg se desliza sobre una superficie horizontal áspera a 8.0 m/s y se detiene por fricción. El coeficiente de fricción cinética es 0.200. ¿Cuál es la potencia térmica media producida durante la detención?",
+  tips: "Con fricción constante, la rapidez disminuye uniformemente. La potencia térmica media es fk por la rapidez media, o bien la energía cinética inicial dividida por el tiempo de frenado.",
+  videos: [suggestedVideos.power, suggestedVideos.work],
+  steps: [
+    {title: "Fuerza de fricción", body: "fk = μkmg = (0.200)(20.0 kg)(9.80 m/s²) = 39.2 N."},
+    {title: "Rapidez media al detenerse", body: "vmed = (v0 + vf)/2 = (8.00 + 0)/2 = 4.00 m/s."},
+    {title: "Potencia térmica media", body: "Pmed = fk vmed = (39.2 N)(4.00 m/s).", formula: "Pmed = 157 W"}
+  ],
+  answer: "157 W de potencia térmica media.",
+  diagram: "friction_heat"
+},
+{
+  id: "6.47",
+  title: "Ejercicio 6.47 — Potencia por ciclista en una bicicleta tándem",
+  problem: "Dos personas en una bicicleta tándem vencen una fuerza de 165 N para mantener una rapidez de 9.00 m/s. Suponga que ambas contribuyen por igual. Calcule la potencia por ciclista en watts y en caballos de fuerza.",
+  tips: "A rapidez constante, la potencia mecánica total es P = Fv. Divide por dos solo después de hallar la potencia combinada.",
+  videos: [suggestedVideos.power],
+  steps: [
+    {title: "Potencia total", body: "Ptotal = Fv = (165 N)(9.00 m/s) = 1485 W."},
+    {title: "Potencia de cada ciclista", body: "Ppersona = 1485/2 = 742.5 W."},
+    {title: "Convertir a hp", body: "1 hp = 746 W; hp = 742.5/746.", formula: "Ppersona ≈ 743 W ≈ 0.995 hp"}
+  ],
+  answer: "Cada ciclista desarrolla aproximadamente 743 W, o 0.995 hp.",
+  diagram: "tandem_bike"
+},
+{
+  id: "6.48",
+  title: "Ejercicio 6.48 — Potencia del motor usada para ascender",
+  problem: "Un avión monomotor de 700 kg, con motor de 75 kW, gana altitud a 2.5 m/s mientras desarrolla su potencia máxima. ¿Qué fracción de la potencia del motor se invierte en el ascenso? El resto vence la resistencia del aire o se pierde por ineficiencias.",
+  tips: "La potencia necesaria para aumentar la energía potencial gravitatoria a razón de vy es P = mgvy. Divide por la potencia del motor para hallar la fracción.",
+  videos: [suggestedVideos.power, suggestedVideos.potential],
+  steps: [
+    {title: "Potencia de ascenso", body: "Pasc = mgvy = (700 kg)(9.80 m/s²)(2.5 m/s) = 17 150 W = 17.15 kW."},
+    {title: "Fracción de la potencia del motor", body: "f = Pasc/Pmotor = 17.15 kW/75 kW = 0.2287.", formula: "f ≈ 0.229 = 22.9%"}
+  ],
+  answer: "≈22.9% de la potencia del motor se usa para ganar altura.",
+  diagram: "airplane_climb"
+},
+{
+  id: "6.49",
+  title: "Ejercicio 6.49 — Trabajo y potencia al cargar cajas",
+  problem: "Una persona levanta cajas de 30 kg desde el suelo hasta un camión, una altura vertical de 0.90 m. ¿Cuántas cajas por minuto tendría que levantar para que la potencia media dedicada al levantamiento fuera a) 0.50 hp y b) 100 W?",
+  tips: "Calcula primero el trabajo por caja, mgh. Luego multiplica la tasa de trabajo por caja entre la potencia deseada; conserva las unidades de cajas por segundo hasta convertir a cajas por minuto.",
+  videos: [suggestedVideos.power, suggestedVideos.work],
+  steps: [
+    {title: "Trabajo para una caja", body: "Wcaja = mgh = (30 kg)(9.80 m/s²)(0.90 m) = 264.6 J."},
+    {title: "a) Potencia de 0.50 hp", body: "P = (0.50)(746 W) = 373 W. Tasa = P/Wcaja = 373/264.6 = 1.41 cajas/s; por minuto: (1.41)(60).", formula: "≈84.6 cajas/min (aprox. 85)"},
+    {title: "b) Potencia de 100 W", body: "Tasa = 100/264.6 = 0.378 cajas/s; por minuto: (0.378)(60).", formula: "≈22.7 cajas/min (aprox. 23)"}
+  ],
+  answer: "a) 84.6 cajas/min (aprox. 85).\nb) 22.7 cajas/min (aprox. 23).",
+  diagram: "lifting_boxes"
+},
+{
+  id: "6.73",
+  title: "Ejercicio 6.73 — Ciclista que sube un puente",
+  problem: "Un hombre y su bicicleta tienen una masa combinada de 80.0 kg. Al pie de un puente se mueven a 5.00 m/s; la cima está 5.20 m más arriba y allí la rapidez es 1.50 m/s. Desprecie fricción e ineficiencias. a) ¿Qué trabajo total se efectúa sobre el sistema? b) ¿Cuánto trabajo realiza el hombre al pedalear?",
+  tips: "El trabajo total es ΔK. Para separar el trabajo de pedaleo, resta la contribución negativa de la gravedad: Wtotal = Whombre + Wg.",
+  videos: [suggestedVideos.mechanical, suggestedVideos.potential],
+  steps: [
+    {title: "a) Trabajo total", body: "K1 = ½(80.0)(5.00²) = 1000 J; K2 = ½(80.0)(1.50²) = 90.0 J. Wtotal = K2 − K1.", formula: "Wtotal = −910 J"},
+    {title: "Trabajo de la gravedad", body: "Wg = −mgh = −(80.0)(9.80)(5.20) = −4077 J."},
+    {title: "b) Trabajo del ciclista", body: "Wtotal = Whombre + Wg; Whombre = −910 − (−4077).", formula: "Whombre ≈ +3.17 × 10³ J"}
+  ],
+  answer: "a) −910 J.\nb) El hombre realiza aproximadamente +3.17 kJ de trabajo.",
+  diagram: "bridge_cyclist"
+},
+{
+  id: "6.76",
+  title: "Ejercicio 6.76 — Esfera lanzada por un resorte",
+  problem: "Un rifle de resorte tiene k = 400 N/m. El resorte se comprime 6.00 cm y lanza horizontalmente una esfera de 0.0300 kg. a) Halle la rapidez de salida sin fricción. b) Halle la rapidez si actúa una fricción constante de 6.00 N a lo largo de 6.00 cm. c) En el caso b), ¿dónde alcanza la esfera su rapidez máxima y cuánto vale?",
+  tips: "El resorte entrega menos energía cuando la fricción realiza trabajo negativo. La rapidez es máxima cuando la fuerza neta momentáneamente se anula: kx = f, donde x es la compresión restante.",
+  videos: [suggestedVideos.mechanical, suggestedVideos.kinetic],
+  steps: [
+    {title: "a) Sin fricción", body: "Ue = ½kx0² = ½(400)(0.0600²) = 0.720 J = ½mv².", formula: "v = 6.93 m/s"},
+    {title: "b) Con fricción", body: "Wf = −fs = −(6.00)(0.0600) = −0.360 J. Kf = 0.720 − 0.360 = 0.360 J; v = √(2Kf/m).", formula: "v = 4.90 m/s"},
+    {title: "c) Posición de rapidez máxima", body: "La fuerza neta es cero cuando kx = f: x = 6.00/400 = 0.0150 m de compresión restante. La esfera avanzó 0.0600 − 0.0150 = 0.0450 m."},
+    {title: "Calcular la rapidez máxima", body: "El trabajo del resorte hasta esa posición es ½k(x0² − x²) = 0.675 J; la fricción disipa f(x0 − x) = 0.270 J. K = 0.405 J.", formula: "vmax = √(2 × 0.405/0.0300) = 5.20 m/s"}
+  ],
+  answer: "a) 6.93 m/s.\nb) 4.90 m/s.\nc) Máxima tras avanzar 4.50 cm, cuando queda 1.50 cm de compresión; vmax = 5.20 m/s.",
+  diagram: "spring_launcher"
+},
+{
+  id: "6.81",
+  title: "Ejercicio 6.81 — Bloque y resorte en una superficie sin fricción",
+  problem: "Un bloque de 5.00 kg se mueve a 6.00 m/s hacia un resorte horizontal sin masa de constante k = 500 N/m, unido a una pared. a) ¿Cuál es la compresión máxima? b) Si no debe superar 0.150 m, ¿cuál es la rapidez inicial máxima?",
+  tips: "En la compresión máxima, el bloque se detiene momentáneamente. La energía cinética inicial se convierte en energía potencial elástica.",
+  videos: [suggestedVideos.mechanical, suggestedVideos.energyProblem],
+  steps: [
+    {title: "a) Compresión máxima", body: "½mv0² = ½kX². Despeja X = v0√(m/k) = (6.00)√(5.00/500).", formula: "X = 0.600 m"},
+    {title: "b) Rapidez máxima permitida", body: "v0 = X√(k/m) = (0.150)√(500/5.00).", formula: "v0,max = 1.50 m/s"}
+  ],
+  answer: "a) 0.600 m.\nb) 1.50 m/s.",
+  diagram: "spring_wall_block"
+},
+{
+  id: "6.82",
+  title: "Ejercicio 6.82 — Dos bloques unidos por una cuerda con fricción",
+  problem: "Un bloque de 8.00 kg está sobre una mesa y unido, mediante cuerda ligera y polea sin fricción, a un bloque colgante de 6.00 kg. μk = 0.250 entre el bloque de la mesa y la superficie. Parten del reposo. Use energía para hallar la rapidez del bloque de 6.00 kg tras descender 1.50 m.",
+  tips: "Trata ambos bloques como un sistema: comparten la rapidez. La gravedad sobre el bloque colgante entrega energía; la fricción sobre el bloque de la mesa la disipa.",
+  videos: [suggestedVideos.mechanical, suggestedVideos.work],
+  steps: [
+    {title: "Trabajo de la gravedad", body: "Wg = m2gh = (6.00)(9.80)(1.50) = 88.2 J."},
+    {title: "Trabajo de fricción", body: "fk = μkm1g = (0.250)(8.00)(9.80) = 19.6 N. Wf = −fkh = −29.4 J."},
+    {title: "Energía cinética de ambos bloques", body: "Wnet = Wg + Wf = 58.8 J = ½(m1 + m2)v²."},
+    {title: "Despejar la rapidez", body: "v = √[2(58.8 J)/(8.00 kg + 6.00 kg)].", formula: "v = 2.90 m/s"}
+  ],
+  answer: "2.90 m/s hacia abajo para el bloque de 6.00 kg.",
+  diagram: "pulley_energy"
 }
 ]
 };
@@ -2931,6 +3085,83 @@ function svgSkiddingCar() { return `<svg viewBox="0 0 400 190" xmlns="http://www
   <line x1="300" y1="125" x2="205" y2="125" stroke="#fbbf24" stroke-width="3"/><polygon points="205,125 218,118 218,132" fill="#fbbf24"/><text x="220" y="145" fill="#fbbf24" font-size="10">fk = μkmg</text>
 </svg>`; }
 
+function svgEnergyPower() { return `<svg viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="150" x2="370" y2="150" stroke="#64748b" stroke-width="2"/>
+  <path d="M70 45 L110 45 L120 85 L100 105 L80 85 Z" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/><rect x="87" y="105" width="26" height="8" fill="#94a3b8"/>
+  <text x="63" y="135" fill="#fbbf24" font-size="10">P Δt = E</text>
+  <circle cx="265" cy="75" r="13" fill="#38bdf8"/><path d="M265 90 L265 130 M265 100 L245 115 M265 100 L285 115 M265 130 L250 150 M265 130 L280 150" stroke="#38bdf8" stroke-width="4" fill="none"/>
+  <line x1="135" y1="70" x2="215" y2="70" stroke="#34d399" stroke-width="3"/><polygon points="215,70 202,63 202,77" fill="#34d399"/><text x="151" y="60" fill="#34d399" font-size="10">energía equivalente</text>
+  <text x="235" y="175" fill="#94a3b8" font-size="10">K = ½mv²</text>
+</svg>`; }
+
+function svgSolarCollectors() { return `<svg viewBox="0 0 400 210" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="85" cy="58" r="28" fill="#fbbf24"/><g stroke="#fbbf24" stroke-width="3"><line x1="85" y1="15" x2="85" y2="4"/><line x1="85" y1="112" x2="85" y2="101"/><line x1="42" y1="58" x2="30" y2="58"/><line x1="140" y1="58" x2="128" y2="58"/></g>
+  <line x1="120" y1="70" x2="175" y2="110" stroke="#fbbf24" stroke-width="2"/><line x1="120" y1="80" x2="175" y2="125" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="180,115 335,85 350,145 195,175" fill="#1e3a5f" stroke="#38bdf8" stroke-width="2"/><path d="M215 109 L229 166 M255 101 L269 158 M295 93 L309 150 M190 135 L341 105 M193 154 L346 124" stroke="#38bdf8" stroke-width="1"/>
+  <text x="200" y="195" fill="#34d399" font-size="11">η = 40% · I = 1000 W/m² · A = ?</text>
+</svg>`; }
+
+function svgMagnetarPower() { return `<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="90" cy="95" r="33" fill="#818cf8"/><path d="M62 70 Q90 45 118 70 M62 120 Q90 145 118 120" stroke="#38bdf8" stroke-width="3" fill="none"/><path d="M45 95 L15 78 M45 95 L15 112 M135 95 L165 78 M135 95 L165 112" stroke="#fbbf24" stroke-width="2"/>
+  <text x="45" y="155" fill="#94a3b8" font-size="10">magnetoestrella</text>
+  <line x1="180" y1="95" x2="245" y2="95" stroke="#34d399" stroke-width="3"/><polygon points="245,95 232,88 232,102" fill="#34d399"/>
+  <circle cx="310" cy="95" r="27" fill="#fbbf24"/><path d="M300 95 Q310 78 320 95 Q310 112 300 95" fill="#fff7a8"/><text x="280" y="145" fill="#94a3b8" font-size="10">energía solar equivalente</text>
+</svg>`; }
+
+function svgFrictionHeat() { return `<svg viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg">
+  <line x1="25" y1="145" x2="375" y2="145" stroke="#64748b" stroke-width="3"/><ellipse cx="105" cy="125" rx="45" ry="27" fill="#64748b"/><text x="85" y="129" fill="#e2e8f0" font-size="11">20 kg</text>
+  <line x1="150" y1="100" x2="255" y2="100" stroke="#38bdf8" stroke-width="3"/><polygon points="255,100 242,93 242,107" fill="#38bdf8"/><text x="188" y="90" fill="#38bdf8" font-size="10">v₀ = 8.0 m/s</text>
+  <path d="M285 65 Q275 82 285 95 Q295 82 285 65 M315 75 Q305 92 315 105 Q325 92 315 75 M345 65 Q335 82 345 95 Q355 82 345 65" fill="#f87171"/>
+  <text x="265" y="130" fill="#f87171" font-size="10">energia → calor</text><text x="40" y="170" fill="#fbbf24" font-size="10">fk = μkmg</text>
+</svg>`; }
+
+function svgTandemBike() { return `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="95" cy="155" r="35" fill="none" stroke="#94a3b8" stroke-width="3"/><circle cx="300" cy="155" r="35" fill="none" stroke="#94a3b8" stroke-width="3"/>
+  <path d="M95 155 L155 95 L205 155 L95 155 L165 155 L225 95 L300 155 L205 155" fill="none" stroke="#38bdf8" stroke-width="3"/><line x1="155" y1="95" x2="225" y2="95" stroke="#38bdf8" stroke-width="4"/>
+  <circle cx="155" cy="67" r="12" fill="#fbbf24"/><circle cx="225" cy="67" r="12" fill="#fbbf24"/><path d="M155 80 L155 112 L180 130 M225 80 L225 110 L205 130" stroke="#34d399" stroke-width="5" fill="none"/>
+  <line x1="175" y1="35" x2="280" y2="35" stroke="#f87171" stroke-width="3"/><polygon points="175,35 188,28 188,42" fill="#f87171"/><text x="200" y="25" fill="#f87171" font-size="11">resistencia 165 N</text>
+  <text x="130" y="205" fill="#94a3b8" font-size="10">v = 9.00 m/s · P compartida</text>
+</svg>`; }
+
+function svgAirplaneClimb() { return `<svg viewBox="0 0 400 210" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70 125 L170 115 L220 70 L240 75 L215 118 L320 105 L340 115 L225 135 L190 165 L175 162 L190 132 L85 145 Z" fill="#38bdf8"/>
+  <line x1="105" y1="165" x2="105" y2="80" stroke="#34d399" stroke-width="3"/><polygon points="105,80 98,94 112,94" fill="#34d399"/><text x="115" y="100" fill="#34d399" font-size="10">vy = 2.5 m/s</text>
+  <line x1="50" y1="180" x2="350" y2="180" stroke="#64748b" stroke-width="2"/><text x="95" y="200" fill="#94a3b8" font-size="10">Pasc = mgvy frente a 75 kW</text>
+</svg>`; }
+
+function svgLiftingBoxes() { return `<svg viewBox="0 0 400 210" xmlns="http://www.w3.org/2000/svg">
+  <rect x="245" y="60" width="120" height="100" fill="#334155" stroke="#64748b" stroke-width="2"/><text x="278" y="118" fill="#94a3b8" font-size="11">camión</text>
+  <rect x="105" y="125" width="50" height="42" fill="#fbbf24"/><text x="110" y="150" fill="#0f172a" font-size="9">30 kg</text>
+  <line x1="130" y1="120" x2="130" y2="55" stroke="#34d399" stroke-width="3"/><polygon points="130,55 123,69 137,69" fill="#34d399"/><text x="140" y="85" fill="#34d399" font-size="11">h = 0.90 m</text>
+  <rect x="175" y="60" width="50" height="42" fill="#fbbf24"/><text x="180" y="85" fill="#0f172a" font-size="9">caja</text>
+  <text x="40" y="195" fill="#94a3b8" font-size="10">W por caja = mgh</text>
+</svg>`; }
+
+function svgBridgeCyclist() { return `<svg viewBox="0 0 400 210" xmlns="http://www.w3.org/2000/svg">
+  <path d="M25 170 Q110 160 185 80 Q260 0 375 25" fill="none" stroke="#64748b" stroke-width="5"/><circle cx="90" cy="146" r="22" fill="none" stroke="#38bdf8" stroke-width="3"/><circle cx="140" cy="126" r="22" fill="none" stroke="#38bdf8" stroke-width="3"/><path d="M90 146 L112 112 L140 126 L90 146 L120 146 L145 100 L140 126" fill="none" stroke="#34d399" stroke-width="3"/>
+  <line x1="220" y1="90" x2="220" y2="35" stroke="#fbbf24" stroke-width="2"/><text x="230" y="62" fill="#fbbf24" font-size="11">h = 5.20 m</text>
+  <text x="40" y="195" fill="#94a3b8" font-size="10">K₁ → K₂ + Ug</text>
+</svg>`; }
+
+function svgSpringLauncher() { return `<svg viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg">
+  <rect x="30" y="75" width="280" height="65" fill="#334155" stroke="#64748b" stroke-width="2"/><path d="M65 108 L78 90 L91 126 L104 90 L117 126 L130 90 L143 108" fill="none" stroke="#fbbf24" stroke-width="3"/>
+  <circle cx="165" cy="108" r="15" fill="#38bdf8"/><line x1="185" y1="108" x2="320" y2="108" stroke="#34d399" stroke-width="3"/><polygon points="320,108 307,101 307,115" fill="#34d399"/>
+  <text x="45" y="60" fill="#fbbf24" font-size="10">k = 400 N/m</text><text x="220" y="90" fill="#34d399" font-size="10">esfera m = 0.0300 kg</text><text x="70" y="165" fill="#94a3b8" font-size="10">compresión inicial 6.00 cm</text>
+</svg>`; }
+
+function svgSpringWallBlock() { return `<svg viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg">
+  <line x1="60" y1="55" x2="60" y2="150" stroke="#94a3b8" stroke-width="6"/><path d="M65 100 L80 85 L95 115 L110 85 L125 115 L140 85 L155 100" fill="none" stroke="#fbbf24" stroke-width="3"/>
+  <rect x="160" y="77" width="60" height="46" rx="4" fill="#38bdf8"/><line x1="230" y1="100" x2="335" y2="100" stroke="#34d399" stroke-width="3"/><polygon points="335,100 322,93 322,107" fill="#34d399"/>
+  <text x="80" y="55" fill="#fbbf24" font-size="10">k = 500 N/m</text><text x="160" y="145" fill="#94a3b8" font-size="10">m = 5.00 kg</text><text x="250" y="85" fill="#34d399" font-size="10">v₀ = 6.00 m/s</text>
+</svg>`; }
+
+function svgPulleyEnergy() { return `<svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
+  <line x1="45" y1="65" x2="245" y2="65" stroke="#64748b" stroke-width="5"/><circle cx="275" cy="65" r="28" fill="none" stroke="#94a3b8" stroke-width="4"/>
+  <rect x="85" y="25" width="75" height="40" fill="#38bdf8"/><text x="100" y="50" fill="#0f172a" font-size="10">8.00 kg</text>
+  <path d="M160 45 H275 V170" fill="none" stroke="#fbbf24" stroke-width="3"/><rect x="245" y="170" width="60" height="45" fill="#f87171"/><text x="254" y="197" fill="#0f172a" font-size="10">6.00 kg</text>
+  <line x1="50" y1="72" x2="210" y2="72" stroke="#34d399" stroke-width="2"/><text x="85" y="95" fill="#34d399" font-size="10">μk = 0.250</text><text x="310" y="130" fill="#94a3b8" font-size="10">h = 1.50 m</text>
+</svg>`; }
+
 function defaultDiagram(type) { return `<svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
   <text x="50%" y="50%" text-anchor="middle" fill="#94a3b8" font-size="12">Diagrama del ejercicio</text>
 </svg>`; }
@@ -2958,7 +3189,11 @@ const diagramMap = {
   kinetic_car: svgKineticCar, kinetic_estimates: svgKineticEstimates, falling_watermelon: svgFallingWatermelon,
   energy_scenarios: svgEnergyScenarios, upward_stone: svgUpwardStone, incline_box: svgInclineEnergyBox,
   braking_car: svgBrakingCarEnergy, electron_reversal: svgElectronReversal, sled_force: svgSledForce,
-  dog_box: svgDogBoxWork, toy_cart: svgToyCartWork, skidding_car: svgSkiddingCar
+  dog_box: svgDogBoxWork, toy_cart: svgToyCartWork, skidding_car: svgSkiddingCar,
+  energy_power: svgEnergyPower, solar_collectors: svgSolarCollectors, magnetar_power: svgMagnetarPower,
+  friction_heat: svgFrictionHeat, tandem_bike: svgTandemBike, airplane_climb: svgAirplaneClimb,
+  lifting_boxes: svgLiftingBoxes, bridge_cyclist: svgBridgeCyclist, spring_launcher: svgSpringLauncher,
+  spring_wall_block: svgSpringWallBlock, pulley_energy: svgPulleyEnergy
 };
 
 // ====== FLASHCARD DATA ======

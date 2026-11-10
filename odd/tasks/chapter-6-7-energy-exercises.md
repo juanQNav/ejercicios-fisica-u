@@ -24,8 +24,8 @@ Acceptance: Add only formulas, mnemonics and flashcards relevant to the requeste
 Checks: Read back the new chapter-specific study-aid entries and confirm their formula coverage is exercised by the added problems.
 
 ## Tasks
-- T1 — S1–S3: Add Chapter 6 exercises 6.10–6.27 with solutions, diagrams, video suggestions and tips; route: inline; status: complete (12 requested IDs, SVG mappings, Node syntax and ID checks passed); commit: pending.
-- T2 — S1–S3: Add remaining requested Chapter 6 exercises 6.43–6.82; route: inline; status: pending; commit: pending.
+- T1 — S1–S3: Add Chapter 6 exercises 6.10–6.27 with solutions, diagrams, video suggestions and tips; route: inline; status: complete (12 requested IDs, SVG mappings, Node syntax and ID checks passed); commit: `dec546a`.
+- T2 — S1–S3: Add remaining requested Chapter 6 exercises 6.43–6.82; route: inline; status: complete (11 requested IDs; Node syntax, ID inventory and whitespace checks passed); commit: pending.
 - T3 — S1–S3: Add requested Chapter 7 exercises 7.39–7.56; route: inline; status: pending; commit: pending.
 - T4 — S1–S3: Add requested Chapter 7 exercises 7.63–7.75; route: inline; status: pending; commit: pending.
 - T5 — S4: Add session-scoped Chapter 6–7 formula reference, flashcards and mnemonics; route: inline; status: pending; commit: pending.
@@ -58,3 +58,9 @@ No `package.json` or JavaScript test files are present. The 39 source-backed exe
 
 ### L3 — Delivery choice and T1 evidence
 The user selected `Integración escalonada a main` (`stacked-to-main`). T1 adds 12 Chapter 6 exercise cards. `node --check` passed for the inline script; a static inventory found 12 Chapter 6 IDs with no duplicates. No focused pre-existing tests are available.
+
+### L4 — T1 work-unit commit
+Committed the Chapter 6 exercises 6.10–6.27 and their diagrams as `dec546a` (`feat: add chapter 6 energy exercises`). The repository reports receipt-driven development off at global scope; no native review or receipt was created.
+
+### L5 — T2 evidence and source caveats
+Added the remaining 11 requested Chapter 6 exercises. Syntax and ID checks pass (23 Chapter 6 IDs total, no duplicates), and `git diff --check` is clean. The recovered 6.44 materials conflict on population (6.5 × 10⁹ in the exercise versus 3.0 × 10⁸ in the solution calculation), so both results are shown. Videos FISICA source titles are linked to YouTube title searches because direct source URLs could not be retrieved.
