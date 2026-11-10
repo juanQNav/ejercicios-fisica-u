@@ -24,13 +24,13 @@ Acceptance: Add only formulas, mnemonics and flashcards relevant to the requeste
 Checks: Read back the new chapter-specific study-aid entries and confirm their formula coverage is exercised by the added problems.
 
 ## Tasks
-- T1 — S1–S3: Add Chapter 6 exercises 6.10–6.27 with solutions, diagrams, direct videos and tips; route: inline; status: complete (12 requested IDs, SVG mappings, Node syntax and ID checks passed); commit: `dec546a`, video mapping commit: pending.
-- T2 — S1–S3: Add remaining requested Chapter 6 exercises 6.43–6.82; route: inline; status: complete (11 requested IDs; Node syntax, ID inventory and whitespace checks passed); commit: `1d53b35`, video mapping commit: pending.
-- T3 — S1–S3: Add requested Chapter 7 exercises 7.39–7.56; route: inline; status: complete (9 requested IDs; syntax, ID inventory, diagram mapping and whitespace checks passed); commit: `239d5af`, video mapping commit: pending.
-- T4 — S1–S3: Add requested Chapter 7 exercises 7.63–7.75; route: inline; status: complete (7 requested IDs; syntax, ID inventory, diagram mapping and whitespace checks passed); commit: `42e6970`, video mapping commit: pending.
+- T1 — S1–S3: Add Chapter 6 exercises 6.10–6.27 with solutions, diagrams, direct videos and tips; route: inline; status: complete (12 requested IDs, SVG mappings, Node syntax, ID checks and direct video links passed); commits: `dec546a`, `147d301`.
+- T2 — S1–S3: Add remaining requested Chapter 6 exercises 6.43–6.82; route: inline; status: complete (11 requested IDs; Node syntax, ID inventory, whitespace and direct video-link checks passed); commits: `1d53b35`, `147d301`.
+- T3 — S1–S3: Add requested Chapter 7 exercises 7.39–7.56; route: inline; status: complete (9 requested IDs; syntax, ID inventory, diagram mapping, whitespace and direct video-link checks passed); commits: `239d5af`, `147d301`.
+- T4 — S1–S3: Add requested Chapter 7 exercises 7.63–7.75; route: inline; status: complete (7 requested IDs; syntax, ID inventory, diagram mapping, whitespace and direct video-link checks passed); commits: `42e6970`, `147d301`.
 - T5 — S4: Add session-scoped Chapter 6–7 formula reference, flashcards and mnemonics; route: inline; status: complete (both chapter topics added to all three study aids; Node syntax and whitespace checks passed); commit: `a11295d`.
-- T6 — S1–S4: Validate all requested IDs, exercise fields, diagram mappings, inline JavaScript syntax and rendered page structure; route: inline; status: complete (exact inventories, all 39 cards/diagrams/required fields and direct videos render); commits: `a11295d`, `7ab5e07`, video mapping commit: pending.
-- T7 — S3: Map direct Videos FISICA URLs to the requested exercises; route: inline; status: complete (39 mappings use direct user-provided watch URLs; no search links); commit: pending.
+- T6 — S1–S4: Validate all requested IDs, exercise fields, diagram mappings, inline JavaScript syntax and rendered page structure; route: inline; status: complete (exact inventories, all 39 cards/diagrams/required fields and direct videos render); commits: `a11295d`, `7ab5e07`, `147d301`.
+- T7 — S3: Map direct Videos FISICA URLs to the requested exercises; route: inline; status: complete (39 mappings use direct user-provided watch URLs; no search links); commit: `147d301`.
 
 ## Log
 
@@ -105,3 +105,6 @@ The notebook and its 67-source count still resolve, but `list_sources`, `ask_not
 
 ### L18 — User supplied direct video URLs
 The user provided direct YouTube URLs from Videos FISICA; the requested exercises now use topic-matched direct links from that list, with no search-page substitutions.
+
+### L19 — Direct video mapping verification
+Node syntax and whitespace checks pass. The rendered-data smoke test confirms all 39 new exercises render direct `youtube.com/watch?v=` links from the supplied list and no YouTube search links remain.
