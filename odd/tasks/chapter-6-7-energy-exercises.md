@@ -99,3 +99,6 @@ Node syntax and `git diff --check` pass. The rendered-data smoke test confirms t
 
 ### L16 — Video fallback correction commit
 Committed removal of the search-page links and unverified titles as `7ab5e07` (`fix: leave chapter 6-7 videos pending`).
+
+### L17 — Retried NotebookLM MCP video-source lookup
+The notebook and its 67-source count still resolve, but `list_sources`, `ask_notebook`, `get_source` and `find_source_by_title` all returned the Google account-routing `not found` error. No direct video URL was verified; T7 remains pending and the new exercises retain empty video arrays.
