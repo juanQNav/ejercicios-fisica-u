@@ -26,8 +26,8 @@ Checks: Read back the new chapter-specific study-aid entries and confirm their f
 ## Tasks
 - T1 — S1–S3: Add Chapter 6 exercises 6.10–6.27 with solutions, diagrams, video suggestions and tips; route: inline; status: complete (12 requested IDs, SVG mappings, Node syntax and ID checks passed); commit: `dec546a`.
 - T2 — S1–S3: Add remaining requested Chapter 6 exercises 6.43–6.82; route: inline; status: complete (11 requested IDs; Node syntax, ID inventory and whitespace checks passed); commit: `1d53b35`.
-- T3 — S1–S3: Add requested Chapter 7 exercises 7.39–7.56; route: inline; status: complete (9 requested IDs; syntax, ID inventory, diagram mapping and whitespace checks passed); commit: pending.
-- T4 — S1–S3: Add requested Chapter 7 exercises 7.63–7.75; route: inline; status: pending; commit: pending.
+- T3 — S1–S3: Add requested Chapter 7 exercises 7.39–7.56; route: inline; status: complete (9 requested IDs; syntax, ID inventory, diagram mapping and whitespace checks passed); commit: `239d5af`.
+- T4 — S1–S3: Add requested Chapter 7 exercises 7.63–7.75; route: inline; status: complete (7 requested IDs; syntax, ID inventory, diagram mapping and whitespace checks passed); commit: pending.
 - T5 — S4: Add session-scoped Chapter 6–7 formula reference, flashcards and mnemonics; route: inline; status: pending; commit: pending.
 - T6 — S1–S4: Validate all requested IDs, exercise fields, diagram mappings, inline JavaScript syntax and rendered page structure; route: inline; status: pending; commit: pending.
 
@@ -70,3 +70,9 @@ Committed the remaining Chapter 6 exercises 6.43–6.82 as `1d53b35` (`feat: add
 
 ### L7 — T3 verification
 Added the first 9 requested Chapter 7 exercises. Node syntax validation passed, all 9 Chapter 7 IDs are unique, every exercise diagram key has a generator, and `git diff --check` is clean.
+
+### L8 — T3 work-unit commit
+Committed the Chapter 7 exercises 7.39–7.56 as `239d5af` (`feat: add chapter 7 energy exercises`).
+
+### L9 — T4 verification
+Added the remaining 7 requested Chapter 7 exercises. Node syntax validation passed, all 16 requested Chapter 7 IDs are unique, every exercise diagram key has a generator, and `git diff --check` is clean.

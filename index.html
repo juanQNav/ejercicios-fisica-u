@@ -1797,6 +1797,115 @@ const exercises = {
   ],
   answer: "Debe iniciar aproximadamente 142 m desde la base, medidos a lo largo de la rampa.",
   diagram: "rocket_ramp"
+},
+{
+  id: "7.63",
+  title: "Ejercicio 7.63 — Esquiadora que pierde contacto con una esfera",
+  problem: "Una esquiadora parte casi del reposo en la cima de una enorme bola de nieve sin fricción y baja por su superficie (figura 7.38). ¿En qué punto pierde contacto y qué ángulo α forma entonces con la vertical el radio que une el centro de la esfera con la esquiadora?",
+  tips: "En el instante de perder contacto, la normal es cero. Combina la ecuación radial del movimiento circular con conservación de la energía desde la cima.",
+  videos: [suggestedVideos.mechanical, suggestedVideos.potential],
+  figureRef: "7.38",
+  steps: [
+    {title: "Conservación de energía", body: "Desde la cima hasta el ángulo α: mgR = ½mv² + mgR cos α. Por tanto v² = 2gR(1 − cos α)."},
+    {title: "Condición de desprendimiento", body: "En dirección radial hacia el centro: mg cos α − n = mv²/R. Al perder contacto, n = 0, así que v² = gR cos α."},
+    {title: "Resolver el ángulo", body: "Iguala las expresiones de v²: 2(1 − cos α) = cos α; entonces cos α = 2/3.", formula: "α = arccos(2/3) = 48.2°"}
+  ],
+  answer: "La esquiadora pierde contacto a α ≈ 48.2° de la vertical.",
+  diagram: "skier_sphere"
+},
+{
+  id: "7.65",
+  title: "Ejercicio 7.65 — Paquete en una guía curva y superficie áspera",
+  problem: "Un paquete pequeño de 0.200 kg parte del reposo en A y baja por una guía de cuarto de círculo de radio 1.60 m hasta B, donde lleva 4.80 m/s. Luego se desliza 3.00 m sobre una superficie horizontal hasta detenerse en C (figura 7.39). 1) Halle μk para el tramo horizontal. 2) Halle el trabajo de fricción sobre el paquete en el arco AB.",
+  tips: "En BC, el cambio de energía cinética determina la fricción. En AB, compara la pérdida de energía potencial gravitatoria con la energía cinética medida en B para obtener el trabajo no conservativo.",
+  videos: [suggestedVideos.work, suggestedVideos.mechanical],
+  figureRef: "7.39",
+  steps: [
+    {title: "1) Coeficiente en el tramo horizontal", body: "½mvB² − μkmgd = 0. Al despejar, μk = vB²/(2gd) = 4.80²/[2(9.80)(3.00)].", formula: "μk = 0.392"},
+    {title: "Energía potencial inicial en A", body: "La caída vertical es R = 1.60 m. Ug,A = mgR = (0.200)(9.80)(1.60) = 3.136 J."},
+    {title: "2) Trabajo de fricción en el arco", body: "KA + Ug,A + Wf = KB + Ug,B, con KA = 0 y Ug,B = 0. KB = ½(0.200)(4.80²) = 2.304 J."},
+    {title: "Resultado para AB", body: "Wf = KB − Ug,A = 2.304 − 3.136.", formula: "Wf,AB = −0.832 J"}
+  ],
+  answer: "1) μk = 0.392.\n2) El trabajo de fricción en AB es −0.832 J.",
+  diagram: "package_quarter_circle"
+},
+{
+  id: "7.66",
+  title: "Ejercicio 7.66 — Camión y rampa de seguridad",
+  problem: "Los frenos de un camión de masa m fallan al bajar una carretera helada inclinada α. Inicialmente baja a rapidez v0; después desciende una distancia L con fricción despreciable y entra en una rampa de seguridad que sube con ángulo β. En la rampa arenosa, el coeficiente de fricción por rodamiento es μr. ¿Qué distancia sube antes de detenerse? Use energía (figura 7.40).",
+  tips: "La bajada sin fricción convierte altura en energía cinética. En la rampa, esa energía más el descenso inicial se consume al ganar altura y vencer la fricción por rodamiento.",
+  videos: [suggestedVideos.mechanical, suggestedVideos.work],
+  figureRef: "7.40",
+  steps: [
+    {title: "Energía al pie de la rampa", body: "La caída vertical es L sin α. La energía disponible por unidad de masa es ½v0² + gL sin α."},
+    {title: "Trabajo durante la subida", body: "Para una distancia x, la elevación es x sin β y la fuerza de fricción por rodamiento es μrmg cos β. Se requiere energía por masa gx(sin β + μr cos β)."},
+    {title: "Igualar y despejar x", body: "½mv0² + mgL sin α = mgx(sin β + μr cos β).", formula: "x = [L sin α + v0²/(2g)]/[sin β + μr cos β]"}
+  ],
+  answer: "x = [L sin α + v0²/(2g)] / (sin β + μr cos β).",
+  diagram: "runaway_truck_ramp"
+},
+{
+  id: "7.68",
+  title: "Ejercicio 7.68 — Trabajo al estirar un resorte sobre un arco",
+  problem: "Una fuerza variable F, siempre tangente a una superficie semicircular sin fricción, mueve lentamente un bloque de peso w entre las posiciones 1 y 2. El bloque estira un resorte de constante k cuyo extremo sigue un arco de radio a. Calcule el trabajo realizado por F (figura 7.41).",
+  tips: "El movimiento es cuasiestático, así que no cambia la energía cinética. El trabajo aplicado aumenta la energía gravitatoria del bloque y la energía almacenada en el resorte; usa θ en radianes para s = aθ.",
+  videos: [suggestedVideos.work, suggestedVideos.potential],
+  figureRef: "7.41",
+  steps: [
+    {title: "Cambio de altura", body: "El desplazamiento vertical del bloque es Δy = a sin θ; por tanto ΔUg = w a sin θ."},
+    {title: "Estiramiento del resorte", body: "El extremo se desplaza a lo largo del arco una distancia s = aθ. La energía elástica final es ½ks² = ½ka²θ²."},
+    {title: "Trabajo de la fuerza aplicada", body: "Como ΔK ≈ 0 y no hay fricción, WF = ΔUg + ΔUe.", formula: "WF = w a sin θ + ½ k a² θ²"}
+  ],
+  answer: "WF = w a sin θ + ½ k a² θ² (con θ en radianes).",
+  diagram: "semicircle_spring"
+},
+{
+  id: "7.70",
+  title: "Ejercicio 7.70 — Bloque entre dos resortes",
+  problem: "Un bloque de 3.00 kg está unido a dos resortes horizontales ideales de k1 = 25.0 N/cm y k2 = 20.0 N/cm, en equilibrio sobre una superficie sin fricción (figura 7.42). Se empuja 15.0 cm a la derecha y se suelta. a) Halle la rapidez máxima y dónde ocurre. b) Halle la compresión máxima del resorte 1.",
+  tips: "Al desplazarse desde el equilibrio, un resorte se estira y el otro se comprime; sus constantes efectivas se suman. La rapidez máxima ocurre cuando ambos vuelven a su deformación de equilibrio.",
+  videos: [suggestedVideos.mechanical, suggestedVideos.energyProblem],
+  figureRef: "7.42",
+  steps: [
+    {title: "Convertir constantes y obtener keff", body: "k1 = 2500 N/m; k2 = 2000 N/m. keff = k1 + k2 = 4500 N/m. La amplitud inicial es A = 0.150 m."},
+    {title: "a) Rapidez máxima en el equilibrio", body: "Toda la energía elástica inicial pasa a cinética: ½keffA² = ½mvmax².", formula: "vmax = A√(keff/m) = 5.81 m/s; ocurre en x = 0"},
+    {title: "b) Compresión máxima del resorte 1", body: "En el extremo opuesto la rapidez vuelve a cero y el desplazamiento desde el equilibrio tiene igual magnitud, 0.150 m.", formula: "Compresión máxima = 15.0 cm"}
+  ],
+  answer: "a) 5.81 m/s al pasar por el equilibrio.\nb) El resorte 1 se comprime 15.0 cm.",
+  diagram: "opposing_springs"
+},
+{
+  id: "7.74",
+  title: "Ejercicio 7.74 — Paquete, pendiente áspera y resorte",
+  problem: "Un paquete de 2.00 kg se suelta en una pendiente de 53.1°, a 4.00 m de un resorte largo de k = 120 N/m al pie. Entre paquete y pendiente, μs = 0.40 y μk = 0.20; el resorte no tiene masa (figura 7.43). a) Halle la rapidez justo antes de tocar el resorte. b) Halle la compresión máxima. c) ¿Rebotará cuesta arriba y, si lo hace, qué distancia recorrerá antes de detenerse?",
+  tips: "La componente del peso cuesta abajo compite con la fricción cinética durante la bajada. En la compresión máxima, compara la fuerza del resorte con peso paralelo más fricción estática máxima para decidir si rebota.",
+  videos: [suggestedVideos.mechanical, suggestedVideos.work],
+  figureRef: "7.43",
+  steps: [
+    {title: "Fuerzas paralelas a la pendiente", body: "sin 53.1° = 0.800; cos 53.1° = 0.600. n = mg cos θ = 11.76 N y fk = μkn = 2.352 N. La fuerza neta cuesta abajo es mg sin θ − fk = 13.328 N."},
+    {title: "a) Rapidez antes del resorte", body: "El trabajo neto en 4.00 m es 13.328 × 4.00 = 53.312 J = ½mv².", formula: "v = 7.30 m/s"},
+    {title: "b) Compresión máxima", body: "Desde el reposo hasta la compresión máxima: 13.328(4.00 + x) = ½(120)x². La raíz física positiva es x ≈ 1.06 m."},
+    {title: "c) Verificar el rebote", body: "En compresión máxima, kx ≈ (120)(1.06) = 127 N. La fuerza que puede sostenerlo cuesta abajo es mg sin θ + μs mg cos θ = 20.38 N. Como el resorte supera ese valor, sí rebota cuesta arriba."},
+    {title: "Distancia recorrida cuesta arriba", body: "La energía del resorte se disipa contra gravedad y fricción cinética: ½kx² = (mg sin θ + fk)y.", formula: "y ≈ 3.74 m desde la compresión máxima"}
+  ],
+  answer: "a) 7.30 m/s.\nb) x ≈ 1.06 m.\nc) Sí; sube aproximadamente 3.74 m antes de detenerse.",
+  diagram: "incline_spring_package"
+},
+{
+  id: "7.75",
+  title: "Ejercicio 7.75 — Bloque jalado unido a un resorte",
+  problem: "Un bloque de 0.500 kg está unido a un resorte de longitud natural 0.60 m y constante k = 40.0 N/m sobre una mesa horizontal sin fricción. Parte en reposo en A. Se tira hacia la derecha con una fuerza constante de 20.0 N hasta B, a 0.25 m de A (figura 7.44). a) ¿Qué rapidez tiene en B? b) Al soltarlo en B, ¿a qué distancia mínima de la pared llega el bloque?",
+  tips: "En B, el trabajo de la fuerza aplicada se reparte entre energía cinética y energía elástica. Al soltar, la energía mecánica se conserva; en la aproximación máxima a la pared, toda es energía del resorte.",
+  videos: [suggestedVideos.mechanical, suggestedVideos.work],
+  figureRef: "7.44",
+  steps: [
+    {title: "a) Trabajo externo y energía elástica en B", body: "WF = FΔx = (20.0)(0.25) = 5.00 J. Ue,B = ½k(0.25)² = 1.25 J. Entonces KB = 5.00 − 1.25 = 3.75 J."},
+    {title: "Rapidez en B", body: "KB = ½mvB²; vB = √(2KB/m).", formula: "vB = √15.0 = 3.87 m/s"},
+    {title: "b) Compresión máxima tras soltar", body: "Después de soltar, la energía total se conserva: ½k xC² = 5.00 J. Así, xC = √(10/40) = 0.50 m desde la longitud natural."},
+    {title: "Distancia a la pared", body: "La longitud natural desde la pared es 0.60 m; el bloque queda a 0.60 − 0.50 m.", formula: "Distancia mínima a la pared = 0.10 m"}
+  ],
+  answer: "a) 3.87 m/s.\nb) Se acerca hasta 0.10 m de la pared.",
+  diagram: "pulled_spring_block"
 }
 ]
 };
@@ -3366,6 +3475,57 @@ function svgRocketRamp() { return `<svg viewBox="0 0 420 230" xmlns="http://www.
   <text x="70" y="210" fill="#fbbf24" font-size="10">53° · distancia d</text>
 </svg>`; }
 
+function svgSkierSphere() { return `<svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="190" cy="150" r="92" fill="none" stroke="#64748b" stroke-width="5"/><circle cx="190" cy="150" r="4" fill="#94a3b8"/>
+  <circle cx="190" cy="58" r="8" fill="#fbbf24"/><text x="200" y="55" fill="#fbbf24" font-size="10">inicio</text>
+  <circle cx="252" cy="82" r="8" fill="#38bdf8"/><line x1="190" y1="150" x2="252" y2="82" stroke="#34d399" stroke-width="2"/><text x="260" y="86" fill="#34d399" font-size="10">α</text>
+  <line x1="250" y1="90" x2="285" y2="105" stroke="#f87171" stroke-width="2"/><text x="290" y="110" fill="#f87171" font-size="9">n → 0</text>
+  <line x1="25" y1="242" x2="375" y2="242" stroke="#475569" stroke-width="2"/><text x="130" y="230" fill="#94a3b8" font-size="10">superficie sin fricción</text>
+</svg>`; }
+
+function svgPackageQuarterCircle() { return `<svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+  <path d="M50 45 V150 Q50 190 90 190 H350" fill="none" stroke="#64748b" stroke-width="5"/><path d="M100 190 H350" stroke="#f87171" stroke-width="7" stroke-dasharray="5,4"/>
+  <rect x="30" y="42" width="34" height="30" rx="4" fill="#fbbf24"/><circle cx="49" cy="149" r="7" fill="#38bdf8"/><circle cx="130" cy="190" r="7" fill="#34d399"/>
+  <line x1="85" y1="55" x2="85" y2="185" stroke="#38bdf8" stroke-width="2"/><text x="92" y="120" fill="#38bdf8" font-size="10">R = 1.60 m</text>
+  <text x="165" y="215" fill="#f87171" font-size="10">3.00 m áspero</text><text x="110" y="170" fill="#94a3b8" font-size="9">B · v = 4.80 m/s</text>
+</svg>`; }
+
+function svgRunawayTruckRamp() { return `<svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+  <path d="M30 55 L200 135 L355 45" fill="none" stroke="#64748b" stroke-width="6"/><rect x="95" y="79" width="55" height="30" rx="5" fill="#f87171" transform="rotate(25 122 94)"/>
+  <line x1="50" y1="75" x2="170" y2="130" stroke="#34d399" stroke-width="3"/><polygon points="170,130 155,129 161,116" fill="#34d399"/><text x="72" y="63" fill="#34d399" font-size="10">v₀, L, α</text>
+  <rect x="250" y="102" width="48" height="28" rx="5" fill="#f87171" transform="rotate(-30 274 116)"/><line x1="250" y1="105" x2="230" y2="117" stroke="#fbbf24" stroke-width="3"/><text x="300" y="103" fill="#fbbf24" font-size="10">β, μr</text>
+  <line x1="204" y1="135" x2="204" y2="188" stroke="#94a3b8" stroke-width="1"/><text x="211" y="170" fill="#94a3b8" font-size="9">referencia</text>
+</svg>`; }
+
+function svgSemicircleSpring() { return `<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+  <path d="M55 175 A145 145 0 0 1 345 175" fill="none" stroke="#64748b" stroke-width="5"/><circle cx="200" cy="175" r="7" fill="#38bdf8"/>
+  <line x1="200" y1="175" x2="285" y2="58" stroke="#34d399" stroke-width="2"/><text x="236" y="105" fill="#34d399" font-size="10">a, θ</text>
+  <rect x="274" y="45" width="34" height="26" rx="4" fill="#fbbf24"/><path d="M185 175 L170 160 L155 190 L140 160 L125 190 L110 175" fill="none" stroke="#f87171" stroke-width="3"/>
+  <text x="120" y="218" fill="#f87171" font-size="10">resorte: s = aθ</text><text x="280" y="85" fill="#94a3b8" font-size="10">bloque, peso w</text>
+</svg>`; }
+
+function svgOpposingSprings() { return `<svg viewBox="0 0 420 190" xmlns="http://www.w3.org/2000/svg">
+  <line x1="35" y1="45" x2="35" y2="150" stroke="#94a3b8" stroke-width="5"/><line x1="385" y1="45" x2="385" y2="150" stroke="#94a3b8" stroke-width="5"/>
+  <path d="M40 100 L55 85 L70 115 L85 85 L100 115 L115 100" fill="none" stroke="#fbbf24" stroke-width="3"/><path d="M305 100 L320 85 L335 115 L350 85 L365 115 L380 100" fill="none" stroke="#f87171" stroke-width="3"/>
+  <rect x="165" y="75" width="90" height="50" rx="6" fill="#38bdf8"/><text x="195" y="105" fill="#0f172a" font-size="11">3.00 kg</text>
+  <line x1="205" y1="55" x2="300" y2="55" stroke="#34d399" stroke-width="2"/><polygon points="300,55 287,48 287,62" fill="#34d399"/><text x="222" y="45" fill="#34d399" font-size="10">A = 15.0 cm</text>
+  <text x="57" y="145" fill="#fbbf24" font-size="9">k1 = 25 N/cm</text><text x="290" y="145" fill="#f87171" font-size="9">k2 = 20 N/cm</text>
+</svg>`; }
+
+function svgInclineSpringPackage() { return `<svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+  <path d="M35 195 L370 55" stroke="#64748b" stroke-width="5"/><rect x="115" y="135" width="40" height="30" rx="4" fill="#38bdf8" transform="rotate(-23 135 150)"/>
+  <path d="M270 92 L284 78 L298 106 L312 78 L326 106 L340 92" fill="none" stroke="#fbbf24" stroke-width="3"/><line x1="300" y1="85" x2="220" y2="118" stroke="#f87171" stroke-width="2"/><text x="185" y="105" fill="#f87171" font-size="9">fk cuesta arriba</text>
+  <line x1="85" y1="175" x2="155" y2="146" stroke="#34d399" stroke-width="2"/><polygon points="155,146 141,144 146,157" fill="#34d399"/><text x="65" y="160" fill="#34d399" font-size="10">53.1°</text>
+  <text x="228" y="140" fill="#94a3b8" font-size="10">k = 120 N/m</text><text x="50" y="215" fill="#94a3b8" font-size="10">m = 2.00 kg · μk = 0.20</text>
+</svg>`; }
+
+function svgPulledSpringBlock() { return `<svg viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg">
+  <line x1="35" y1="150" x2="385" y2="150" stroke="#64748b" stroke-width="3"/><line x1="55" y1="55" x2="55" y2="150" stroke="#94a3b8" stroke-width="5"/>
+  <path d="M60 115 L75 100 L90 130 L105 100 L120 130 L135 115" fill="none" stroke="#fbbf24" stroke-width="3"/><rect x="150" y="92" width="55" height="50" rx="5" fill="#38bdf8"/>
+  <line x1="205" y1="105" x2="330" y2="105" stroke="#34d399" stroke-width="3"/><polygon points="330,105 317,98 317,112" fill="#34d399"/><text x="230" y="95" fill="#34d399" font-size="10">F = 20.0 N</text>
+  <line x1="60" y1="170" x2="150" y2="170" stroke="#818cf8" stroke-width="2"/><text x="88" y="190" fill="#818cf8" font-size="10">L₀ = 0.60 m</text><text x="235" y="150" fill="#94a3b8" font-size="10">B: x = 0.25 m</text>
+</svg>`; }
+
 function defaultDiagram(type) { return `<svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
   <text x="50%" y="50%" text-anchor="middle" fill="#94a3b8" font-size="12">Diagrama del ejercicio</text>
 </svg>`; }
@@ -3400,7 +3560,11 @@ const diagramMap = {
   spring_wall_block: svgSpringWallBlock, pulley_energy: svgPulleyEnergy,
   bucket_box_gravel: svgBucketBoxGravel, spring_ramp: svgSpringRamp, spring_friction_block: svgSpringFrictionBlock,
   rollercoaster_loop: svgRollercoasterLoop, rough_track: svgRoughTrack, hill_spring: svgHillSpring,
-  hill_gap: svgHillGap, paint_buckets: svgPaintBuckets, rocket_ramp: svgRocketRamp
+  hill_gap: svgHillGap, paint_buckets: svgPaintBuckets, rocket_ramp: svgRocketRamp,
+  skier_sphere: svgSkierSphere, package_quarter_circle: svgPackageQuarterCircle,
+  runaway_truck_ramp: svgRunawayTruckRamp, semicircle_spring: svgSemicircleSpring,
+  opposing_springs: svgOpposingSprings, incline_spring_package: svgInclineSpringPackage,
+  pulled_spring_block: svgPulledSpringBlock
 };
 
 // ====== FLASHCARD DATA ======
