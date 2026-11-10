@@ -2160,8 +2160,8 @@ const formulaRef = [
     }
   ]
 },
-{
-  topic: "Movimiento circular (Capitulo 3.4)",
+  {
+    topic: "Movimiento circular (Capitulo 3.4)",
   formulas: [
     {
       name: "Aceleracion radial (centripeta) [Ec. 3.28]",
@@ -2198,16 +2198,126 @@ const formulaRef = [
       ],
       when: "Solo en MCU no uniforme. Es paralela a la velocidad (tangente a la trayectoria). Si la rapidez es constante, a_tan = 0."
     },
-    {
-      name: "Aceleracion total [MCU no uniforme]",
-      main: "a = √(a<sub>rad</sub>² + a<sub>tan</sub>²)",
+      {
+        name: "Aceleracion total [MCU no uniforme]",
+        main: "a = √(a<sub>rad</sub>² + a<sub>tan</sub>²)",
       despejes: [
         { label: "Vector total", eq: "a = a_rad + a_tan" }
       ],
-      when: "Cuando hay ambas componentes. La direccion NO apunta exactamente al centro."
-    }
-  ]
-}
+        when: "Cuando hay ambas componentes. La direccion NO apunta exactamente al centro."
+      }
+    ]
+  },
+  {
+    topic: "Trabajo, energía cinética y potencia (Capítulo 6)",
+    formulas: [
+      {
+        name: "Energía cinética [Ec. 6.6]",
+        main: "K = ½ m v²",
+        despejes: [
+          { label: "Rapidez", eq: "v = √(2K / m)" },
+          { label: "Masa", eq: "m = 2K / v²" }
+        ],
+        when: "Energía asociada al movimiento. Depende del cuadrado de la rapidez; no depende de la dirección."
+      },
+      {
+        name: "Trabajo de una fuerza constante [Ec. 6.3]",
+        main: "W = F d cos φ",
+        despejes: [
+          { label: "Fuerza paralela", eq: "φ = 0° → W = Fd" },
+          { label: "Fuerza perpendicular", eq: "φ = 90° → W = 0" }
+        ],
+        when: "φ es el ángulo entre la fuerza y el desplazamiento. El trabajo es negativo si la fuerza apunta en sentido opuesto al movimiento."
+      },
+      {
+        name: "Teorema trabajo-energía [Ec. 6.7]",
+        main: "W<sub>net</sub> = ΔK = K<sub>f</sub> − K<sub>i</sub>",
+        despejes: [
+          { label: "Rapidez final", eq: "v_f = √(v_i² + 2W_net/m)" },
+          { label: "Energía final", eq: "K_f = K_i + W_net" }
+        ],
+        when: "El trabajo neto de todas las fuerzas cambia la energía cinética. Es útil cuando se conoce el desplazamiento pero no el tiempo."
+      },
+      {
+        name: "Trabajo de la gravedad",
+        main: "W<sub>g</sub> = −mg(y<sub>f</sub> − y<sub>i</sub>)",
+        despejes: [
+          { label: "Descenso vertical h", eq: "W_g = +mgh" },
+          { label: "Ascenso vertical h", eq: "W_g = −mgh" }
+        ],
+        when: "La gravedad hace trabajo positivo durante un descenso y negativo durante un ascenso. Solo importa el cambio vertical."
+      },
+      {
+        name: "Trabajo de fricción cinética",
+        main: "W<sub>f</sub> = −f<sub>k</sub>d = −μ<sub>k</sub> n d",
+        despejes: [
+          { label: "Plano horizontal", eq: "n = mg → W_f = −μ_k mgd" },
+          { label: "Pendiente θ", eq: "n = mg cos θ" }
+        ],
+        when: "Para fricción cinética constante opuesta al desplazamiento. En superficies inclinadas usa la normal correspondiente, no mg directamente."
+      },
+      {
+        name: "Potencia media e instantánea [Ec. 6.16, 6.18]",
+        main: "P<sub>med</sub> = W / Δt &nbsp;&nbsp; P = F · v",
+        despejes: [
+          { label: "Fuerza y rapidez paralelas", eq: "P = Fv" },
+          { label: "Ascenso vertical", eq: "P = mgv_y" },
+          { label: "Energía transferida", eq: "W = P_med Δt" }
+        ],
+        when: "La potencia es la tasa de transferencia de energía. Usa la componente de la velocidad paralela a la fuerza."
+      }
+    ]
+  },
+  {
+    topic: "Energía potencial y conservación (Capítulo 7)",
+    formulas: [
+      {
+        name: "Energía potencial gravitatoria [Ec. 7.2]",
+        main: "U<sub>g</sub> = m g y",
+        despejes: [
+          { label: "Cambio de energía", eq: "ΔU_g = mg(y_f − y_i)" },
+          { label: "Cambio de altura", eq: "Δy = ΔU_g/(mg)" }
+        ],
+        when: "Elige un nivel de referencia para y. Solo las diferencias de energía potencial tienen significado físico."
+      },
+      {
+        name: "Energía potencial elástica [Ec. 7.6]",
+        main: "U<sub>el</sub> = ½ k x²",
+        despejes: [
+          { label: "Deformación", eq: "x = √(2U_el / k)" },
+          { label: "Constante del resorte", eq: "k = 2U_el / x²" }
+        ],
+        when: "x es la extensión o compresión respecto a la longitud natural. La energía es no negativa y crece con x²."
+      },
+      {
+        name: "Conservación de energía con trabajo no conservativo [Ec. 7.7]",
+        main: "K<sub>i</sub> + U<sub>i</sub> + W<sub>nc</sub> = K<sub>f</sub> + U<sub>f</sub>",
+        despejes: [
+          { label: "Trabajo no conservativo", eq: "W_nc = Δ(K + U)" },
+          { label: "Sin fuerzas no conservativas", eq: "K_i + U_i = K_f + U_f" }
+        ],
+        when: "Incluye explícitamente el trabajo de fricción u otras fuerzas no conservativas. Si no hacen trabajo, la energía mecánica se conserva."
+      },
+      {
+        name: "Fuerza restauradora de un resorte [Ec. 7.8]",
+        main: "F<sub>x</sub> = −kx",
+        despejes: [
+          { label: "Magnitud", eq: "|F| = k|x|" },
+          { label: "Dos resortes en paralelo", eq: "k_eff = k_1 + k_2" }
+        ],
+        when: "La fuerza apunta hacia la posición de equilibrio. La rapidez en una oscilación sin fricción es máxima al pasar por el equilibrio."
+      },
+      {
+        name: "Contacto mínimo en la cima de un rizo",
+        main: "n = 0 → v²/R = g → v<sub>mín</sub> = √(gR)",
+        despejes: [
+          { label: "Rapidez crítica", eq: "v² = gR" },
+          { label: "Altura inicial mínima", eq: "mgh = mg(2R) + ½m(gR) → h = 5R/2" }
+        ],
+        when: "En el límite de perder contacto en la parte superior, la normal es cero y la gravedad aporta toda la aceleración centrípeta."
+      }
+    ]
+  }
 ];
 
 // ====== DIAGRAM SVG GENERATORS ======
@@ -3616,6 +3726,27 @@ const flashcardData = [
       { name: "Producto escalar (punto)", formula: "A · B = AB cos φ = Ax·Bx + Ay·By + Az·Bz", despejes: "cos φ = (A·B)/(AB) &nbsp;|&nbsp; Si φ=90°: A·B = 0", hint: "Produce un escalar. Si es cero, los vectores son perpendiculares" },
       { name: "Producto vectorial (cruz) — magnitud", formula: "|A × B| = AB sin φ", despejes: "Cx = Ay·Bz − Az·By &nbsp;|&nbsp; Cy = Az·Bx − Ax·Bz &nbsp;|&nbsp; Cz = Ax·By − Ay·Bx", hint: "Produce un vector perpendicular al plano de A y B. Regla mano derecha" }
     ]
+  },
+  {
+    group: "Trabajo y energía (Cap. 6)",
+    cards: [
+      { name: "Energía cinética", formula: "K = ½ m v²", despejes: "v = √(2K/m) &nbsp;|&nbsp; m = 2K/v²", hint: "La rapidez aparece al cuadrado: si v se duplica, K se cuadruplica" },
+      { name: "Trabajo de una fuerza constante", formula: "W = F d cos φ", despejes: "F paralela: W = Fd &nbsp;|&nbsp; opuesta: W = −Fd &nbsp;|&nbsp; perpendicular: W = 0", hint: "Cuenta solo la componente de F paralela al desplazamiento" },
+      { name: "Teorema trabajo-energía", formula: "W<sub>net</sub> = K<sub>f</sub> − K<sub>i</sub>", despejes: "Kf = Ki + Wnet &nbsp;|&nbsp; vf² = vi² + 2Wnet/m", hint: "El trabajo neto positivo aumenta la rapidez; el negativo la reduce" },
+      { name: "Trabajo de fricción cinética", formula: "W<sub>f</sub> = −μ<sub>k</sub> n d", despejes: "Horizontal: n = mg &nbsp;|&nbsp; rampa: n = mg cos θ", hint: "El signo menos recuerda que la fricción se opone al deslizamiento" },
+      { name: "Potencia", formula: "P<sub>med</sub> = W/Δt &nbsp;|&nbsp; P = F · v", despejes: "Ascenso: P = mgvy &nbsp;|&nbsp; Energía: W = Pmed·Δt", hint: "Potencia es cuánta energía se transfiere por unidad de tiempo" }
+    ]
+  },
+  {
+    group: "Energía potencial (Cap. 7)",
+    cards: [
+      { name: "Energía potencial gravitatoria", formula: "U<sub>g</sub> = m g y", despejes: "ΔUg = mgΔy &nbsp;|&nbsp; Δy = ΔUg/(mg)", hint: "Subir aumenta Ug; bajar la reduce. Elige y = 0 como referencia" },
+      { name: "Energía potencial elástica", formula: "U<sub>el</sub> = ½ k x²", despejes: "x = √(2Uel/k) &nbsp;|&nbsp; k = 2Uel/x²", hint: "El resorte guarda energía al estirarse o comprimirse" },
+      { name: "Energía con fuerzas no conservativas", formula: "K<sub>i</sub> + U<sub>i</sub> + W<sub>nc</sub> = K<sub>f</sub> + U<sub>f</sub>", despejes: "Wnc = Δ(K + U)", hint: "Incluye el trabajo negativo de la fricción" },
+      { name: "Conservación mecánica", formula: "K<sub>i</sub> + U<sub>i</sub> = K<sub>f</sub> + U<sub>f</sub>", despejes: "Solo si Wnc = 0", hint: "La energía cambia de forma, pero la suma permanece constante" },
+      { name: "Fuerza de resorte", formula: "F<sub>x</sub> = −kx", despejes: "|F| = k|x| &nbsp;|&nbsp; Paralelo: keff = k1 + k2", hint: "El signo menos indica que el resorte tira hacia el equilibrio" },
+      { name: "Contacto en la cima de un rizo", formula: "v<sub>mín</sub>² = gR", despejes: "vmin = √(gR) &nbsp;|&nbsp; hmin = 5R/2", hint: "En el límite de contacto, la normal en la cima vale cero" }
+    ]
   }
 ];
 
@@ -3824,6 +3955,88 @@ const mnemoData = [
         phrase: "<strong>A</strong> <strong>C</strong>ruz <strong>B</strong> = <strong>A</strong> <strong>B</strong> por <strong>S</strong>acar <strong>I</strong>gual <strong>F</strong>i",
         decode: "|A × B| = |A|·|B|·sin(φ) → La X de CRUZ se parece a 'sin'",
         text: "Produce un vector PERPENDICULAR a ambos. Como ese amigo que siempre piensa diferente: va donde NINGUNO esperaba."
+      }
+    ]
+  },
+  {
+    group: "Trabajo y energía (Cap. 6)",
+    cards: [
+      {
+        emoji: "🏃",
+        name: "Energía cinética",
+        formula: "K = ½ m v²",
+        phrase: "<strong>K</strong>arla <strong>M</strong>ide <strong>V</strong>elocidades²",
+        decode: "K = ½·m·v² → energía cinética: masa por rapidez al cuadrado, dividido entre dos.",
+        text: "Karla insiste en que la rapidez va al cuadrado: duplicarla cuadruplica la energía. Las cuentas no perdonan."
+      },
+      {
+        emoji: "🛠️",
+        name: "Trabajo de una fuerza constante",
+        formula: "W = F d cos φ",
+        phrase: "<strong>W</strong>endy <strong>F</strong>rena <strong>D</strong>espués; el <strong>C</strong>oseno decide",
+        decode: "W = F·d·cosφ → fuerza por desplazamiento, usando solo la parte alineada.",
+        text: "Wendy empuja una puerta, pero si empuja de lado (90°), el coseno la deja sin trabajo mecánico."
+      },
+      {
+        emoji: "🔋",
+        name: "Teorema trabajo-energía",
+        formula: "Wnet = ΔK",
+        phrase: "<strong>W</strong>aldo <strong>T</strong>rabaja; <strong>ΔK</strong> cambia",
+        decode: "El trabajo neto es el cambio de energía cinética: Wnet = Kf − Ki.",
+        text: "Si Waldo hace trabajo neto, algo cambia: la energía cinética no se queda quieta mirando."
+      },
+      {
+        emoji: "🛑",
+        name: "Trabajo de fricción",
+        formula: "Wf = −μk n d",
+        phrase: "<strong>W</strong>aldo <strong>F</strong>rena <strong>μ</strong>ientras <strong>D</strong>errapa",
+        decode: "Wf = −μk·n·d → la fricción hace trabajo negativo al oponerse al deslizamiento.",
+        text: "El signo menos es el recibo: cada metro que derrapa, la fricción cobra energía en forma de calor."
+      },
+      {
+        emoji: "⚡",
+        name: "Potencia mecánica",
+        formula: "P = F · v",
+        phrase: "<strong>P</strong>aco <strong>F</strong>rena <strong>V</strong>eloces",
+        decode: "P = F·v cuando fuerza y velocidad son paralelas; en general P = F·v·cosφ.",
+        text: "Paco mueve la misma carga más rápido y necesita más potencia: la prisa también cuesta watts."
+      }
+    ]
+  },
+  {
+    group: "Energía potencial (Cap. 7)",
+    cards: [
+      {
+        emoji: "🏔️",
+        name: "Energía potencial gravitatoria",
+        formula: "Ug = m g y",
+        phrase: "<strong>U</strong>na <strong>G</strong>ran <strong>M</strong>ontaña <strong>G</strong>uarda <strong>Y</strong>etis",
+        decode: "Ug = m·g·y → masa por gravedad por altura respecto al nivel de referencia.",
+        text: "Los yetis guardan energía arriba; bajando, esa energía puede convertirse en movimiento."
+      },
+      {
+        emoji: "🌀",
+        name: "Energía potencial elástica",
+        formula: "Uel = ½ k x²",
+        phrase: "<strong>U</strong>n <strong>E</strong>lefante <strong>K</strong>omprime e<strong>X</strong>plota²",
+        decode: "Uel = ½·k·x² → un resorte más rígido o más deformado almacena más energía.",
+        text: "El elefante comprime el resorte; si duplica la compresión, guarda cuatro veces la energía."
+      },
+      {
+        emoji: "📦",
+        name: "Conservación de energía mecánica",
+        formula: "Ki + Ui = Kf + Uf",
+        phrase: "<strong>K</strong>arla <strong>U</strong>sa <strong>K</strong>ilo tras <strong>U</strong>n kilo",
+        decode: "Ki + Ui = Kf + Uf cuando no hay trabajo de fuerzas no conservativas.",
+        text: "Karla cambia energía de forma, pero el total no se esfuma. Con fricción, hay que sumar su trabajo."
+      },
+      {
+        emoji: "🪀",
+        name: "Fuerza restauradora del resorte",
+        formula: "Fx = −k x",
+        phrase: "<strong>F</strong>ede <strong>K</strong>orta e<strong>X</strong>cesos",
+        decode: "Fx = −k·x → el signo menos indica que la fuerza apunta de regreso al equilibrio.",
+        text: "Fede corrige cualquier exceso: estires o comprimas, el resorte intenta volver al centro."
       }
     ]
   }
