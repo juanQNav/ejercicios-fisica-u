@@ -15,7 +15,7 @@ Checks: Structural readback; browser-render smoke check if the available runtime
 
 ### S3 — Required learning content
 User request: "recuerda hay que hacer problma, el diagrama, video sugerido, consejo/tip, solucion paso a paso, y respuesta"
-Acceptance: Each new exercise includes a problem statement, rendered diagram, suggested video, tip, step-by-step solution and final answer.
+Acceptance: Each new exercise includes a problem statement, rendered diagram, tip, step-by-step solution and final answer. Video suggestions remain pending until direct URLs from Videos FISICA can be recovered; do not show YouTube search-result links, unlinked titles, or guessed URLs.
 Checks: Exercise data-field completeness; every diagram key resolves to a real SVG generator.
 
 ### S4 — Study aids limited to this session's exercises
@@ -29,7 +29,8 @@ Checks: Read back the new chapter-specific study-aid entries and confirm their f
 - T3 — S1–S3: Add requested Chapter 7 exercises 7.39–7.56; route: inline; status: complete (9 requested IDs; syntax, ID inventory, diagram mapping and whitespace checks passed); commit: `239d5af`.
 - T4 — S1–S3: Add requested Chapter 7 exercises 7.63–7.75; route: inline; status: complete (7 requested IDs; syntax, ID inventory, diagram mapping and whitespace checks passed); commit: `42e6970`.
 - T5 — S4: Add session-scoped Chapter 6–7 formula reference, flashcards and mnemonics; route: inline; status: complete (both chapter topics added to all three study aids; Node syntax and whitespace checks passed); commit: `a11295d`.
-- T6 — S1–S4: Validate all requested IDs, exercise fields, diagram mappings, inline JavaScript syntax and rendered page structure; route: inline; status: complete (exact 23/16 ID inventories, all 39 cards/diagrams/required fields render, and study aids render); commit: `a11295d`.
+- T6 — S1–S4: Validate all requested IDs, exercise fields, diagram mappings, inline JavaScript syntax and rendered page structure; route: inline; status: complete (exact 23/16 ID inventories, all 39 cards/diagrams/required fields render, no video-search fallback remains, and existing direct links still render); commit: `a11295d` plus correction `pending`.
+- T7 — S3: Add direct video URLs from the Videos FISICA sources; route: inline; status: pending (NotebookLM video-source URL lookup failed; user requested this remain pending); commit: pending.
 
 ## Log
 
@@ -63,7 +64,7 @@ The user selected `Integración escalonada a main` (`stacked-to-main`). T1 adds 
 Committed the Chapter 6 exercises 6.10–6.27 and their diagrams as `dec546a` (`feat: add chapter 6 energy exercises`). The repository reports receipt-driven development off at global scope; no native review or receipt was created.
 
 ### L5 — T2 evidence and source caveats
-Added the remaining 11 requested Chapter 6 exercises. Syntax and ID checks pass (23 Chapter 6 IDs total, no duplicates), and `git diff --check` is clean. The recovered 6.44 materials conflict on population (6.5 × 10⁹ in the exercise versus 3.0 × 10⁸ in the solution calculation), so both results are shown. Videos FISICA source titles are linked to YouTube title searches because direct source URLs could not be retrieved.
+Added the remaining 11 requested Chapter 6 exercises. Syntax and ID checks pass (23 Chapter 6 IDs total, no duplicates), and `git diff --check` is clean. The recovered 6.44 materials conflict on population (6.5 × 10⁹ in the exercise versus 3.0 × 10⁸ in the solution calculation), so both results are shown. The Videos FISICA direct URLs could not be retrieved; no substitute search links are retained, and video links remain pending.
 
 ### L6 — T2 work-unit commit
 Committed the remaining Chapter 6 exercises 6.43–6.82 as `1d53b35` (`feat: add chapter 6 power and spring exercises`).
@@ -88,3 +89,10 @@ An inline Node VM smoke test passed exact Chapter 6 (23 IDs) and Chapter 7 (16 I
 
 ### L13 — Study-aid work-unit commit
 Committed the session-specific Chapter 6–7 formula reference, flashcards, mnemonics and final task evidence as `a11295d` (`feat: add chapter 6-7 study aids`).
+
+### L14 — User correction: leave direct videos pending
+User correction (verbatim): "entonces dejalo pendiente, no dejes eso que pusiste"
+Removed the YouTube title-search links and video titles from the new exercise cards. Their video fields are now empty; direct URLs from Videos FISICA remain pending until they can be retrieved, with no search-page substitute.
+
+### L15 — Video fallback removal verification
+Node syntax and `git diff --check` pass. The rendered-data smoke test confirms the 39 new exercises have empty video arrays and no video-search UI, while existing direct video links, exercise content, SVG diagrams and study aids continue to render.

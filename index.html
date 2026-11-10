@@ -272,16 +272,6 @@ main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
 
 <script>
 // ====== EXERCISE DATA ======
-// NotebookLM Videos FISICA titles; YouTube search links are used when a source URL is unavailable.
-const suggestedVideos = {
-  kinetic: { title: "Energía CINÉTICA ☄ Qué es, fórmula y problemas", url: "https://www.youtube.com/results?search_query=Energ%C3%ADa+CIN%C3%89TICA+Qu%C3%A9+es+f%C3%B3rmula+y+problemas" },
-  mechanical: { title: "Energía MECÁNICA 🎢 Principio de Conservación de la Energía", url: "https://www.youtube.com/results?search_query=Energ%C3%ADa+MEC%C3%81NICA+Principio+de+Conservaci%C3%B3n+de+la+Energ%C3%ADa" },
-  potential: { title: "Energía Potencial GRAVITATORIA 🏋️‍♂️", url: "https://www.youtube.com/results?search_query=Energ%C3%ADa+Potencial+GRAVITATORIA" },
-  power: { title: "POTENCIA Mecánica y RENDIMIENTO 🏗 Concepto, Fórmula y Problemas", url: "https://www.youtube.com/results?search_query=POTENCIA+Mec%C3%A1nica+y+RENDIMIENTO+Concepto+F%C3%B3rmula+y+Problemas" },
-  work: { title: "TRABAJO Sin Rozamiento 🏋️‍♂️ Concepto, Fórmula y Problemas", url: "https://www.youtube.com/results?search_query=TRABAJO+Sin+Rozamiento+Concepto+F%C3%B3rmula+y+Problemas" },
-  energyProblem: { title: "Problema de ENERGÍA MECÁNICA 🎢", url: "https://www.youtube.com/results?search_query=Problema+de+ENERG%C3%8DA+MEC%C3%81NICA" }
-};
-
 const exercises = {
 "Capitulo 1": [
 {
@@ -1333,7 +1323,7 @@ const exercises = {
   title: "Ejercicio 6.10 — Energía cinética de un automóvil",
   problem: "Un automóvil de 750 kg viaja por una autopista a 65 mi/h. a) ¿Cuánta energía cinética tiene? b) ¿Por qué factor cambia la energía cinética si la rapidez se reduce a la mitad? c) ¿A qué rapidez, en mi/h, tendría la mitad de la energía cinética inicial?",
   tips: "Convierte primero mi/h a m/s para obtener joules. Como K es proporcional a v², dividir la rapidez entre 2 divide K entre 4; para la mitad de K se divide v entre √2.",
-  videos: [suggestedVideos.kinetic, suggestedVideos.energyProblem],
+  videos: [],
   steps: [
     {title: "Convertir la rapidez a SI", body: "v = 65 mi/h × 0.44704 = 29.06 m/s ≈ 29.1 m/s."},
     {title: "a) Energía cinética", body: "K = ½mv² = ½(750 kg)(29.06 m/s)².", formula: "K ≈ 3.17 × 10⁵ J"},
@@ -1348,7 +1338,7 @@ const exercises = {
   title: "Ejercicio 6.12 — Estimaciones de energía cinética",
   problem: "Estime: a) la energía cinética de una persona de 75 kg al caminar y al correr; b) la energía cinética de un electrón en un átomo de hidrógeno que se mueve a 2.19 × 10⁶ m/s; c) la energía cinética de un objeto de 1.0 kg que se deja caer desde la altura del hombro al llegar al suelo; d) la rapidez de un objeto de 30 kg con 100 J de energía cinética y si esa rapidez es razonable.",
   tips: "En los incisos de estimación, declara los valores asumidos: caminar ≈2 m/s, correr ≈6 m/s y hombro ≈1.6 m. Usa la masa del electrón 9.11 × 10⁻³¹ kg.",
-  videos: [suggestedVideos.kinetic, suggestedVideos.mechanical],
+  videos: [],
   steps: [
     {title: "a) Persona caminando y corriendo", body: "K = ½mv². Caminando a 2 m/s: K = ½(75)(2)² = 150 J. Corriendo a 6 m/s: K = ½(75)(6)² = 1350 J ≈ 1.4 × 10³ J."},
     {title: "b) Electrón en el átomo", body: "K = ½(9.11 × 10⁻³¹ kg)(2.19 × 10⁶ m/s)².", formula: "K ≈ 2.18 × 10⁻¹⁸ J"},
@@ -1363,7 +1353,7 @@ const exercises = {
   title: "Ejercicio 6.14 — Caída de una sandía",
   problem: "Una sandía de 4.80 kg se deja caer desde una azotea de 25.0 m; desprecie inicialmente la resistencia del aire. a) Calcule el trabajo de la gravedad. b) Justo antes del impacto, calcule i) la energía cinética y ii) la rapidez. c) ¿Qué resultados cambiarían si la resistencia del aire fuera considerable?",
   tips: "El trabajo de la gravedad depende solo del desplazamiento vertical y no de la trayectoria. Sin resistencia, el trabajo gravitatorio se convierte por completo en energía cinética.",
-  videos: [suggestedVideos.potential, suggestedVideos.mechanical],
+  videos: [],
   steps: [
     {title: "a) Trabajo de la gravedad", body: "La fuerza y el desplazamiento apuntan hacia abajo: Wg = mgh = (4.80)(9.80)(25.0).", formula: "Wg = +1.176 × 10³ J ≈ +1.18 kJ"},
     {title: "b-i) Energía cinética antes del impacto", body: "Parte del reposo y solo actúa la gravedad, así que Wnet = ΔK y Kf = Wg.", formula: "Kf = 1.176 × 10³ J ≈ 1.18 kJ"},
@@ -1378,7 +1368,7 @@ const exercises = {
   title: "Ejercicio 6.15 — Aplicaciones del teorema trabajo-energía",
   problem: "Use el teorema trabajo-energía y desprecie la resistencia del aire. a) Una rama cae desde el reposo desde una secuoya de 95.0 m: ¿con qué rapidez llega al suelo? b) Una roca asciende 525 m desde un volcán: ¿con qué rapidez salió? c) Una esquiadora a 5.00 m/s entra en nieve horizontal con μk = 0.220: ¿qué distancia recorre hasta detenerse? d) Si la zona áspera solo mide 2.90 m, ¿con qué rapidez sale? e) Un trineo a 12.0 m/s sube una colina sin fricción inclinada 25.0°: ¿qué altura vertical alcanza?",
   tips: "Aplica Wnet = ΔK en cada tramo. La normal no hace trabajo; la fricción sí. En la colina sin fricción la altura depende del cambio de energía, no del ángulo de la pendiente.",
-  videos: [suggestedVideos.work, suggestedVideos.mechanical],
+  videos: [],
   steps: [
     {title: "a) Rama en caída", body: "mgh = ½mv²; se cancela m y v = √(2gh) = √[2(9.80)(95.0)].", formula: "v = 43.2 m/s"},
     {title: "b) Roca que sube", body: "En la altura máxima vf = 0: ½mvi² = mgh, de modo que vi = √(2gh) = √[2(9.80)(525)].", formula: "vi = 101 m/s hacia arriba"},
@@ -1394,7 +1384,7 @@ const exercises = {
   title: "Ejercicio 6.16 — Piedra lanzada hacia arriba",
   problem: "Se lanza verticalmente hacia arriba desde el suelo una piedra que pesa 20 N. Cuando está a 15.0 m de altura, su rapidez es 25.0 m/s hacia arriba. Use el teorema trabajo-energía para hallar a) la rapidez inicial y b) la altura máxima.",
   tips: "El peso permite hallar la masa con m = w/g. Al subir, el trabajo de la gravedad es negativo; en la altura máxima la rapidez es cero.",
-  videos: [suggestedVideos.potential, suggestedVideos.mechanical],
+  videos: [],
   steps: [
     {title: "Datos y masa", body: "m = w/g = 20.0 N/(9.80 m/s²) = 2.04 kg. Entre el suelo y y = 15.0 m, Wg = −wy = −(20.0)(15.0) = −300 J."},
     {title: "a) Rapidez inicial", body: "Wg = K2 − K1: −300 = ½m(25.0)² − ½m v0². Entonces v0² = 25.0² + 2g(15.0).", formula: "v0 = √919 = 30.3 m/s"},
@@ -1408,7 +1398,7 @@ const exercises = {
   title: "Ejercicio 6.17 — Caja que sube por una pendiente",
   problem: "Una caja de suministros se proyecta cuesta arriba por una pendiente de ángulo α hasta un esquiador situado a altura vertical h. El coeficiente de fricción cinética es μk. Use el teorema trabajo-energía para calcular la rapidez inicial mínima en la base en términos de g, h, μk y α.",
   tips: "La distancia sobre la pendiente es s = h/sin α. Suma la energía que se necesita para elevar la caja y el trabajo que disipa la fricción.",
-  videos: [suggestedVideos.work, suggestedVideos.potential],
+  videos: [],
   steps: [
     {title: "Distancia y fuerzas", body: "s = h/sin α; n = mg cos α; fk = μkmg cos α."},
     {title: "Trabajo total al llegar al esquiador", body: "Wg = −mgh. Wf = −fk s = −μkmg cos α(h/sin α) = −mgh(μk/tan α)."},
@@ -1422,7 +1412,7 @@ const exercises = {
   title: "Ejercicio 6.19 — Distancia de frenado y trabajo",
   problem: "Un automóvil se detiene en una distancia D por una fuerza de fricción constante, independiente de su rapidez. Use trabajo-energía para determinar la distancia de frenado a) si la rapidez inicial se triplica y b) si se triplica la fuerza de fricción manteniendo la rapidez inicial.",
   tips: "Parte de −fD = −½mv². La distancia de frenado es proporcional a v² e inversamente proporcional a f.",
-  videos: [suggestedVideos.work, suggestedVideos.energyProblem],
+  videos: [],
   steps: [
     {title: "Relación general", body: "−fD = 0 − ½mv², por lo tanto D = mv²/(2f)."},
     {title: "a) Rapidez triplicada", body: "D′/D = (3v)²/v² = 9.", formula: "D′ = 9D"},
@@ -1436,7 +1426,7 @@ const exercises = {
   title: "Ejercicio 6.20 — Trabajo neto sobre un electrón",
   problem: "Un electrón que se mueve tiene energía cinética K1. Después de realizarse sobre él un trabajo neto W, se mueve con un cuarto de su rapidez anterior y en dirección opuesta. a) Calcule W en términos de K1. b) ¿Depende la respuesta de la dirección final?",
   tips: "La energía cinética depende de la rapidez al cuadrado, no de la dirección. La velocidad opuesta cambia el vector, pero no el valor de v².",
-  videos: [suggestedVideos.kinetic, suggestedVideos.work],
+  videos: [],
   steps: [
     {title: "Energía cinética final", body: "La rapidez final es v2 = v1/4. Entonces K2 = ½m(v1/4)² = K1/16."},
     {title: "a) Trabajo neto", body: "Por el teorema trabajo-energía, W = K2 − K1 = K1/16 − K1.", formula: "W = −15K1/16"},
@@ -1450,7 +1440,7 @@ const exercises = {
   title: "Ejercicio 6.21 — Fuerza constante sobre un trineo",
   problem: "Un trineo de 8.00 kg se mueve sobre una superficie horizontal sin fricción. Su rapidez aumenta de 4.00 m/s a 6.00 m/s en 2.50 m. Suponga que una fuerza constante actúa en la dirección del movimiento. Determine la fuerza.",
   tips: "Calcula el cambio de energía cinética y divídelo entre el desplazamiento: para una fuerza paralela, W = Fd.",
-  videos: [suggestedVideos.work, suggestedVideos.kinetic],
+  videos: [],
   steps: [
     {title: "Cambio de energía cinética", body: "ΔK = ½m(v2² − v1²) = ½(8.00)(6.00² − 4.00²) = 80.0 J."},
     {title: "Despejar la fuerza", body: "F d = ΔK, por lo que F = 80.0 J / 2.50 m.", formula: "F = 32.0 N, en la dirección del movimiento"}
@@ -1463,7 +1453,7 @@ const exercises = {
   title: "Ejercicio 6.23 — Perro que empuja un paquete",
   problem: "Un paquete de bebidas de 4.30 kg parte del reposo en un piso horizontal. Un perro ejerce una fuerza horizontal de 36.0 N y lo empuja 1.20 m. Calcule la rapidez final a) sin fricción y b) con μk = 0.30.",
   tips: "El trabajo neto es el trabajo del perro menos el trabajo disipado por fricción. En horizontal, fk = μkmg.",
-  videos: [suggestedVideos.work, suggestedVideos.kinetic],
+  videos: [],
   steps: [
     {title: "a) Sin fricción", body: "Wnet = Fd = (36.0)(1.20) = 43.2 J = ½mv².", formula: "v = √(2 × 43.2/4.30) = 4.48 m/s"},
     {title: "b) Con fricción", body: "fk = μkmg = (0.30)(4.30)(9.80) = 12.64 N. Wnet = (F − fk)d = (36.0 − 12.64)(1.20) = 28.03 J."},
@@ -1477,7 +1467,7 @@ const exercises = {
   title: "Ejercicio 6.25 — Vagón de juguete empujado",
   problem: "Un vagón de juguete de 7.00 kg se mueve sobre una superficie horizontal sin fricción a 4.00 m/s. Una fuerza de 10.0 N lo empuja 3.00 m en la dirección de su velocidad. a) Use trabajo-energía para hallar su rapidez final. b) Calcule la aceleración y verifique la rapidez con cinemática.",
   tips: "Resuelve primero por energía; como control independiente usa a = F/m y vf² = vi² + 2aΔx.",
-  videos: [suggestedVideos.work, suggestedVideos.kinetic],
+  videos: [],
   steps: [
     {title: "a) Trabajo y energía", body: "K1 = ½(7.00)(4.00²) = 56.0 J. W = Fd = (10.0)(3.00) = 30.0 J; K2 = 86.0 J."},
     {title: "Rapidez por trabajo-energía", body: "K2 = ½mvf², entonces vf = √(2K2/m).", formula: "vf = √(172/7.00) = 4.96 m/s"},
@@ -1491,7 +1481,7 @@ const exercises = {
   title: "Ejercicio 6.27 — Distancia mínima de frenado",
   problem: "Un automóvil viaja a rapidez v0 sobre un camino horizontal cuando se bloquean los frenos y las llantas se deslizan. a) Use trabajo-energía para obtener la distancia mínima de frenado en términos de v0, g y μk. b) Determine el factor de cambio si i) μk se duplica, ii) v0 se duplica, iii) ambos se duplican.",
   tips: "El trabajo de la fricción cinética es negativo: −μkmgd. La masa se cancela, así que la distancia es proporcional a v0² y a 1/μk.",
-  videos: [suggestedVideos.work, suggestedVideos.energyProblem],
+  videos: [],
   steps: [
     {title: "a) Aplicar trabajo-energía", body: "−μkmgd = 0 − ½mv0². Se cancela m y se despeja d.", formula: "d = v0²/(2μkg)"},
     {title: "b-i) Duplicar μk", body: "d′/d = μk/(2μk) = 1/2.", formula: "La distancia se reduce a la mitad"},
@@ -1506,7 +1496,7 @@ const exercises = {
   title: "Ejercicio 6.43 — Energía de una lámpara y rapidez equivalente",
   problem: "Un foco de 100 W permanece encendido durante 1.0 h. ¿A qué rapidez tendría que moverse una persona de 70 kg para tener una energía cinética igual a la energía consumida por el foco?",
   tips: "La energía consumida es E = Pt. Iguala esa energía a ½mv² y convierte horas a segundos antes de calcular.",
-  videos: [suggestedVideos.power, suggestedVideos.kinetic],
+  videos: [],
   steps: [
     {title: "Energía eléctrica consumida", body: "Δt = 1.0 h = 3600 s. E = PΔt = (100 W)(3600 s).", formula: "E = 3.60 × 10⁵ J"},
     {title: "Igualar a la energía cinética", body: "½mv² = E; v = √(2E/m) = √[2(3.60 × 10⁵ J)/(70 kg)].", formula: "v = 101 m/s ≈ 100 m/s"},
@@ -1520,7 +1510,7 @@ const exercises = {
   title: "Ejercicio 6.44 — Consumo de energía y colectores solares",
   problem: "La energía consumida por la sociedad humana es aproximadamente 1.0 × 10¹⁹ J/año. a) Calcule la potencia media en watts. b) Calcule la potencia per cápita si la población es 6.5 × 10⁹ personas. c) Si toda esa energía se obtuviera del Sol, ¿qué área de colectores se necesitaría con eficiencia de 40% y una potencia solar media incidente de 1.0 × 10³ W/m²?",
   tips: "Convierte el año a segundos y divide la potencia total por la población indicada. El solucionario recuperado usa 3.0 × 10⁸ en su cálculo per cápita, aunque el enunciado recuperado indica 6.5 × 10⁹; aquí se muestran ambos resultados para hacer visible esa discrepancia.",
-  videos: [suggestedVideos.power, suggestedVideos.energyProblem],
+  videos: [],
   steps: [
     {title: "a) Potencia media total", body: "1 año ≈ 3.156 × 10⁷ s. P = E/Δt = (1.0 × 10¹⁹ J)/(3.156 × 10⁷ s).", formula: "P ≈ 3.17 × 10¹¹ W"},
     {title: "b) Potencia por persona", body: "Con la población indicada, Ppersona = (3.17 × 10¹¹ W)/(6.5 × 10⁹ personas) ≈ 48.7 W/persona. El valor 3.0 × 10⁸ que aparece en el cálculo recuperado del solucionario daría ≈1.06 × 10³ W/persona; no coincide con la población del enunciado."},
@@ -1534,7 +1524,7 @@ const exercises = {
   title: "Ejercicio 6.45 — Potencia media de una magnetoestrella",
   problem: "Una magnetoestrella liberó durante 0.20 s tanta energía como el Sol libera durante 250 000 años. Si P es la potencia media de salida del Sol, ¿cuál fue la potencia media de la magnetoestrella en términos de P?",
   tips: "Iguala las energías PΔt de ambas fuentes. Al expresar ambos tiempos en las mismas unidades, el cociente de potencias es el cociente inverso de duraciones.",
-  videos: [suggestedVideos.power, suggestedVideos.energyProblem],
+  videos: [],
   steps: [
     {title: "Igualar las energías liberadas", body: "Pmag(0.20 s) = P(250 000 años)."},
     {title: "Convertir el tiempo del Sol", body: "250 000 años × 3.156 × 10⁷ s/año = 7.89 × 10¹² s."},
@@ -1548,7 +1538,7 @@ const exercises = {
   title: "Ejercicio 6.46 — Potencia térmica por fricción",
   problem: "Una piedra de 20.0 kg se desliza sobre una superficie horizontal áspera a 8.0 m/s y se detiene por fricción. El coeficiente de fricción cinética es 0.200. ¿Cuál es la potencia térmica media producida durante la detención?",
   tips: "Con fricción constante, la rapidez disminuye uniformemente. La potencia térmica media es fk por la rapidez media, o bien la energía cinética inicial dividida por el tiempo de frenado.",
-  videos: [suggestedVideos.power, suggestedVideos.work],
+  videos: [],
   steps: [
     {title: "Fuerza de fricción", body: "fk = μkmg = (0.200)(20.0 kg)(9.80 m/s²) = 39.2 N."},
     {title: "Rapidez media al detenerse", body: "vmed = (v0 + vf)/2 = (8.00 + 0)/2 = 4.00 m/s."},
@@ -1562,7 +1552,7 @@ const exercises = {
   title: "Ejercicio 6.47 — Potencia por ciclista en una bicicleta tándem",
   problem: "Dos personas en una bicicleta tándem vencen una fuerza de 165 N para mantener una rapidez de 9.00 m/s. Suponga que ambas contribuyen por igual. Calcule la potencia por ciclista en watts y en caballos de fuerza.",
   tips: "A rapidez constante, la potencia mecánica total es P = Fv. Divide por dos solo después de hallar la potencia combinada.",
-  videos: [suggestedVideos.power],
+  videos: [],
   steps: [
     {title: "Potencia total", body: "Ptotal = Fv = (165 N)(9.00 m/s) = 1485 W."},
     {title: "Potencia de cada ciclista", body: "Ppersona = 1485/2 = 742.5 W."},
@@ -1576,7 +1566,7 @@ const exercises = {
   title: "Ejercicio 6.48 — Potencia del motor usada para ascender",
   problem: "Un avión monomotor de 700 kg, con motor de 75 kW, gana altitud a 2.5 m/s mientras desarrolla su potencia máxima. ¿Qué fracción de la potencia del motor se invierte en el ascenso? El resto vence la resistencia del aire o se pierde por ineficiencias.",
   tips: "La potencia necesaria para aumentar la energía potencial gravitatoria a razón de vy es P = mgvy. Divide por la potencia del motor para hallar la fracción.",
-  videos: [suggestedVideos.power, suggestedVideos.potential],
+  videos: [],
   steps: [
     {title: "Potencia de ascenso", body: "Pasc = mgvy = (700 kg)(9.80 m/s²)(2.5 m/s) = 17 150 W = 17.15 kW."},
     {title: "Fracción de la potencia del motor", body: "f = Pasc/Pmotor = 17.15 kW/75 kW = 0.2287.", formula: "f ≈ 0.229 = 22.9%"}
@@ -1589,7 +1579,7 @@ const exercises = {
   title: "Ejercicio 6.49 — Trabajo y potencia al cargar cajas",
   problem: "Una persona levanta cajas de 30 kg desde el suelo hasta un camión, una altura vertical de 0.90 m. ¿Cuántas cajas por minuto tendría que levantar para que la potencia media dedicada al levantamiento fuera a) 0.50 hp y b) 100 W?",
   tips: "Calcula primero el trabajo por caja, mgh. Luego multiplica la tasa de trabajo por caja entre la potencia deseada; conserva las unidades de cajas por segundo hasta convertir a cajas por minuto.",
-  videos: [suggestedVideos.power, suggestedVideos.work],
+  videos: [],
   steps: [
     {title: "Trabajo para una caja", body: "Wcaja = mgh = (30 kg)(9.80 m/s²)(0.90 m) = 264.6 J."},
     {title: "a) Potencia de 0.50 hp", body: "P = (0.50)(746 W) = 373 W. Tasa = P/Wcaja = 373/264.6 = 1.41 cajas/s; por minuto: (1.41)(60).", formula: "≈84.6 cajas/min (aprox. 85)"},
@@ -1603,7 +1593,7 @@ const exercises = {
   title: "Ejercicio 6.73 — Ciclista que sube un puente",
   problem: "Un hombre y su bicicleta tienen una masa combinada de 80.0 kg. Al pie de un puente se mueven a 5.00 m/s; la cima está 5.20 m más arriba y allí la rapidez es 1.50 m/s. Desprecie fricción e ineficiencias. a) ¿Qué trabajo total se efectúa sobre el sistema? b) ¿Cuánto trabajo realiza el hombre al pedalear?",
   tips: "El trabajo total es ΔK. Para separar el trabajo de pedaleo, resta la contribución negativa de la gravedad: Wtotal = Whombre + Wg.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.potential],
+  videos: [],
   steps: [
     {title: "a) Trabajo total", body: "K1 = ½(80.0)(5.00²) = 1000 J; K2 = ½(80.0)(1.50²) = 90.0 J. Wtotal = K2 − K1.", formula: "Wtotal = −910 J"},
     {title: "Trabajo de la gravedad", body: "Wg = −mgh = −(80.0)(9.80)(5.20) = −4077 J."},
@@ -1617,7 +1607,7 @@ const exercises = {
   title: "Ejercicio 6.76 — Esfera lanzada por un resorte",
   problem: "Un rifle de resorte tiene k = 400 N/m. El resorte se comprime 6.00 cm y lanza horizontalmente una esfera de 0.0300 kg. a) Halle la rapidez de salida sin fricción. b) Halle la rapidez si actúa una fricción constante de 6.00 N a lo largo de 6.00 cm. c) En el caso b), ¿dónde alcanza la esfera su rapidez máxima y cuánto vale?",
   tips: "El resorte entrega menos energía cuando la fricción realiza trabajo negativo. La rapidez es máxima cuando la fuerza neta momentáneamente se anula: kx = f, donde x es la compresión restante.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.kinetic],
+  videos: [],
   steps: [
     {title: "a) Sin fricción", body: "Ue = ½kx0² = ½(400)(0.0600²) = 0.720 J = ½mv².", formula: "v = 6.93 m/s"},
     {title: "b) Con fricción", body: "Wf = −fs = −(6.00)(0.0600) = −0.360 J. Kf = 0.720 − 0.360 = 0.360 J; v = √(2Kf/m).", formula: "v = 4.90 m/s"},
@@ -1632,7 +1622,7 @@ const exercises = {
   title: "Ejercicio 6.81 — Bloque y resorte en una superficie sin fricción",
   problem: "Un bloque de 5.00 kg se mueve a 6.00 m/s hacia un resorte horizontal sin masa de constante k = 500 N/m, unido a una pared. a) ¿Cuál es la compresión máxima? b) Si no debe superar 0.150 m, ¿cuál es la rapidez inicial máxima?",
   tips: "En la compresión máxima, el bloque se detiene momentáneamente. La energía cinética inicial se convierte en energía potencial elástica.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.energyProblem],
+  videos: [],
   steps: [
     {title: "a) Compresión máxima", body: "½mv0² = ½kX². Despeja X = v0√(m/k) = (6.00)√(5.00/500).", formula: "X = 0.600 m"},
     {title: "b) Rapidez máxima permitida", body: "v0 = X√(k/m) = (0.150)√(500/5.00).", formula: "v0,max = 1.50 m/s"}
@@ -1645,7 +1635,7 @@ const exercises = {
   title: "Ejercicio 6.82 — Dos bloques unidos por una cuerda con fricción",
   problem: "Un bloque de 8.00 kg está sobre una mesa y unido, mediante cuerda ligera y polea sin fricción, a un bloque colgante de 6.00 kg. μk = 0.250 entre el bloque de la mesa y la superficie. Parten del reposo. Use energía para hallar la rapidez del bloque de 6.00 kg tras descender 1.50 m.",
   tips: "Trata ambos bloques como un sistema: comparten la rapidez. La gravedad sobre el bloque colgante entrega energía; la fricción sobre el bloque de la mesa la disipa.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.work],
+  videos: [],
   steps: [
     {title: "Trabajo de la gravedad", body: "Wg = m2gh = (6.00)(9.80)(1.50) = 88.2 J."},
     {title: "Trabajo de fricción", body: "fk = μkm1g = (0.250)(8.00)(9.80) = 19.6 N. Wf = −fkh = −29.4 J."},
@@ -1662,7 +1652,7 @@ const exercises = {
   title: "Ejercicio 7.39 — Cubeta, caja y fricción",
   problem: "Una cubeta de concreto de 65.0 kg cuelga de un cable que pasa por una polea ligera sin fricción y tira horizontalmente de una caja de 80.0 kg sobre un techo. Una bolsa de grava de 50.0 kg está sobre la caja. Entre la caja y el techo, μs = 0.700 y μk = 0.400 (figura 7.29). 1) Halle la fricción sobre la bolsa y sobre la caja. 2) Se quita la bolsa; use energía para hallar la rapidez de la cubeta después de descender 2.00 m desde el reposo.",
   tips: "Antes de quitar la bolsa, comprueba si la fricción estática puede sostener la cubeta. Después, la fricción cinética actúa solo sobre la caja; las dos masas comparten la misma rapidez.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.work],
+  videos: [],
   figureRef: "7.29",
   steps: [
     {title: "1) Comprobar el equilibrio inicial", body: "La normal sobre caja y grava es (80 + 50)g. fs,max = μs(130 kg)g = 892 N. El peso de la cubeta es 65g = 637 N, menor que fs,max; el sistema permanece en reposo."},
@@ -1679,7 +1669,7 @@ const exercises = {
   title: "Ejercicio 7.42 — Bloque impulsado por un resorte y una rampa",
   problem: "Un bloque de 2.00 kg comprime 0.220 m un resorte sin masa de constante k = 400 N/m. Se suelta y se mueve sin fricción por una parte horizontal y luego sube una rampa de 37.0° (figura 7.30). a) ¿Qué rapidez tiene en la parte horizontal tras separarse del resorte? b) ¿Qué altura vertical máxima alcanza?",
   tips: "La energía elástica inicial se transforma primero en energía cinética y finalmente en potencial gravitatoria. Como no hay fricción, la masa se cancela al hallar la altura.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.potential],
+  videos: [],
   figureRef: "7.30",
   steps: [
     {title: "Energía elástica inicial", body: "Ue = ½kx² = ½(400 N/m)(0.220 m)² = 9.68 J."},
@@ -1694,7 +1684,7 @@ const exercises = {
   title: "Ejercicio 7.43 — Fricción y resorte",
   problem: "Un bloque de 0.50 kg comprime 0.20 m un resorte horizontal de k = 100 N/m y se suelta. El bloque recorre 1.00 m sobre una mesa horizontal antes de detenerse. Calcule μk entre el bloque y la mesa (figura 7.31).",
   tips: "Toda la energía elástica inicial se disipa por el trabajo negativo de la fricción durante el metro recorrido.",
-  videos: [suggestedVideos.work, suggestedVideos.mechanical],
+  videos: [],
   figureRef: "7.31",
   steps: [
     {title: "Energía inicial del resorte", body: "Ue = ½kx² = ½(100 N/m)(0.20 m)² = 2.00 J."},
@@ -1709,7 +1699,7 @@ const exercises = {
   title: "Ejercicio 7.46 — Carrito en un rizo vertical",
   problem: "Un carrito parte del reposo en A, a altura h sobre la base de un rizo vertical de radio R, y rueda sin fricción (figura 7.32). a) Halle la altura mínima h para no caer en la parte superior B. b) Si h = 3.50R y R = 20.0 m, calcule en C, al extremo de un diámetro horizontal, la rapidez, la aceleración radial y la tangencial; represente las componentes de aceleración.",
   tips: "En la cima, el caso límite de contacto tiene normal n = 0 y v²/R = g. En el costado, la energía fija la rapidez; la gravedad es tangencial y la normal es radial.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.potential],
+  videos: [],
   figureRef: "7.32",
   steps: [
     {title: "a) Condición de contacto en la cima", body: "En B, en el límite n = 0: mg = mvB²/R, así que vB² = gR."},
@@ -1726,7 +1716,7 @@ const exercises = {
   title: "Ejercicio 7.47 — Madera sobre una franja áspera",
   problem: "Un trozo de madera de 2.0 kg parte del reposo 4.0 m sobre el fondo de una pista. Los lados curvos son lisos; el tramo horizontal áspero mide 30 m y tiene μk = 0.20 (figura 7.33). a) ¿Dónde se detiene finalmente? b) ¿Qué trabajo total realiza la fricción desde la partida hasta que se detiene?",
   tips: "La energía potencial inicial se pierde únicamente por fricción en el tramo horizontal. Compara la distancia necesaria para disiparla con los 30 m disponibles.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.work],
+  videos: [],
   figureRef: "7.33",
   steps: [
     {title: "Energía mecánica inicial", body: "E1 = mgh = (2.0)(9.80)(4.0) = 78.4 J."},
@@ -1742,7 +1732,7 @@ const exercises = {
   title: "Ejercicio 7.49 — Piedra, fricción y resorte",
   problem: "Una piedra de 15.0 kg parte de A con rapidez 10.0 m/s y baja una colina sin fricción hasta B, 20.0 m más abajo. En el tramo horizontal áspero, a 100 m de B, encuentra un resorte largo de k = 2.00 N/m. En el suelo μk = 0.20 y μs = 0.80 (figura 7.34). a) Halle la rapidez en B. b) Halle la compresión máxima del resorte. c) ¿La piedra vuelve a moverse tras detenerse?",
   tips: "Conserva energía en la colina, resta el trabajo de fricción en los 100 m y durante la compresión, y verifica el posible rebote comparando kx con la fricción estática máxima.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.energyProblem],
+  videos: [],
   figureRef: "7.34",
   steps: [
     {title: "a) Rapidez al llegar a B", body: "½mvA² + mgh = ½mvB², con h = 20.0 m. vB = √(10.0² + 2(9.80)(20.0)).", formula: "vB = 22.2 m/s"},
@@ -1758,7 +1748,7 @@ const exercises = {
   title: "Ejercicio 7.50 — Bloque que salta un foso",
   problem: "Un bloque de 2.8 kg sube por una colina lisa cubierta de hielo. La cima horizontal está 70 m sobre la base y termina frente a un foso de 40 m de ancho y 20 m de profundidad (figura 7.35). ¿Qué rapidez mínima necesita el bloque en la base para no caer en el foso?",
   tips: "Primero usa caída libre para obtener el tiempo disponible y la rapidez horizontal necesaria en la cima. Después conserva energía desde la base hasta la cima.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.potential],
+  videos: [],
   figureRef: "7.35",
   steps: [
     {title: "Tiempo de caída desde la cima", body: "La velocidad vertical inicial es cero. t = √(2h/g) = √[2(20 m)/(9.80 m/s²)] = 2.02 s."},
@@ -1773,7 +1763,7 @@ const exercises = {
   title: "Ejercicio 7.55 — Dos cubetas y una polea",
   problem: "Dos cubetas unidas por una cuerda ligera se sueltan del reposo. La cubeta de 12.0 kg está 2.00 m sobre el piso y la cubeta opuesta tiene masa de 4.0 kg (figura 7.36). Ignore fricción y masa de la polea. Use conservación de energía para hallar la rapidez de la cubeta de 12.0 kg justo antes de tocar el piso.",
   tips: "La cubeta pesada pierde potencial gravitatoria y la ligera gana potencial. Ambas tienen la misma rapidez, así que la energía cinética final usa la suma de las masas.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.energyProblem],
+  videos: [],
   figureRef: "7.36",
   steps: [
     {title: "Cambios de energía potencial", body: "Al desplazarse 2.00 m, ΔUg = −m1gh + m2gh = −(12.0 − 4.0)(9.80)(2.00) = −156.8 J."},
@@ -1788,7 +1778,7 @@ const exercises = {
   title: "Ejercicio 7.56 — Cohete sobre una rampa con empuje y fricción",
   problem: "Un cohete de 1500 kg debe salir verticalmente de una rampa con rapidez 50.0 m/s. Parte del reposo sobre una rampa que desciende hacia la base con inclinación 53°; el motor ejerce 2000 N a favor del movimiento y la fricción constante es 500 N (figura 7.37). ¿A qué distancia de la base debe iniciar, medida a lo largo de la rampa?",
   tips: "Durante el descenso, la gravedad y el empuje realizan trabajo positivo; la fricción realiza trabajo negativo. No confundas distancia sobre la rampa con altura vertical.",
-  videos: [suggestedVideos.work, suggestedVideos.mechanical],
+  videos: [],
   figureRef: "7.37",
   steps: [
     {title: "Energía requerida en la base", body: "El cohete parte del reposo y debe llegar a 50.0 m/s: ΔK = ½mv² = ½(1500)(50.0²) = 3.75 × 10⁶ J."},
@@ -1803,7 +1793,7 @@ const exercises = {
   title: "Ejercicio 7.63 — Esquiadora que pierde contacto con una esfera",
   problem: "Una esquiadora parte casi del reposo en la cima de una enorme bola de nieve sin fricción y baja por su superficie (figura 7.38). ¿En qué punto pierde contacto y qué ángulo α forma entonces con la vertical el radio que une el centro de la esfera con la esquiadora?",
   tips: "En el instante de perder contacto, la normal es cero. Combina la ecuación radial del movimiento circular con conservación de la energía desde la cima.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.potential],
+  videos: [],
   figureRef: "7.38",
   steps: [
     {title: "Conservación de energía", body: "Desde la cima hasta el ángulo α: mgR = ½mv² + mgR cos α. Por tanto v² = 2gR(1 − cos α)."},
@@ -1818,7 +1808,7 @@ const exercises = {
   title: "Ejercicio 7.65 — Paquete en una guía curva y superficie áspera",
   problem: "Un paquete pequeño de 0.200 kg parte del reposo en A y baja por una guía de cuarto de círculo de radio 1.60 m hasta B, donde lleva 4.80 m/s. Luego se desliza 3.00 m sobre una superficie horizontal hasta detenerse en C (figura 7.39). 1) Halle μk para el tramo horizontal. 2) Halle el trabajo de fricción sobre el paquete en el arco AB.",
   tips: "En BC, el cambio de energía cinética determina la fricción. En AB, compara la pérdida de energía potencial gravitatoria con la energía cinética medida en B para obtener el trabajo no conservativo.",
-  videos: [suggestedVideos.work, suggestedVideos.mechanical],
+  videos: [],
   figureRef: "7.39",
   steps: [
     {title: "1) Coeficiente en el tramo horizontal", body: "½mvB² − μkmgd = 0. Al despejar, μk = vB²/(2gd) = 4.80²/[2(9.80)(3.00)].", formula: "μk = 0.392"},
@@ -1834,7 +1824,7 @@ const exercises = {
   title: "Ejercicio 7.66 — Camión y rampa de seguridad",
   problem: "Los frenos de un camión de masa m fallan al bajar una carretera helada inclinada α. Inicialmente baja a rapidez v0; después desciende una distancia L con fricción despreciable y entra en una rampa de seguridad que sube con ángulo β. En la rampa arenosa, el coeficiente de fricción por rodamiento es μr. ¿Qué distancia sube antes de detenerse? Use energía (figura 7.40).",
   tips: "La bajada sin fricción convierte altura en energía cinética. En la rampa, esa energía más el descenso inicial se consume al ganar altura y vencer la fricción por rodamiento.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.work],
+  videos: [],
   figureRef: "7.40",
   steps: [
     {title: "Energía al pie de la rampa", body: "La caída vertical es L sin α. La energía disponible por unidad de masa es ½v0² + gL sin α."},
@@ -1849,7 +1839,7 @@ const exercises = {
   title: "Ejercicio 7.68 — Trabajo al estirar un resorte sobre un arco",
   problem: "Una fuerza variable F, siempre tangente a una superficie semicircular sin fricción, mueve lentamente un bloque de peso w entre las posiciones 1 y 2. El bloque estira un resorte de constante k cuyo extremo sigue un arco de radio a. Calcule el trabajo realizado por F (figura 7.41).",
   tips: "El movimiento es cuasiestático, así que no cambia la energía cinética. El trabajo aplicado aumenta la energía gravitatoria del bloque y la energía almacenada en el resorte; usa θ en radianes para s = aθ.",
-  videos: [suggestedVideos.work, suggestedVideos.potential],
+  videos: [],
   figureRef: "7.41",
   steps: [
     {title: "Cambio de altura", body: "El desplazamiento vertical del bloque es Δy = a sin θ; por tanto ΔUg = w a sin θ."},
@@ -1864,7 +1854,7 @@ const exercises = {
   title: "Ejercicio 7.70 — Bloque entre dos resortes",
   problem: "Un bloque de 3.00 kg está unido a dos resortes horizontales ideales de k1 = 25.0 N/cm y k2 = 20.0 N/cm, en equilibrio sobre una superficie sin fricción (figura 7.42). Se empuja 15.0 cm a la derecha y se suelta. a) Halle la rapidez máxima y dónde ocurre. b) Halle la compresión máxima del resorte 1.",
   tips: "Al desplazarse desde el equilibrio, un resorte se estira y el otro se comprime; sus constantes efectivas se suman. La rapidez máxima ocurre cuando ambos vuelven a su deformación de equilibrio.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.energyProblem],
+  videos: [],
   figureRef: "7.42",
   steps: [
     {title: "Convertir constantes y obtener keff", body: "k1 = 2500 N/m; k2 = 2000 N/m. keff = k1 + k2 = 4500 N/m. La amplitud inicial es A = 0.150 m."},
@@ -1879,7 +1869,7 @@ const exercises = {
   title: "Ejercicio 7.74 — Paquete, pendiente áspera y resorte",
   problem: "Un paquete de 2.00 kg se suelta en una pendiente de 53.1°, a 4.00 m de un resorte largo de k = 120 N/m al pie. Entre paquete y pendiente, μs = 0.40 y μk = 0.20; el resorte no tiene masa (figura 7.43). a) Halle la rapidez justo antes de tocar el resorte. b) Halle la compresión máxima. c) ¿Rebotará cuesta arriba y, si lo hace, qué distancia recorrerá antes de detenerse?",
   tips: "La componente del peso cuesta abajo compite con la fricción cinética durante la bajada. En la compresión máxima, compara la fuerza del resorte con peso paralelo más fricción estática máxima para decidir si rebota.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.work],
+  videos: [],
   figureRef: "7.43",
   steps: [
     {title: "Fuerzas paralelas a la pendiente", body: "sin 53.1° = 0.800; cos 53.1° = 0.600. n = mg cos θ = 11.76 N y fk = μkn = 2.352 N. La fuerza neta cuesta abajo es mg sin θ − fk = 13.328 N."},
@@ -1896,7 +1886,7 @@ const exercises = {
   title: "Ejercicio 7.75 — Bloque jalado unido a un resorte",
   problem: "Un bloque de 0.500 kg está unido a un resorte de longitud natural 0.60 m y constante k = 40.0 N/m sobre una mesa horizontal sin fricción. Parte en reposo en A. Se tira hacia la derecha con una fuerza constante de 20.0 N hasta B, a 0.25 m de A (figura 7.44). a) ¿Qué rapidez tiene en B? b) Al soltarlo en B, ¿a qué distancia mínima de la pared llega el bloque?",
   tips: "En B, el trabajo de la fuerza aplicada se reparte entre energía cinética y energía elástica. Al soltar, la energía mecánica se conserva; en la aproximación máxima a la pared, toda es energía del resorte.",
-  videos: [suggestedVideos.mechanical, suggestedVideos.work],
+  videos: [],
   figureRef: "7.44",
   steps: [
     {title: "a) Trabajo externo y energía elástica en B", body: "WF = FΔx = (20.0)(0.25) = 5.00 J. Ue,B = ½k(0.25)² = 1.25 J. Entonces KB = 5.00 − 1.25 = 3.75 J."},
