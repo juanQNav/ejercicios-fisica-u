@@ -15,7 +15,7 @@ Checks: Structural readback; browser-render smoke check if the available runtime
 
 ### S3 — Required learning content
 User request: "recuerda hay que hacer problma, el diagrama, video sugerido, consejo/tip, solucion paso a paso, y respuesta"
-Acceptance: Each new exercise includes a problem statement, rendered diagram, tip, step-by-step solution and final answer. Video suggestions remain pending until direct URLs from Videos FISICA can be recovered; do not show YouTube search-result links, unlinked titles, or guessed URLs.
+Acceptance: Each new exercise includes a problem statement, rendered diagram, direct video suggestion from Videos FISICA, tip, step-by-step solution and final answer. Do not use YouTube search-result links or guessed URLs.
 Checks: Exercise data-field completeness; every diagram key resolves to a real SVG generator.
 
 ### S4 — Study aids limited to this session's exercises
@@ -24,13 +24,13 @@ Acceptance: Add only formulas, mnemonics and flashcards relevant to the requeste
 Checks: Read back the new chapter-specific study-aid entries and confirm their formula coverage is exercised by the added problems.
 
 ## Tasks
-- T1 — S1–S3: Add Chapter 6 exercises 6.10–6.27 with solutions, diagrams, video fields and tips; route: inline; status: complete (12 requested IDs, SVG mappings, Node syntax and ID checks passed; videos pending by correction); commit: `dec546a`, correction: `7ab5e07`.
-- T2 — S1–S3: Add remaining requested Chapter 6 exercises 6.43–6.82; route: inline; status: complete (11 requested IDs; Node syntax, ID inventory and whitespace checks passed; videos pending by correction); commit: `1d53b35`, correction: `7ab5e07`.
-- T3 — S1–S3: Add requested Chapter 7 exercises 7.39–7.56; route: inline; status: complete (9 requested IDs; syntax, ID inventory, diagram mapping and whitespace checks passed; videos pending by correction); commit: `239d5af`, correction: `7ab5e07`.
-- T4 — S1–S3: Add requested Chapter 7 exercises 7.63–7.75; route: inline; status: complete (7 requested IDs; syntax, ID inventory, diagram mapping and whitespace checks passed; videos pending by correction); commit: `42e6970`, correction: `7ab5e07`.
+- T1 — S1–S3: Add Chapter 6 exercises 6.10–6.27 with solutions, diagrams, direct videos and tips; route: inline; status: complete (12 requested IDs, SVG mappings, Node syntax and ID checks passed); commit: `dec546a`, video mapping commit: pending.
+- T2 — S1–S3: Add remaining requested Chapter 6 exercises 6.43–6.82; route: inline; status: complete (11 requested IDs; Node syntax, ID inventory and whitespace checks passed); commit: `1d53b35`, video mapping commit: pending.
+- T3 — S1–S3: Add requested Chapter 7 exercises 7.39–7.56; route: inline; status: complete (9 requested IDs; syntax, ID inventory, diagram mapping and whitespace checks passed); commit: `239d5af`, video mapping commit: pending.
+- T4 — S1–S3: Add requested Chapter 7 exercises 7.63–7.75; route: inline; status: complete (7 requested IDs; syntax, ID inventory, diagram mapping and whitespace checks passed); commit: `42e6970`, video mapping commit: pending.
 - T5 — S4: Add session-scoped Chapter 6–7 formula reference, flashcards and mnemonics; route: inline; status: complete (both chapter topics added to all three study aids; Node syntax and whitespace checks passed); commit: `a11295d`.
-- T6 — S1–S4: Validate all requested IDs, exercise fields, diagram mappings, inline JavaScript syntax and rendered page structure; route: inline; status: complete (exact 23/16 ID inventories, all 39 cards/diagrams/required fields render, no video-search fallback remains, and existing direct links still render); commit: `a11295d`, correction: `7ab5e07`.
-- T7 — S3: Add direct video URLs from the Videos FISICA sources; route: inline; status: pending (NotebookLM video-source URL lookup failed; user requested this remain pending); commit: pending.
+- T6 — S1–S4: Validate all requested IDs, exercise fields, diagram mappings, inline JavaScript syntax and rendered page structure; route: inline; status: complete (exact inventories, all 39 cards/diagrams/required fields and direct videos render); commits: `a11295d`, `7ab5e07`, video mapping commit: pending.
+- T7 — S3: Map direct Videos FISICA URLs to the requested exercises; route: inline; status: complete (39 mappings use direct user-provided watch URLs; no search links); commit: pending.
 
 ## Log
 
@@ -102,3 +102,6 @@ Committed removal of the search-page links and unverified titles as `7ab5e07` (`
 
 ### L17 — Retried NotebookLM MCP video-source lookup
 The notebook and its 67-source count still resolve, but `list_sources`, `ask_notebook`, `get_source` and `find_source_by_title` all returned the Google account-routing `not found` error. No direct video URL was verified; T7 remains pending and the new exercises retain empty video arrays.
+
+### L18 — User supplied direct video URLs
+The user provided direct YouTube URLs from Videos FISICA; the requested exercises now use topic-matched direct links from that list, with no search-page substitutions.

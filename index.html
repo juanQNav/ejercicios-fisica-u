@@ -272,6 +272,31 @@ main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
 
 <script>
 // ====== EXERCISE DATA ======
+const videoSuggestions = {
+  kinetic: { title: "Energía cinética: qué es, fórmula y problemas", url: "https://www.youtube.com/watch?v=cL4H9Vwd8v4" },
+  mechanical: { title: "Energía mecánica: principio de conservación", url: "https://www.youtube.com/watch?v=f4IWnif1wjs" },
+  potential: { title: "Energía potencial gravitatoria", url: "https://www.youtube.com/watch?v=AeT_kbFXsQc" },
+  energyForm: { title: "Formulario de trabajo y energía", url: "https://www.youtube.com/watch?v=hkcqFC1huX8" },
+  power: { title: "Potencia mecánica y rendimiento", url: "https://www.youtube.com/watch?v=b7xGz-Qqq9s" },
+  workNoFriction: { title: "Trabajo sin rozamiento", url: "https://www.youtube.com/watch?v=Xptwydr5jXc" },
+  exampleMultipleForces: { title: "Ejemplo 6.2 — Trabajo realizado por varias fuerzas", url: "https://www.youtube.com/watch?v=QKdn-yBTNlk" },
+  exampleSpring: { title: "Ejemplo 6.6 — Trabajo hecho sobre balanza de resorte", url: "https://www.youtube.com/watch?v=ucMvS-Itipo" },
+  exampleVariableForce: { title: "Ejemplo 6.7 — Movimiento con fuerza variable", url: "https://www.youtube.com/watch?v=nslBQvZGezE" },
+  exampleCurvedPath: { title: "Ejemplo 6.8 — Movimiento en una trayectoria curva", url: "https://www.youtube.com/watch?v=gU35wgpu4xs" },
+  problemBlockSystem: { title: "Problema 6.7 — Trabajo de un sistema de bloques", url: "https://www.youtube.com/watch?v=tBGC2cJq_3M" },
+  problem615: { title: "Problema 6.15 — Trabajo", url: "https://www.youtube.com/watch?v=SRsZHEhFlco" },
+  problem617: { title: "Problema 6.17 — Energía cinética", url: "https://www.youtube.com/watch?v=kLHds2WrBLE" },
+  problem619: { title: "Problema 6.19 — Energía cinética", url: "https://www.youtube.com/watch?v=YFoorPaShbw" },
+  problem621: { title: "Problema 6.21 — Balance de energía, trabajo-energía", url: "https://www.youtube.com/watch?v=OkXTta2L7XI" },
+  problem623: { title: "Problema 6.23 — Trabajo-energía", url: "https://www.youtube.com/watch?v=eyEEV9nT5vI" },
+  problem625: { title: "Problema 6.25 — Trabajo-energía", url: "https://www.youtube.com/watch?v=n8p77E0yysk" },
+  problem627: { title: "Problema 6.27 — Trabajo-energía", url: "https://www.youtube.com/watch?v=AphTxpziooY" },
+  problem639Energy: { title: "Problema 6.39 — Balance de energías", url: "https://www.youtube.com/watch?v=Mjo6tz8PiUg" },
+  problem673: { title: "Problema 6.73", url: "https://www.youtube.com/watch?v=cNno9cZVZP0" },
+  problem681Balance: { title: "Problema 6.81 — Balance de energías", url: "https://www.youtube.com/watch?v=PCpgtnPy9Sk" },
+  problem681WorkEnergy: { title: "Problema 6.81 — Teorema trabajo-energía", url: "https://www.youtube.com/watch?v=1AEc_QIV2R0" }
+};
+
 const exercises = {
 "Capitulo 1": [
 {
@@ -1899,6 +1924,54 @@ const exercises = {
 }
 ]
 };
+
+// Map each requested exercise to direct source videos from the Videos FISICA notebook.
+const videoSuggestionsByExercise = {
+  "6.10": [videoSuggestions.kinetic],
+  "6.12": [videoSuggestions.kinetic, videoSuggestions.mechanical],
+  "6.14": [videoSuggestions.potential, videoSuggestions.mechanical],
+  "6.15": [videoSuggestions.problem615, videoSuggestions.mechanical],
+  "6.16": [videoSuggestions.potential, videoSuggestions.mechanical],
+  "6.17": [videoSuggestions.problem617],
+  "6.19": [videoSuggestions.problem619],
+  "6.20": [videoSuggestions.kinetic, videoSuggestions.workNoFriction],
+  "6.21": [videoSuggestions.problem621],
+  "6.23": [videoSuggestions.problem623],
+  "6.25": [videoSuggestions.problem625],
+  "6.27": [videoSuggestions.problem627],
+  "6.43": [videoSuggestions.power, videoSuggestions.kinetic],
+  "6.44": [videoSuggestions.power, videoSuggestions.energyForm],
+  "6.45": [videoSuggestions.power, videoSuggestions.mechanical],
+  "6.46": [videoSuggestions.power, videoSuggestions.mechanical],
+  "6.47": [videoSuggestions.power],
+  "6.48": [videoSuggestions.power, videoSuggestions.potential],
+  "6.49": [videoSuggestions.power, videoSuggestions.workNoFriction],
+  "6.73": [videoSuggestions.problem673, videoSuggestions.mechanical],
+  "6.76": [videoSuggestions.exampleSpring, videoSuggestions.mechanical],
+  "6.81": [videoSuggestions.problem681Balance, videoSuggestions.problem681WorkEnergy],
+  "6.82": [videoSuggestions.problemBlockSystem, videoSuggestions.mechanical],
+  "7.39": [videoSuggestions.problemBlockSystem, videoSuggestions.mechanical],
+  "7.42": [videoSuggestions.exampleSpring, videoSuggestions.mechanical],
+  "7.43": [videoSuggestions.exampleSpring, videoSuggestions.workNoFriction],
+  "7.46": [videoSuggestions.mechanical, videoSuggestions.potential],
+  "7.47": [videoSuggestions.mechanical, videoSuggestions.problem639Energy],
+  "7.49": [videoSuggestions.mechanical, videoSuggestions.potential],
+  "7.50": [videoSuggestions.potential, videoSuggestions.mechanical],
+  "7.55": [videoSuggestions.problemBlockSystem, videoSuggestions.mechanical],
+  "7.56": [videoSuggestions.exampleMultipleForces, videoSuggestions.workNoFriction],
+  "7.63": [videoSuggestions.exampleCurvedPath, videoSuggestions.mechanical],
+  "7.65": [videoSuggestions.exampleCurvedPath, videoSuggestions.workNoFriction],
+  "7.66": [videoSuggestions.workNoFriction, videoSuggestions.mechanical],
+  "7.68": [videoSuggestions.exampleVariableForce, videoSuggestions.exampleCurvedPath],
+  "7.70": [videoSuggestions.exampleSpring, videoSuggestions.mechanical],
+  "7.74": [videoSuggestions.exampleSpring, videoSuggestions.workNoFriction],
+  "7.75": [videoSuggestions.exampleSpring, videoSuggestions.mechanical]
+};
+
+Object.values(exercises).flat().forEach(exercise => {
+  const videos = videoSuggestionsByExercise[exercise.id];
+  if (videos) exercise.videos = videos;
+});
 
 // ====== FORMULARIO DE REFERENCIA ======
 // Formulas basadas en Sears & Zemansky, Fisica Universitaria, 12a ed.
